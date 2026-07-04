@@ -1,0 +1,231 @@
+<!-- ============================================================
+  BellaBlasts.com — Coming Soon / Link Hub Embed
+  Paste this whole block into Hostinger's HTML/embed code block.
+  Everything (CSS + JS) is self-contained — no external files needed.
+============================================================ -->
+
+<div id="bb-hub">
+  <div class="bb-hero">
+    <p class="bb-eyebrow">BELLABLASTS.COM</p>
+    <h1>You didn't end up here<br>by accident.</h1>
+    <p class="bb-sub">
+      Something brought you here. A clip that hit different. A curiosity you
+      can't shake. I don't sell videos — I sell what those videos do to your
+      body when nobody's watching.
+    </p>
+
+    <!-- Countdown -->
+    <div class="bb-countdown" id="bb-countdown">
+      <div class="bb-unit"><span id="bb-d">00</span><label>days</label></div>
+      <div class="bb-unit"><span id="bb-h">00</span><label>hrs</label></div>
+      <div class="bb-unit"><span id="bb-m">00</span><label>min</label></div>
+      <div class="bb-unit"><span id="bb-s">00</span><label>sec</label></div>
+    </div>
+
+    <!-- Two-lane buttons -->
+    <div class="bb-buttons">
+      <a href="#" id="bb-btn-instant" class="bb-btn bb-btn-primary">I Just Want Clips</a>
+      <a href="#" id="bb-btn-effect" class="bb-btn bb-btn-outline">The Bella Effect</a>
+    </div>
+
+    <!-- Email capture -->
+    <form id="bb-form" class="bb-form">
+      <p class="bb-form-label">Be first in when it opens.</p>
+      <div class="bb-form-row">
+        <input type="email" id="bb-email" placeholder="your email" required />
+        <button type="submit">Notify Me</button>
+      </div>
+      <p class="bb-form-note" id="bb-form-note">18+ only. Discretion guaranteed.</p>
+    </form>
+  </div>
+</div>
+
+<style>
+  #bb-hub {
+    background: #0a0a0a;
+    color: #f4f0ec;
+    font-family: 'Inter', -apple-system, sans-serif;
+    padding: 72px 24px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  #bb-hub .bb-hero { max-width: 560px; width: 100%; }
+  #bb-hub .bb-eyebrow {
+    letter-spacing: 0.2em;
+    font-size: 12px;
+    color: #C8A08C;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+  }
+  #bb-hub h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(32px, 6vw, 48px);
+    line-height: 1.15;
+    margin: 0 0 20px;
+    color: #ffffff;
+  }
+  #bb-hub .bb-sub {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #cfc7bf;
+    margin: 0 0 40px;
+  }
+
+  /* Countdown */
+  #bb-hub .bb-countdown {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+  #bb-hub .bb-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 56px;
+  }
+  #bb-hub .bb-unit span {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px;
+    color: #C8A08C;
+    line-height: 1;
+  }
+  #bb-hub .bb-unit label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7a746e;
+    margin-top: 6px;
+  }
+
+  /* Buttons */
+  #bb-hub .bb-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  #bb-hub .bb-btn {
+    display: inline-block;
+    padding: 15px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+    min-width: 180px;
+  }
+  #bb-hub .bb-btn:hover { transform: translateY(-2px); }
+  #bb-hub .bb-btn-primary {
+    background: linear-gradient(90deg, #b8342f, #C8A08C);
+    color: #0a0a0a;
+  }
+  #bb-hub .bb-btn-outline {
+    background: transparent;
+    border: 1px solid #C8A08C;
+    color: #C8A08C;
+  }
+
+  /* Form */
+  #bb-hub .bb-form { max-width: 380px; margin: 0 auto; }
+  #bb-hub .bb-form-label {
+    font-size: 14px;
+    color: #cfc7bf;
+    margin: 0 0 12px;
+  }
+  #bb-hub .bb-form-row {
+    display: flex;
+    gap: 8px;
+  }
+  #bb-hub .bb-form-row input {
+    flex: 1;
+    padding: 13px 14px;
+    background: #161412;
+    border: 1px solid #2a2622;
+    border-radius: 4px;
+    color: #f4f0ec;
+    font-size: 15px;
+  }
+  #bb-hub .bb-form-row input::placeholder { color: #6b655f; }
+  #bb-hub .bb-form-row input:focus {
+    outline: none;
+    border-color: #C8A08C;
+  }
+  #bb-hub .bb-form-row button {
+    padding: 13px 20px;
+    background: #C8A08C;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  #bb-hub .bb-form-row button:hover { opacity: 0.9; }
+  #bb-hub .bb-form-note {
+    font-size: 11px;
+    color: #6b655f;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 480px) {
+    #bb-hub .bb-form-row { flex-direction: column; }
+  }
+</style>
+
+<script>
+(function () {
+  // ---- 1. CONFIG — edit these three lines ----
+  var LAUNCH_DATE = "2026-08-01T00:00:00"; // set your real launch date/time
+  var INSTANT_URL = "#"; // link to your Instant/clips page or platform directory
+  var EFFECT_URL = "#";  // link to The Bella Effect page or intake
+  var WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/XXXXX/XXXXX/"; // your Zapier/Make webhook
+
+  document.getElementById("bb-btn-instant").href = INSTANT_URL;
+  document.getElementById("bb-btn-effect").href = EFFECT_URL;
+
+  // ---- 2. Countdown ----
+  var target = new Date(LAUNCH_DATE).getTime();
+  function tick() {
+    var now = new Date().getTime();
+    var diff = target - now;
+    if (diff < 0) diff = 0;
+    var d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    var s = Math.floor((diff % (1000 * 60)) / 1000);
+    document.getElementById("bb-d").textContent = String(d).padStart(2, "0");
+    document.getElementById("bb-h").textContent = String(h).padStart(2, "0");
+    document.getElementById("bb-m").textContent = String(m).padStart(2, "0");
+    document.getElementById("bb-s").textContent = String(s).padStart(2, "0");
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ---- 3. Email capture ----
+  document.getElementById("bb-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("bb-email").value;
+    var note = document.getElementById("bb-form-note");
+
+    fetch(WEBHOOK_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email, source: "coming-soon-page", ts: new Date().toISOString() })
+    }).then(function () {
+      note.textContent = "You're on the list. Check your inbox soon.";
+      document.getElementById("bb-email").value = "";
+    }).catch(function () {
+      note.textContent = "Something went wrong — try again in a moment.";
+    });
+  });
+})();
+</script>
+
+<!-- Google Fonts — remove this line if your Hostinger theme already loads them -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
