@@ -1,0 +1,13 @@
+{
+  "update_id": 100000001,
+  "message": {
+    "message_id": 999,
+    "text": "hey! for you, $200",
+    "chat": {
+      "id": "__OWNER_CHAT_ID__"
+    },
+    "reply_to_message": {
+      "message_id": "__REPLIED_TO_MESSAGE_ID__"
+    }
+  }
+}

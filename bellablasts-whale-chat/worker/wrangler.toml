@@ -1,0 +1,29 @@
+name = "bellablasts-whale-chat"
+main = "src/index.ts"
+compatibility_date = "2024-09-25"
+
+# 1-minute granularity is the finest Cloudflare Cron Triggers support on the
+# free plan. The fallback message can therefore land up to ~60s after the
+# nominal WHALE_REPLY_WINDOW_MS deadline below.
+[triggers]
+crons = ["* * * * *"]
+
+[vars]
+# Origin the widget is served from (Hostinger). Used for CORS headers.
+ALLOWED_ORIGIN = "https://bellablasts.com"
+# How long the owner has to reply before the fallback/contact-info message
+# fires, in milliseconds. 2 minutes, per the product requirement.
+WHALE_REPLY_WINDOW_MS = "120000"
+
+# Create this with `wrangler kv namespace create CHAT_KV` (and the --preview
+# variant for local `wrangler dev`), then replace the ids below with the ones
+# it prints out. See ../README.md.
+[[kv_namespaces]]
+binding = "CHAT_KV"
+id = "REPLACE_ME_KV_NAMESPACE_ID"
+preview_id = "REPLACE_ME_KV_PREVIEW_NAMESPACE_ID"
+
+# Secrets (TELEGRAM_BOT_TOKEN, TELEGRAM_OWNER_CHAT_ID, TELEGRAM_WEBHOOK_SECRET)
+# are NOT set here — see ../README.md for `wrangler secret put` instructions.
+# For local `wrangler dev`, put them in a `.dev.vars` file (see
+# .dev.vars.example) which is gitignored and never committed.

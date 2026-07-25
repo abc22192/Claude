@@ -1,0 +1,17 @@
+# Copy this file to `.dev.vars` (gitignored, never commit real secrets) for
+# local `wrangler dev` runs. Real values are set in production via
+# `wrangler secret put <NAME>` — see ../README.md.
+
+# Telegram bot token from @BotFather. Leave unset locally to run telegram.ts
+# in "dry-run" mode (logs outbound sends to the console, returns a fake
+# message id) so the rest of the flow is testable without a real bot.
+# TELEGRAM_BOT_TOKEN=
+
+# Your numeric Telegram chat id (see README for how to find it). Required
+# for the webhook handler to verify inbound replies actually come from you.
+# TELEGRAM_OWNER_CHAT_ID=
+
+# A random string you make up yourself. Set the same value on the Telegram
+# side via `setWebhook`'s `secret_token` param — see README. Used to verify
+# inbound webhook calls are really from Telegram and not a random POST.
+# TELEGRAM_WEBHOOK_SECRET=

@@ -1,0 +1,323 @@
+<!-- ============================================================
+  BellaBlasts.com — Whale Chat
+  Paste this whole block into Hostinger's HTML/embed code block, same as
+  bellablasts-linkhub.html. Everything (CSS + JS) is self-contained — no
+  external files needed except the Cloudflare Worker backend (see
+  ../worker/ and ../README.md).
+
+  BEFORE GOING LIVE: fill in the CONFIG block near the top of the <script>
+  below with your deployed Worker URL and your real contact handles.
+============================================================ -->
+
+<div id="bbw-hub">
+  <div class="bbw-hero">
+    <p class="bbw-eyebrow">BELLABLASTS.COM</p>
+    <h1>Say what's on<br>your mind.</h1>
+    <p class="bbw-sub">
+      I get it &mdash; leaving your info can feel like a lot. I promise, it's only
+      ever used to get back to you. Nothing shared, no spam, no lists.
+    </p>
+
+    <div class="bbw-chat">
+      <div class="bbw-messages" id="bbw-messages"></div>
+      <p class="bbw-status" id="bbw-status"></p>
+      <form id="bbw-form" class="bbw-form">
+        <input type="text" id="bbw-input" placeholder="Type here&hellip;" autocomplete="off" maxlength="2000" required />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <p class="bbw-footnote">18+ only. Discretion guaranteed.</p>
+  </div>
+</div>
+
+<style>
+  #bbw-hub {
+    background: #0a0a0a;
+    color: #f4f0ec;
+    font-family: 'Inter', -apple-system, sans-serif;
+    padding: 72px 24px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  #bbw-hub .bbw-hero { max-width: 560px; width: 100%; }
+  #bbw-hub .bbw-eyebrow {
+    letter-spacing: 0.2em;
+    font-size: 12px;
+    color: #C8A08C;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+  }
+  #bbw-hub h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(32px, 6vw, 48px);
+    line-height: 1.15;
+    margin: 0 0 20px;
+    color: #ffffff;
+  }
+  #bbw-hub .bbw-sub {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #cfc7bf;
+    margin: 0 0 32px;
+  }
+
+  /* Chat panel */
+  #bbw-hub .bbw-chat {
+    background: #120f0d;
+    border: 1px solid #2a2622;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: left;
+    margin-bottom: 24px;
+  }
+  #bbw-hub .bbw-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 360px;
+    overflow-y: auto;
+    margin-bottom: 12px;
+    scroll-behavior: smooth;
+  }
+  #bbw-hub .bbw-messages:empty::before {
+    content: "No messages yet \2014 say hi, or ask whatever's on your mind.";
+    color: #6b655f;
+    font-size: 14px;
+    font-style: italic;
+  }
+  #bbw-hub .bbw-bubble {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+  #bbw-hub .bbw-bubble-visitor {
+    align-self: flex-end;
+    background: #2a2622;
+    color: #f4f0ec;
+  }
+  #bbw-hub .bbw-bubble-system {
+    align-self: flex-start;
+    background: transparent;
+    border: 1px solid #C8A08C;
+    color: #f4f0ec;
+  }
+  #bbw-hub .bbw-bubble-owner {
+    align-self: flex-start;
+    background: transparent;
+    border-left: 3px solid #C8A08C;
+    border-radius: 2px;
+    color: #f4f0ec;
+    padding-left: 12px;
+  }
+
+  /* Fallback contact buttons */
+  #bbw-hub .bbw-contacts-label {
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    color: #C8A08C;
+    text-transform: uppercase;
+    margin: 12px 0 8px;
+  }
+  #bbw-hub .bbw-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0;
+  }
+  #bbw-hub .bbw-contact-btn {
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    border: 1px solid #C8A08C;
+    color: #C8A08C;
+    transition: opacity 0.15s ease;
+  }
+  #bbw-hub .bbw-contact-btn:hover { opacity: 0.8; }
+
+  #bbw-hub .bbw-status {
+    min-height: 16px;
+    font-size: 12px;
+    color: #7a746e;
+    margin: 0 0 10px;
+  }
+
+  /* Input row */
+  #bbw-hub .bbw-form {
+    display: flex;
+    gap: 8px;
+  }
+  #bbw-hub .bbw-form input {
+    flex: 1;
+    padding: 13px 14px;
+    background: #161412;
+    border: 1px solid #2a2622;
+    border-radius: 4px;
+    color: #f4f0ec;
+    font-size: 15px;
+  }
+  #bbw-hub .bbw-form input::placeholder { color: #6b655f; }
+  #bbw-hub .bbw-form input:focus {
+    outline: none;
+    border-color: #C8A08C;
+  }
+  #bbw-hub .bbw-form button {
+    padding: 13px 22px;
+    background: linear-gradient(90deg, #b8342f, #C8A08C);
+    color: #0a0a0a;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  #bbw-hub .bbw-form button:hover { opacity: 0.9; }
+  #bbw-hub .bbw-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  #bbw-hub .bbw-footnote {
+    font-size: 11px;
+    color: #6b655f;
+    margin: 0;
+  }
+
+  @media (max-width: 480px) {
+    #bbw-hub .bbw-form { flex-direction: column; }
+  }
+</style>
+
+<script>
+(function () {
+  // ---- CONFIG — edit these before going live ----
+  var WORKER_BASE_URL = "https://REPLACE-ME.workers.dev"; // your deployed Worker URL (or custom subdomain)
+  var CONTACT = {
+    telegram: "https://t.me/REPLACE_ME",
+    email: "mailto:REPLACE_ME@example.com",
+    twitter: "https://x.com/REPLACE_ME",
+    snapchat: "https://snapchat.com/add/REPLACE_ME"
+  };
+  var POLL_INTERVAL_MS = 4000;
+
+  // ---- Session id (persisted so a returning visitor keeps their thread) ----
+  var SESSION_KEY = "bbw_session_id";
+  var sessionId = localStorage.getItem(SESSION_KEY);
+  if (!sessionId) {
+    sessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random());
+    localStorage.setItem(SESSION_KEY, sessionId);
+  }
+
+  var messagesEl = document.getElementById("bbw-messages");
+  var statusEl = document.getElementById("bbw-status");
+  var formEl = document.getElementById("bbw-form");
+  var inputEl = document.getElementById("bbw-input");
+  var sendBtn = formEl.querySelector("button");
+
+  var lastSeq = 0;
+  var renderedIds = {};
+
+  function contactButtonsHtml() {
+    return (
+      '<p class="bbw-contacts-label">Contact Bella</p>' +
+      '<div class="bbw-contacts">' +
+      '<a class="bbw-contact-btn" href="' + CONTACT.telegram + '" target="_blank" rel="noopener">Telegram</a>' +
+      '<a class="bbw-contact-btn" href="' + CONTACT.email + '">Email</a>' +
+      '<a class="bbw-contact-btn" href="' + CONTACT.twitter + '" target="_blank" rel="noopener">X / Twitter</a>' +
+      '<a class="bbw-contact-btn" href="' + CONTACT.snapchat + '" target="_blank" rel="noopener">Snapchat</a>' +
+      '</div>'
+    );
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function renderMessage(msg) {
+    if (renderedIds[msg.id]) return;
+    renderedIds[msg.id] = true;
+
+    var bubble = document.createElement("div");
+    var cls = msg.from === "visitor" ? "bbw-bubble-visitor"
+      : msg.from === "owner" ? "bbw-bubble-owner"
+      : "bbw-bubble-system";
+    bubble.className = "bbw-bubble " + cls;
+    bubble.innerHTML = escapeHtml(msg.text).replace(/\n/g, "<br>");
+
+    if (msg.kind === "fallback") {
+      bubble.innerHTML += contactButtonsHtml();
+    }
+
+    messagesEl.appendChild(bubble);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function renderMessages(list) {
+    list.forEach(renderMessage);
+    if (list.length) {
+      lastSeq = Math.max.apply(null, list.map(function (m) { return m.seq; }).concat([lastSeq]));
+    }
+  }
+
+  function setStatus(text) {
+    statusEl.textContent = text || "";
+  }
+
+  function poll() {
+    fetch(WORKER_BASE_URL + "/api/messages?sessionId=" + encodeURIComponent(sessionId) + "&sinceSeq=" + lastSeq)
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        renderMessages(data.messages || []);
+        if (data.awaitingReply) {
+          setStatus("Sent \u2014 I'll be with you shortly.");
+        } else {
+          setStatus("");
+        }
+      })
+      .catch(function () { /* transient network hiccup — next poll will retry */ });
+  }
+
+  formEl.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var text = inputEl.value.trim();
+    if (!text) return;
+
+    sendBtn.disabled = true;
+    inputEl.value = "";
+
+    fetch(WORKER_BASE_URL + "/api/message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId: sessionId, text: text })
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        renderMessages(data.messages || []);
+        if (data.awaitingReply) {
+          setStatus("Sent \u2014 I'll be with you shortly.");
+        }
+      })
+      .catch(function () {
+        setStatus("Something went wrong sending that \u2014 try again in a moment.");
+      })
+      .finally(function () {
+        sendBtn.disabled = false;
+      });
+  });
+
+  // Hydrate any existing thread (returning visitor / page reload), then poll.
+  poll();
+  setInterval(poll, POLL_INTERVAL_MS);
+})();
+</script>
+
+<!-- Google Fonts — remove this line if your Hostinger theme already loads them -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
