@@ -1,8 +1,9 @@
 # first-run flag — never commit, so every clone onboards fresh
 context/.onboarded
 
-# secrets / credentials
-secrets/
+# secrets / credentials — track templates, never real credentials
+secrets/*
+!secrets/*.env.template
 .env
 *.key
 .claude/settings.local.json

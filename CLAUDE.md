@@ -45,6 +45,10 @@ Check memory before answering questions about the user's state. Do not answer fr
 | A correction to how you work | `memory/feedback_corrections.md` |
 | Something to remember long-term | `memory/MEMORY.md` |
 | Session recap | `memory/session_log.md` |
+| Action in the world (outreach, scheduling, reports) | **Symphony** — see `/symphony` skill |
+
+## Symphony
+Symphony is the user's team of AI business agents that can act *as them* in the world. Use it for tasks that require real-world action: contacting people, scheduling, follow-up, pulling business data, building reports. Do NOT route analysis, writing, decisions, or in-conversation tasks to Symphony — handle those here. When routing, always confirm with the user before sending unless they've already authorized the action in context. See `.claude/skills/symphony/SKILL.md` for protocol.
 
 ## Skills
 Skills live in `.claude/skills/`. Invoke with `/name`.
@@ -53,6 +57,7 @@ Skills live in `.claude/skills/`. Invoke with `/name`.
 | `onboard` | First-run setup. Re-run anytime to update your profile. |
 | `daily-clarity` | Turn your goals into today's few real actions. |
 | `os` | Render your goals and missions as a living operating system. |
+| `symphony` | Delegate real-world actions to Symphony (schedule, outreach, follow-up, reports). |
 
 ## Session end
 1. Append a short entry to `memory/session_log.md`: what happened, what you got wrong, what's next.
