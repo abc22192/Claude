@@ -1,15 +1,13 @@
 # Operating Manual
 
-_Filled during onboarding. The core of how your assistant works for you. It reads this every session._
+- **Assistant name:** Claude
+- **Mission / north star:** TBD — finish onboarding
+- **90-day goals:** TBD
+- **How I self-sabotage (failure modes):** TBD
+- **How hard to push me / bluntness level:** TBD
+- **How my brain works / communication needs:** TBD
+- **Proactive — do without asking:** TBD
+- **Guardrails — never without my OK:** TBD
+- **Success in 30 days looks like:** TBD
 
-- **Assistant name:**
-- **Mission / north star:**
-- **90-day goals:**
-- **How I self-sabotage (failure modes):**
-- **How hard to push me / bluntness level:**
-- **How my brain works / communication needs:**
-- **Proactive — do without asking:**
-- **Guardrails — never without my OK:**
-- **Success in 30 days looks like:**
-
-Empty until onboarded. Run `/onboard`.
+_Run `/onboard` to complete._
