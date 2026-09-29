@@ -35,6 +35,11 @@ return [
     // The password you type to open the web dashboard. Pick something strong.
     'DASHBOARD_PASSWORD' => 'change_this_password',
 
+    // ---- Connect other apps (Zapier, website forms, etc.) ------------------
+    // A long random key. Any outside app that POSTs to api.php must send this
+    // key, so only your own tools can push data in. Invent 30+ characters.
+    'API_INGEST_KEY' => 'invent_another_long_random_string_here',
+
     // ---- Optional AI cleanup (leave blank to run rule-based only) ----------
     // If you paste an Anthropic API key here, brain dumps get an AI pass that
     // extracts fields more cleanly. WITHOUT a key the app still works fully

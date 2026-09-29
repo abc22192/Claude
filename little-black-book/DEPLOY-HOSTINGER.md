@@ -34,6 +34,10 @@ in) is still smart, since this is your private business data either way.
    - Password (make it strong)
    - Host is almost always `localhost`.
 
+> ⚠️ **Do NOT use the "Deploy an app" / "Web App" screen.** That one is for
+> Node.js/JavaScript apps only and will reject this with "unsupported framework."
+> This app is PHP, which runs on classic web hosting. Use **File Manager**, below.
+
 ## Step 3 — Upload the files
 
 1. hPanel → **Files → File Manager**, open your web root from Step 1.
@@ -55,6 +59,8 @@ in) is still smart, since this is your private business data either way.
      it). This makes the bot ignore everyone but you. Optional but recommended.
    - `DB_NAME`, `DB_USER`, `DB_PASS` → from Step 2. Leave `DB_HOST` as `localhost`.
    - `DASHBOARD_PASSWORD` → the password you'll type to open the dashboard.
+   - `API_INGEST_KEY` → invent another long random string. Only needed if you'll
+     connect outside apps (Zapier, a website form) via `api.php`. Fine to set now.
    - `ANTHROPIC_API_KEY` → leave blank for now (free, rule-based mode).
 
 ## Step 5 — Make sure PHP is 8.0+

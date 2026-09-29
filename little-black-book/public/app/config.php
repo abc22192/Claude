@@ -30,6 +30,7 @@ if (is_file($secretsPath)) {
         'DB_USER'                 => getenv('DB_USER') ?: '',
         'DB_PASS'                 => getenv('DB_PASS') ?: '',
         'DASHBOARD_PASSWORD'      => getenv('DASHBOARD_PASSWORD') ?: '',
+        'API_INGEST_KEY'          => getenv('API_INGEST_KEY') ?: '',
         'ANTHROPIC_API_KEY'       => getenv('ANTHROPIC_API_KEY') ?: '',
         'ANTHROPIC_MODEL'         => getenv('ANTHROPIC_MODEL') ?: 'claude-sonnet-5-5',
     ];
