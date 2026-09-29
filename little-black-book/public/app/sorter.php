@@ -34,14 +34,6 @@ const LBB_FIELDS = [
     'red_flags', 'green_flags', 'status', 'notes',
 ];
 
-/** The Voice Router cards, in the exact language of the current Voice Router.
- *  Tone gets recorded ONLY if the dump matches one of these, or explicitly
- *  says "tone: <word>". Never inferred from a niche. */
-const LBB_TONES = [
-    'dominant', 'bratty', 'sweet', 'girl_next_door',
-    'joi', 'sales', 'professional', 'mainstream',
-];
-
 /** Niche synonyms — used ONLY to fill `fetishes`. Never bled into tone or dream. */
 const LBB_NICHES = [
     'fart', 'farts', 'farting', 'feet', 'foot', 'giantess', 'size', 'vore',
@@ -130,15 +122,14 @@ function extract_fields_rules(string $text): array
     }
     if ($found) { $out['fetishes'] = implode(', ', array_unique($found)); }
 
-    // Tone: ONLY when the dump literally says a card name after "tone:" OR
-    // uses a Voice Router card word in a "tone" context. Otherwise absent.
-    if (preg_match('/tone[:\s]+([a-z\s\-_]+)/i', $text, $m)) {
-        $tone = strtolower(trim(str_replace([' ', '-'], '_', $m[1])));
-        $first = explode('_', $tone, 3);
-        // accept "girl_next_door" or the first card-word we recognize.
-        foreach (LBB_TONES as $t) {
-            if (str_starts_with($tone, $t)) { $out['tone'] = $t; break; }
-        }
+    // Tone: ONLY when the dump literally labels it ("tone: <words>" or
+    // "tone = <words>"). Free-text value, never inferred from a niche.
+    // Requires the colon/equals so incidental mentions ("no tone in this
+    // dump") don't get scooped up.
+    if (preg_match('/(?:^|[,;\n])\s*tone\s*[:=]\s*([^\n.]+)/i', $text, $m)) {
+        $out['tone'] = trim($m[1]);
+    } elseif (preg_match('/^\s*tone\s*[:=]\s*([^\n.]+)/im', $text, $m)) {
+        $out['tone'] = trim($m[1]);
     }
 
     // Product awareness — explicit mentions only.
@@ -177,13 +168,12 @@ function extract_fields_ai(string $text): array
     if ($key === '') { return []; }
 
     $fields = implode(', ', LBB_FIELDS);
-    $tones  = implode('|', LBB_TONES);
     $prompt = "You extract CRM fields from a messy note about ONE person. "
         . "Return ONLY a JSON object using ANY of these keys: {$fields}.\n\n"
         . "STRICT RULES:\n"
         . "- Omit any key you cannot fill directly from the note. Never guess.\n"
         . "- Never derive `tone` from a fetish or niche. Only set `tone` if the "
-        . "note explicitly says a tone, and it MUST be one of: {$tones}.\n"
+        . "note explicitly states a tone; keep the human's own words verbatim.\n"
         . "- `dream_night` is a scenario, not a niche word. Preserve their own "
         . "wording. Never replace a scenario with a single-word niche.\n"
         . "- `fetishes` is niches only.\n"
@@ -215,11 +205,6 @@ function extract_fields_ai(string $text): array
     if (!preg_match('/\{.*\}/s', $textOut, $m)) { return []; }
     $json = json_decode($m[0], true);
     if (!is_array($json)) { return []; }
-
-    // Extra safety net: strip any AI-supplied tone that isn't a valid card.
-    if (isset($json['tone']) && !in_array(strtolower((string)$json['tone']), LBB_TONES, true)) {
-        unset($json['tone']);
-    }
     return array_intersect_key($json, array_flip(LBB_FIELDS));
 }
 
@@ -361,18 +346,13 @@ function missing_info_question(int $contactId, string $lastText = ''): string
 {
     $c = q1('SELECT * FROM contacts WHERE id = ?', [$contactId]);
 
-    // Highest priority: we learned a niche this round but have no tone → ASK.
-    if (empty($c['tone']) && !empty($c['fetishes'])) {
-        q('UPDATE contacts SET tone_uncertain = 1 WHERE id = ?', [$contactId]);
-        return "What tone should you use with them? (Dominant / Bratty / Sweet / Girl Next Door / JOI / Sales / Professional / Mainstream)";
-    }
-
     $askable = [
         'dream_night'    => 'What is their Dream Night? (their scenario, in their words)',
+        'tone'           => 'What tone works with them? (a note to yourself, whatever wording you use)',
         'magic_words'    => 'Any Magic Words that work on them?',
         'likes_about_me' => 'What do they specifically like about you?',
         'call_me'        => 'What do they call you?',
-        'chat_on'        => 'Where do you talk to them? (Telegram, OF, ATW, X, email)',
+        'chat_on'        => 'Where do you talk to them?',
     ];
     foreach ($askable as $field => $question) {
         if (empty($c[$field])) { return $question; }
@@ -441,21 +421,6 @@ function handle_dump(string $text, string $chatId): string
         return $qn ? "$reply\n\nOne useful thing missing: $qn" : $reply;
     }
 
-    // Answering the tone question.
-    if (($ctx['awaiting'] ?? null) === 'tone' && ($ctx['contact_id'] ?? null)) {
-        $picked = strtolower(str_replace([' ', '-'], '_', trim($text)));
-        $tone = null;
-        foreach (LBB_TONES as $t) {
-            if (str_starts_with($picked, $t)) { $tone = $t; break; }
-        }
-        if ($tone) {
-            q('UPDATE contacts SET tone = ?, tone_uncertain = 0 WHERE id = ?', [$tone, $ctx['contact_id']]);
-            set_chat_ctx($chatId, ['awaiting' => null]);
-            return "Tone set to <b>" . htmlspecialchars(str_replace('_', ' ', $tone)) . "</b>. ✅";
-        }
-        return "I need one of: Dominant, Bratty, Sweet, Girl Next Door, JOI, Sales, Professional, Mainstream.";
-    }
-
     // Normal brain dump.
     $rawId = capture_raw($text, $chatId);
     $matches = match_contact($text);
@@ -476,17 +441,11 @@ function handle_dump(string $text, string $chatId): string
     apply_dump($id, $rawId, $text);
     set_chat_ctx($chatId, ['contact_id' => $id, 'awaiting' => null, 'pending_raw' => null]);
 
-    $c = q1('SELECT name, next_followup, tone_uncertain FROM contacts WHERE id = ?', [$id]);
+    $c = q1('SELECT name, next_followup FROM contacts WHERE id = ?', [$id]);
     $reply = "Sorted into <b>" . htmlspecialchars($c['name']) . "</b>. ✅ "
         . "Next follow-up: " . htmlspecialchars($c['next_followup']);
 
     $qn = missing_info_question($id, $text);
-    if ($qn) {
-        // If the question is the tone one, mark chat as awaiting a tone reply.
-        if (str_starts_with($qn, 'What tone')) {
-            set_chat_ctx($chatId, ['awaiting' => 'tone']);
-        }
-        $reply .= "\n\n$qn";
-    }
+    if ($qn) { $reply .= "\n\n$qn"; }
     return $reply;
 }

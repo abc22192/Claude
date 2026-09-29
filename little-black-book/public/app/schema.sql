@@ -24,8 +24,7 @@ CREATE TABLE IF NOT EXISTS contacts (
     magic_words       TEXT         DEFAULT NULL,
     likes_about_me    TEXT         DEFAULT NULL,       -- What They Like About Me
     dream_night       TEXT         DEFAULT NULL,       -- verbatim scenario, NOT a niche word
-    tone              VARCHAR(64)  DEFAULT NULL,       -- one of the Voice Router cards
-    tone_uncertain    TINYINT(1)   NOT NULL DEFAULT 0, -- 1 if we're unsure; never guess from fetish
+    tone              TEXT         DEFAULT NULL,       -- free-text memory of how to be with them; no hardcoded list
     call_me           VARCHAR(255) DEFAULT NULL,       -- what they call Bella
     plans_to_finish   TEXT         DEFAULT NULL,       -- finish/control + future intent
 

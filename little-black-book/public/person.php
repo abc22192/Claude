@@ -18,6 +18,55 @@ if (!$contact) {
     exit('Person not found. <a href="index.php">Back</a>');
 }
 
+// --- Manual entry actions ---------------------------------------------------
+if (($_POST['action'] ?? '') === 'add_session') {
+    insert(
+        'INSERT INTO sessions (contact_id, session_name, session_type, effect_level, session_date, amount_paid, notes)
+         VALUES (?, ?, ?, ?, ?, ?, ?)',
+        [$id,
+         trim($_POST['session_name'] ?? 'Session'),
+         trim($_POST['session_type'] ?? '') ?: null,
+         trim($_POST['effect_level'] ?? '') ?: null,
+         trim($_POST['session_date'] ?? '') ?: null,
+         ($_POST['amount_paid'] ?? '') === '' ? null : (float) $_POST['amount_paid'],
+         trim($_POST['session_notes'] ?? '') ?: null,
+        ]
+    );
+    header('Location: person.php?id=' . $id); exit;
+}
+if (($_POST['action'] ?? '') === 'add_interaction') {
+    insert(
+        'INSERT INTO interactions (contact_id, channel, summary, remember_next, promise_or_commit) VALUES (?, ?, ?, ?, ?)',
+        [$id,
+         trim($_POST['channel'] ?? '') ?: null,
+         trim($_POST['summary'] ?? ''),
+         trim($_POST['remember_next'] ?? '') ?: null,
+         trim($_POST['promise'] ?? '') ?: null,
+        ]
+    );
+    q('UPDATE contacts SET last_contact = NOW() WHERE id = ?', [$id]);
+    header('Location: person.php?id=' . $id); exit;
+}
+if (($_POST['action'] ?? '') === 'add_followup') {
+    insert(
+        'INSERT INTO follow_ups (contact_id, due_at, reminder, status) VALUES (?, ?, ?, ?)',
+        [$id,
+         trim($_POST['due_at'] ?? date('Y-m-d')),
+         trim($_POST['reminder'] ?? '') ?: null,
+         'open',
+        ]
+    );
+    q('UPDATE contacts SET next_followup = ?, followup_status = ? WHERE id = ?',
+        [$_POST['due_at'] ?? date('Y-m-d'), 'open', $id]);
+    header('Location: person.php?id=' . $id); exit;
+}
+if (($_POST['action'] ?? '') === 'set_followup_status') {
+    q('UPDATE follow_ups SET status = ?, sent_at = CASE WHEN ?="sent" THEN NOW() ELSE sent_at END WHERE id = ?',
+        [$_POST['status'], $_POST['status'], (int) $_POST['fid']]);
+    q('UPDATE contacts SET followup_status = ? WHERE id = ?', [$_POST['status'], $id]);
+    header('Location: person.php?id=' . $id); exit;
+}
+
 // Save edits.
 if (($_POST['action'] ?? '') === 'save') {
     $editable = array_merge(
@@ -33,19 +82,11 @@ if (($_POST['action'] ?? '') === 'save') {
             if (in_array($f, ['knows_audio', 'knows_bella_effect', 'knows_inhalers'], true)) {
                 $val = $_POST[$f] ? 1 : 0;
             }
-            // Tone must be a valid Voice Router card or blank.
-            if ($f === 'tone' && $val !== '' && !in_array($val, LBB_TONES, true)) {
-                continue;
-            }
             $sets[] = "$f = ?";
             $args[] = $val === '' ? null : $val;
         }
     }
     if ($sets) {
-        // Clear the uncertain flag when Bella sets a real tone.
-        if (in_array('tone = ?', $sets, true)) {
-            $sets[] = 'tone_uncertain = 0';
-        }
         $args[] = $id;
         q('UPDATE contacts SET ' . implode(', ', $sets) . ' WHERE id = ?', $args);
     }
@@ -63,7 +104,7 @@ $sessionCount = count($sessions);
 $intel = [
     'dream_night'     => 'Dream Night (their scenario, verbatim)',
     'fetishes'        => 'Fetishes / Niches',
-    'tone'            => 'Tone (Voice Router card)',
+    'tone'            => 'Tone (a note to yourself — how to be with them)',
     'magic_words'     => 'Magic Words',
     'likes_about_me'  => 'What They Like About Me',
     'call_me'         => 'Call Me',
@@ -100,10 +141,6 @@ $intel = [
       <div class="stat"><span class="num"><?= htmlspecialchars($contact['spender_tier'] ?? '—') ?></span> tier</div>
     </div>
 
-    <?php if (!empty($contact['tone_uncertain'])): ?>
-      <p class="pill">⚠ Tone still uncertain — set it in the form below or reply to the bot with a card name.</p>
-    <?php endif; ?>
-
     <form method="post" class="card">
       <input type="hidden" name="action" value="save">
 
@@ -128,18 +165,7 @@ $intel = [
       <h2>PERSON — Relationship Intelligence</h2>
       <?php foreach ($intel as $f => $label): ?>
         <div class="field"><label><?= htmlspecialchars($label) ?></label>
-          <?php if ($f === 'tone'): ?>
-            <select name="tone">
-              <option value="">— set later —</option>
-              <?php foreach (LBB_TONES as $t): ?>
-                <option value="<?= $t ?>" <?= ($contact['tone'] ?? '') === $t ? 'selected' : '' ?>>
-                  <?= htmlspecialchars(str_replace('_', ' ', $t)) ?>
-                </option>
-              <?php endforeach; ?>
-            </select>
-          <?php else: ?>
-            <textarea name="<?= $f ?>" rows="2"><?= htmlspecialchars($contact[$f] ?? '') ?></textarea>
-          <?php endif; ?>
+          <textarea name="<?= $f ?>" rows="2"><?= htmlspecialchars($contact[$f] ?? '') ?></textarea>
         </div>
       <?php endforeach; ?>
 
@@ -192,6 +218,19 @@ $intel = [
           <?php if ($s['notes']): ?><div><?= nl2br(htmlspecialchars($s['notes'])) ?></div><?php endif; ?>
         </div>
       <?php endforeach; ?>
+
+      <details class="card"><summary>+ Add a session</summary>
+        <form method="post">
+          <input type="hidden" name="action" value="add_session">
+          <div class="field"><label>Name</label><input name="session_name" required placeholder="Bella Effect L2 / Custom / Call"></div>
+          <div class="field"><label>Type</label><input name="session_type" placeholder="bella_effect / custom / call / audio"></div>
+          <div class="field"><label>Effect level</label><input name="effect_level" placeholder="L1 / L2 / L3 / L4"></div>
+          <div class="field"><label>Date</label><input name="session_date" type="date" value="<?= date('Y-m-d') ?>"></div>
+          <div class="field"><label>Amount ($)</label><input name="amount_paid" type="number" step="0.01"></div>
+          <div class="field"><label>Notes</label><textarea name="session_notes" rows="2"></textarea></div>
+          <button type="submit">Log session</button>
+        </form>
+      </details>
     </section>
 
     <section>
@@ -202,8 +241,21 @@ $intel = [
           <div class="muted small"><?= htmlspecialchars($i['happened_at']) ?><?php
             if ($i['channel']): ?> · <?= htmlspecialchars($i['channel']) ?><?php endif; ?></div>
           <?= nl2br(htmlspecialchars($i['summary'])) ?>
+          <?php if ($i['remember_next']): ?><p class="muted small">Remember next: <?= htmlspecialchars($i['remember_next']) ?></p><?php endif; ?>
+          <?php if ($i['promise_or_commit']): ?><p class="muted small">Promised: <?= htmlspecialchars($i['promise_or_commit']) ?></p><?php endif; ?>
         </div>
       <?php endforeach; ?>
+
+      <details class="card"><summary>+ Add an interaction</summary>
+        <form method="post">
+          <input type="hidden" name="action" value="add_interaction">
+          <div class="field"><label>Channel</label><input name="channel" placeholder="Telegram / OF / call / DM"></div>
+          <div class="field"><label>What happened</label><textarea name="summary" required rows="3"></textarea></div>
+          <div class="field"><label>Remember next time</label><input name="remember_next"></div>
+          <div class="field"><label>Any promise or booking?</label><input name="promise"></div>
+          <button type="submit">Log interaction</button>
+        </form>
+      </details>
     </section>
 
     <section>
@@ -211,11 +263,31 @@ $intel = [
       <?php if (!$followups): ?><p class="muted">Nothing scheduled.</p><?php endif; ?>
       <ul class="list">
         <?php foreach ($followups as $f): ?>
-          <li><?= htmlspecialchars($f['due_at']) ?> — <?= htmlspecialchars($f['status']) ?>
+          <li>
+            <?= htmlspecialchars($f['due_at']) ?> — <?= htmlspecialchars($f['status']) ?>
             <?php if ($f['reminder']): ?><span class="muted"> — <?= htmlspecialchars($f['reminder']) ?></span><?php endif; ?>
+            <?php if ($f['status'] === 'open'): ?>
+              <form method="post" style="display:inline">
+                <input type="hidden" name="action" value="set_followup_status">
+                <input type="hidden" name="fid" value="<?= (int)$f['id'] ?>">
+                <button type="submit" name="status" value="sent" class="muted" style="background:transparent;border:0;padding:0 6px;cursor:pointer">sent</button>
+                <button type="submit" name="status" value="done" class="muted" style="background:transparent;border:0;padding:0 6px;cursor:pointer">done</button>
+                <button type="submit" name="status" value="no_reply" class="muted" style="background:transparent;border:0;padding:0 6px;cursor:pointer">no reply</button>
+                <button type="submit" name="status" value="booked" class="muted" style="background:transparent;border:0;padding:0 6px;cursor:pointer">booked</button>
+              </form>
+            <?php endif; ?>
           </li>
         <?php endforeach; ?>
       </ul>
+
+      <details class="card"><summary>+ Schedule a follow-up</summary>
+        <form method="post">
+          <input type="hidden" name="action" value="add_followup">
+          <div class="field"><label>Due date</label><input name="due_at" type="date" required value="<?= date('Y-m-d', strtotime('+7 days')) ?>"></div>
+          <div class="field"><label>What to say / remember</label><input name="reminder"></div>
+          <button type="submit">Schedule</button>
+        </form>
+      </details>
     </section>
 
     <section>
