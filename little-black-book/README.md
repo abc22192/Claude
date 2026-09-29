@@ -68,11 +68,10 @@ public/                 ← this folder's contents become your public_html
     config.php  db.php  telegram.php  sorter.php  auth.php  schema.sql
 ```
 
-## Heads up on hosting policy
+## Hosting policy
 
-Hostinger's shared-hosting terms restrict adult content. This tool is a private,
-password-locked internal CRM, not a public adult site, which is a much lower
-risk — but the field labels are adult-adjacent. If you want to be safe, run it
-on a Hostinger **VPS** (looser policy, you control the box). Check the current
-line in Hostinger's Universal Terms of Service under "adult content" before you
-point a real domain at it. Details in the deploy guide.
+Hostinger allows legal adult content on its hosting, including shared plans, so
+this CRM is fine to run on a normal shared plan under a subdomain like
+`crm.bellablasts.com`. The only requirement is that everything stored stays
+legal. No VPS required. Source: Hostinger support, "Is Adult Content Allowed at
+Hostinger".

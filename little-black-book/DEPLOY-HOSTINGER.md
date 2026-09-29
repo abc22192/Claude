@@ -8,22 +8,13 @@ and access to your Hostinger hPanel.
 
 ---
 
-## Before you start: the adult-content question (read this once)
+## Hosting policy (good news)
 
-Hostinger's **Universal Terms of Service** restrict adult content on shared
-hosting. This CRM is private, password-locked, and hosts no public explicit
-media, so it is far lower risk than an adult *site*. But the field labels
-(e.g. "Interests"/fetishes) are adult-adjacent.
-
-**Your two safe options:**
-- **Shared hosting**, kept fully private (password on, no public pages, ideally
-  on a quiet subdomain like `crm.bellablasts.com`). Lower cost, small policy risk.
-- **Hostinger VPS**, where the content policy is looser and you own the box.
-  Safest if you want zero worry. Same files, you just upload them to the VPS.
-
-Check the current wording yourself: hPanel is fine to use, but read
-**hostinger.com → Legal → Universal Terms of Service → "adult content"** before
-pointing a real domain at it. If in doubt, use the VPS.
+Hostinger allows legal adult content on its hosting, including shared plans, so
+you can run this on a normal shared plan under a subdomain. No VPS needed. The
+only rule is that everything stored stays legal. Source: Hostinger support,
+"Is Adult Content Allowed at Hostinger". Password-locking the dashboard (built
+in) is still smart, since this is your private business data either way.
 
 ---
 
