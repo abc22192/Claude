@@ -11,7 +11,10 @@
  */
 
 $secretsPath = __DIR__ . '/secrets.php';
-$alreadyDone = is_file($secretsPath);
+$existing    = is_file($secretsPath) ? (require $secretsPath) : null;
+// Allow re-running to update DB creds (or anything). Fields pre-fill from what's
+// already saved, so you only change what you need to.
+$alreadyDone = false;
 
 // Small helper: generate a safe random string for webhook secrets and API keys.
 function lbb_rand(int $len = 40): string
@@ -33,10 +36,11 @@ if (!$alreadyDone && ($_POST['action'] ?? '') === 'save') {
         'DB_USER'                 => trim($_POST['DB_USER'] ?? ''),
         'DB_PASS'                 => trim($_POST['DB_PASS'] ?? ''),
         'ANTHROPIC_API_KEY'       => trim($_POST['ANTHROPIC_API_KEY'] ?? ''),
-        // These two get auto-generated so she never has to invent random strings.
-        'TELEGRAM_WEBHOOK_SECRET' => lbb_rand(30),
-        'API_INGEST_KEY'          => lbb_rand(30),
-        'ANTHROPIC_MODEL'         => 'claude-sonnet-5-5',
+        // Preserve the auto-generated randoms if they already exist so re-runs
+        // don't break the Telegram webhook or invalidate the API ingest key.
+        'TELEGRAM_WEBHOOK_SECRET' => $existing['TELEGRAM_WEBHOOK_SECRET'] ?? lbb_rand(30),
+        'API_INGEST_KEY'          => $existing['API_INGEST_KEY'] ?? lbb_rand(30),
+        'ANTHROPIC_MODEL'         => $existing['ANTHROPIC_MODEL'] ?? 'claude-sonnet-5-5',
     ];
 
     // Only two things are actually required to log in and reach the dashboard.
@@ -122,39 +126,45 @@ $showSuccess = $saved || $alreadyDone;
       <form method="post" class="card">
         <input type="hidden" name="action" value="save">
 
+        <?php if ($existing): ?>
+        <div class="card" style="background: transparent; border-color: var(--ok); padding: 10px 14px; margin-bottom: 14px;">
+          <p class="ok" style="margin: 0"><strong>Existing settings found.</strong> Fields below are pre-filled with what's saved. Change ONLY what needs to change (e.g. the DB password). Click save.</p>
+        </div>
+        <?php endif; ?>
+
         <h2>Your login <span class="pill">required</span></h2>
         <div class="field">
-          <label>Pick a password to open the dashboard</label>
+          <label>Password to open the dashboard</label>
           <input name="DASHBOARD_PASSWORD" type="text" required minlength="8"
-                 value="<?= htmlspecialchars($_POST['DASHBOARD_PASSWORD'] ?? '') ?>"
+                 value="<?= htmlspecialchars($_POST['DASHBOARD_PASSWORD'] ?? ($existing['DASHBOARD_PASSWORD'] ?? '')) ?>"
                  placeholder="At least 8 characters. Save this in your password manager.">
         </div>
 
         <h2>Database <span class="pill">required</span></h2>
-        <p class="muted small">Copy these three from Hostinger → Databases → MySQL Databases. You already made this database.</p>
+        <p class="muted small">From Hostinger → Databases → MySQL Databases. If Access-denied errored, hit "Change password" on that row and paste the new one here.</p>
         <div class="field"><label>DB name</label>
-          <input name="DB_NAME" required value="<?= htmlspecialchars($_POST['DB_NAME'] ?? 'u953797100_crm') ?>"></div>
+          <input name="DB_NAME" required value="<?= htmlspecialchars($_POST['DB_NAME'] ?? ($existing['DB_NAME'] ?? 'u953797100_crm')) ?>"></div>
         <div class="field"><label>DB user</label>
-          <input name="DB_USER" required value="<?= htmlspecialchars($_POST['DB_USER'] ?? 'u953797100_crmuser') ?>"></div>
+          <input name="DB_USER" required value="<?= htmlspecialchars($_POST['DB_USER'] ?? ($existing['DB_USER'] ?? 'u953797100_crmuser')) ?>"></div>
         <div class="field"><label>DB password</label>
-          <input name="DB_PASS" required value="<?= htmlspecialchars($_POST['DB_PASS'] ?? '') ?>"
-                 placeholder="The password Hostinger showed when you made the database"></div>
+          <input name="DB_PASS" required value="<?= htmlspecialchars($_POST['DB_PASS'] ?? ($existing['DB_PASS'] ?? '')) ?>"
+                 placeholder="Paste the password Hostinger just showed you"></div>
         <div class="field"><label>DB host</label>
-          <input name="DB_HOST" value="<?= htmlspecialchars($_POST['DB_HOST'] ?? 'localhost') ?>"></div>
+          <input name="DB_HOST" value="<?= htmlspecialchars($_POST['DB_HOST'] ?? ($existing['DB_HOST'] ?? 'localhost')) ?>"></div>
 
-        <h2>Telegram bot <span class="muted small">(optional now, add later if not ready)</span></h2>
+        <h2>Telegram bot <span class="muted small">(optional, add later if not ready)</span></h2>
         <div class="field"><label>Bot token from @BotFather</label>
-          <input name="TELEGRAM_BOT_TOKEN" value="<?= htmlspecialchars($_POST['TELEGRAM_BOT_TOKEN'] ?? '') ?>"
+          <input name="TELEGRAM_BOT_TOKEN" value="<?= htmlspecialchars($_POST['TELEGRAM_BOT_TOKEN'] ?? ($existing['TELEGRAM_BOT_TOKEN'] ?? '')) ?>"
                  placeholder="123456789:AA...">
         </div>
         <div class="field"><label>Your Telegram numeric ID <span class="muted small">(from @userinfobot — locks bot to you only)</span></label>
-          <input name="TELEGRAM_OWNER_ID" value="<?= htmlspecialchars($_POST['TELEGRAM_OWNER_ID'] ?? '') ?>"
+          <input name="TELEGRAM_OWNER_ID" value="<?= htmlspecialchars($_POST['TELEGRAM_OWNER_ID'] ?? ($existing['TELEGRAM_OWNER_ID'] ?? '')) ?>"
                  placeholder="Leave blank to skip">
         </div>
 
         <h2>Optional AI polish <span class="muted small">(leave blank to save money)</span></h2>
         <div class="field"><label>Anthropic API key</label>
-          <input name="ANTHROPIC_API_KEY" value="<?= htmlspecialchars($_POST['ANTHROPIC_API_KEY'] ?? '') ?>"
+          <input name="ANTHROPIC_API_KEY" value="<?= htmlspecialchars($_POST['ANTHROPIC_API_KEY'] ?? ($existing['ANTHROPIC_API_KEY'] ?? '')) ?>"
                  placeholder="sk-ant-... (leave blank — the CRM works fully without it)">
         </div>
 
