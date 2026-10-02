@@ -64,7 +64,9 @@ function insert(string $sql, array $params = []): int
 function ensure_schema(): void
 {
     $sql = file_get_contents(__DIR__ . '/schema.sql');
-    // Split on semicolons at end of line to run each statement.
+    // Strip SQL `-- ...` comments to end of line BEFORE splitting on `;`.
+    // Otherwise a semicolon inside a comment chops a CREATE TABLE in half.
+    $sql = preg_replace('/--[^\n]*/', '', $sql);
     foreach (array_filter(array_map('trim', explode(';', $sql))) as $stmt) {
         if ($stmt !== '' && stripos($stmt, 'CREATE TABLE') !== false) {
             db()->exec($stmt);
