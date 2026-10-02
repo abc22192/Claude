@@ -15,3 +15,4 @@ _One line per decision: the date, what was decided, and where it came from. Pend
 - Add Card 9 "Feet Mind Games" to the Voice Router?
 - Which feet hub stays live: Stinky Feet HQ or the other AI's Feet System Master Hub.
 - Open page on OnlyFans: previews only (her OnlyFans OS) or locked PPV on the wall (what she described Sept 30).
+- Card 9 rhythm: allow one short sensory status line at the very top ("Smooth. Stinky.")? Her 141-like June post and her earlier pin both did it (doc 01, section 4). Added Oct 2.

@@ -21,6 +21,8 @@ I'm being straight with you here, because that's the job.
 
 The pattern: setup gets done and launch doesn't. So week 1 of this plan builds nothing new. It's 5 fixes and 2 posts. If week 2 arrives and the Reports aren't live, that's the signal to stop planning and post.
 
+One risk that has nothing to do with you (added Oct 2): X's own July report shows an adult label on one of your accounts for all 31 days, and that label hides its posts from strangers' recommendations (doc 01, section 7). The Report will reach the people who already follow you. That's still about 13k people, and they're the ones already sending you store traffic. New buyers have to come from your other doors, which is why the email signup sits inside the one thing.
+
 ## 3. The 90-day plan
 
 ### Week 1: fix and ship (about 3 hours)

@@ -12,7 +12,9 @@
 | Notion (your workspace) | 12 of your pages plus the other AI's 5 feet pages (list in section 4) | Your voice rules, prices, platform notes, past decisions |
 | Beacons (your account) | Account, all 24 store products, sales and traffic analytics for June 1 to Sept 30, 2026, your link-in-bio pages, the Feet tab, email marketing for the last 90 days | Real sales, clicks, and setup problems |
 | vidIQ | @bootyfulgoddess stats, top Shorts, top long videos, 20 similar channels | Channel health and what other feet creators do |
-| Web search | 32 searches (section 3) | Platform rules, studies, prices |
+| Web search | 33 searches (section 3) | Platform rules, studies, prices |
+| Google Drive (Oct 2) | Searched for X files. Read the June 26 X Domination Blueprint, both copies of X's July "under the hood" report, and the Feb 2026 platform writing guide | Real X numbers while X stays blocked |
+| Publora, Dropbox, Beacons connections (Oct 2) | Publora has no accounts connected. Dropbox had no X files. Beacons doesn't track X at all. | Other routes to your X data (none worked) |
 
 ## 2. What was blocked, and what I did about it
 
@@ -27,6 +29,11 @@ Your cloud environment's network policy blocked direct page loads from my contai
 Web search still worked, because it runs outside my container. Every outside fact in these docs comes from search results, and each one has a link you can open.
 
 **To fix it for next time:** open the environment menu in the session title bar, choose Edit, then Network access, and add sotwe.com (or pick a broader access level). Then I can mine your whole feet timeline and add real post-by-post numbers to doc 01.
+
+**Update, Oct 2, 2026.** I retested sotwe.com, www.sotwe.com, x.com, and xcancel.com, and all four were still refused by the proxy. So I went looking in your own files instead, and Google Drive had three useful ones:
+- **X Domination Blueprint (June 26, 2026).** Another AI's audit of your recent @bbwbootyfulfeet posts, with like counts for the top 5. Now in doc 01, section 7. These are its numbers, and I couldn't check them against X. The same doc names your dead platform and tells you to delete 25 to 35% of your posts, so use its numbers and not its plan.
+- **X's "under the hood" report for July 2026.** Two copies (Aug 15 and Aug 30) of the same file. It shows the "NsfwAdmin" account label on all 31 days. The file doesn't name the account. Now in doc 01, section 7, and doc 04, section 2.
+- **Platform writing guide (Feb 2026).** It has your earlier feet pin, quoted in doc 01, section 4.
 
 ## 3. Every web search I ran
 
@@ -64,6 +71,7 @@ Web search still worked, because it runs outside my container. Every outside fac
 | 30 | OnlyFans leaks and DMCA | 02 |
 | 31 | allthingsworn.com seller membership | 05 (no results) |
 | 32 | Foot odor chemistry (Ara et al. 2006) | 03, 04 |
+| 33 | X "under the hood" account labels, NsfwAdmin (Oct 2) | 01, 04 |
 
 ## 4. Every Notion page I read
 
@@ -81,6 +89,7 @@ Web search still worked, because it runs outside my container. Every outside fac
 - [OnlyFans OS: Fart + Feet (Sep 12, 2026)](https://app.notion.com/p/bbbee3c273c6446097583e9c0dc83dd1) (the archive play doc 02 credits to you)
 - [Offer & Funnel Control Room (Sep 14, 2026)](https://app.notion.com/p/3db600bfc17781efae1bc0033189b8d7)
 - Search results only (titles and snippets, not opened): your Grok daily feet trend reports, REVAMP CORE, Bella Effect Business OS dashboard
+- Opened Oct 2: [Grok daily feet report, Aug 27, 2026](https://app.notion.com/p/3c9600bfc177810eb4d4fb8631e7fca9). It tracks what fans say to each other, with links to their posts. It has no numbers on your own posts.
 
 **The other AI's feet hub (created Sept 29 to 30, 2026)**
 - [Bella Blast Feet System: Master Hub](https://app.notion.com/p/3eb600bfc177818081f8e3217218ffcb) and its 4 pages (Voice Bible, Funnel Architecture, YouTube + Feet Safety Plan, Growth Masterplan)
@@ -102,7 +111,8 @@ Web search still worked, because it runs outside my container. Every outside fac
 
 ## 6. What I could not verify
 
-- Your X posts beyond the 4 examples you gave me (blocked, see section 2).
+- Your X posts beyond the 4 examples you gave me (blocked, see section 2). The June audit in your Drive fills part of the gap, but only with another AI's numbers.
+- Which X account the July "under the hood" report came from.
 - A written Repurpose.io rule about adult content.
 - All Things Worn features on allthingsworn.com (search only returned allthingsworn.org pages).
 - Whether OnlyFans' Promotions screen will accept a first-month price under $4.99.

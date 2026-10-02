@@ -3,12 +3,13 @@
 > [!IMPORTANT]
 > **How to use this doc.** Paste section 10 (the paste-in block) into any AI before it writes a feet caption. Everything above section 10 is the why, with receipts. This doc adds a feet layer to your Voice Router. The Router's Layer 1 (DNA) and Layer 2 (auto-fail list) still apply to every word.
 
-**Built:** September 30, 2026 · **Scope:** feet only (stinky, dry, toe jam, soles, giantess feet, feet JOI) · **Status:** ready for your KEEP / FIX / REWRITE pass
+**Built:** September 30, 2026 · **Updated:** October 2, 2026 (your X numbers from Google Drive, section 7) · **Scope:** feet only (stinky, dry, toe jam, soles, giantess feet, feet JOI) · **Status:** ready for your KEEP / FIX / REWRITE pass
 
 ## 1. The short version
 
 - Your feet voice runs on 3 beats: an ordinary moment, then you catch him looking, then you leave him holding a question.
 - Your best X post is the proof: "Kicked my feet up and called it a night. Quick question..." plus a choice. About 9K views, 514 likes, 43 replies, 128 reposts.
+- Your June X numbers back it up. The posts that opened on your feet and ended on a question won (section 7).
 - You point his eyes, you put the stink in his body, and you stop talking before you explain anything.
 - The dominance comes from certainty. You already know what he did, so you never have to beg, demand, or raise your voice.
 - Mechanics: complete sentences, one per line, ellipses for the pause. No em dashes, no semicolons, no fragment stacks, and never the word "pads."
@@ -75,6 +76,7 @@ End on a question, a choice, or a thought he has to finish himself. Leave it unr
 - Yours: "Quick question..." followed by a choice.
 - Receipt 1: curiosity peaks when there's a small, specific gap in what someone knows (Loewenstein 1994, *Psychological Bulletin* 116:75-98). Give him 1 concrete detail and hold back the rest.
 - Receipt 2: in the ranking code X open-sourced in 2023, a reply was weighted 13.5 and a like 0.5, so one reply counted for about 27 likes. A reply that the author answers was weighted 75. Your choice-question ending is the exact thing the feed rewards, and answering the people who reply multiplies it. Your best post got 43 replies on 514 likes, which is 1 reply per 12 likes.
+- One limit: X's own July report shows an adult label on one of your accounts, and that label keeps its posts out of strangers' recommendations. So replies lift you in your followers' feeds, not in front of new people (section 7).
 
 ## 4. Rhythm and mechanics (your rules, from your own mouth)
 
@@ -88,6 +90,9 @@ End on a question, a choice, or a thought he has to finish himself. Leave it unr
 | Cussing is natural and earned. Your words are fuck, fucking, fucker. Skip "hell." | Interview |
 | On sales copy, the ask goes early or in the middle, because people bail before the end. On X captions, the ending is the question and the sale lives in the pin, the reply, or the link. | Interview + Aug 4 pin handoff |
 | One sensory detail per sentence. Five in one line turns into a list and the heat dies. | Craft rule |
+
+> [!WARNING]
+> **One rule your own numbers argue with.** Your 141-like June post opened "Smooth. Stinky." That's two one-word beats before a full sentence, and the full-sentence rule above would have blocked it. Your pin from earlier this year did the same thing ("Size 11/12. Stinky. Natural and dry."). My call: allow one short sensory status line at the very top, then full sentences only. A run of beats in the middle or at the end stays banned. The paste-in block keeps the full-sentence rule until you say yes. It's on your decision list.
 
 ## 5. Feet vocabulary bank
 
@@ -196,6 +201,43 @@ That last question is a real vote. Doc 4, idea 1 turns it into a sale.
 | "One look and your whole day is ruined in the best way. I know exactly what I'm doing to you right now. You think you're just scrolling…but you stopped, didn't you. Caught you." | 4 + 5 | Benign masochism, then certainty, then the catch, then a 2-word payoff at the end. |
 | "Stare at my big feet. Feel that pull in your chest..." | 2 + 3 | Instruction verbs borrowed from JOI, then the body. He's inside the moment. |
 | "Mmmm .... do you see it the stink just coming off of them" | 2 | Sub-par. See the rewrite below. |
+
+### Your X numbers (found in your Google Drive, Oct 2)
+
+X is still blocked from my side. Your Drive had two files I could use instead.
+
+**1. Your top June posts on @bbwbootyfulfeet.** Another AI's "X Domination Blueprint" (June 26, 2026) read your recent feet posts and logged these like counts. I can't open X to check them, so treat them as its numbers, not mine.
+
+| Post (as the audit quoted it) | Likes | Moves | What it teaches |
+|---|---|---|---|
+| "Smooth. Stinky. You're not ready for what's between these toes" + a birthday ask | 141 | 1 + 2 | Your feet first, then one place to look. |
+| A scent question (the audit didn't save the wording) | 101 | 5 | The question ending wins again. |
+| Paint in the cracks ("past the paint into the cracks") | 72 | 2 + 3 | One detail to look at, then the smell under it. |
+| A sold-clip post | 62 | Sale | A sale can be the post. |
+| Barefoot video ("marinating since 6 AM") | 41 | 1 | An ordinary moment with a clock on it. |
+
+What the numbers say:
+- "Kicked my feet up" (514 likes) beat the June winner by more than 3 to 1, and it's the only one built on a direct choice.
+- Every winner opens on what your feet are doing, not on him.
+- Your two best numbers (514 and 101) both end on a question.
+- Lines the audit pulled from your winners: "marinating since 6 AM," "past the paint into the cracks," "wear my foot scent like a fragrance," and "You'd bury your face in it. Don't pretend otherwise."
+- Both of your X accounts were at about 13.4k to 13.8k followers on June 26 (same audit).
+
+**2. X's own report on your reach.** Two copies of X's "under the hood" report are in your Drive (downloaded Aug 15 and Aug 30, and they're the same file). It covers July 2026 and 22 posts. The file doesn't say which account it came from.
+
+| What X logged | How much | What X says it does |
+|---|---|---|
+| Account label "NsfwAdmin" | 31 of 31 days | Posts go behind a content warning and are hidden from recommendations to non-followers, minors, people with no stated age, and logged-out people. |
+| Account labels "NsfwHighPrecision" and "NsfwHighRecall" | 5 of 31 days each | Posts hidden from recommendations to non-followers. |
+| Post label "NSFW_ADMIN" | 22 of 22 posts | Comes from the account label above. |
+| Post label "NSFW_HIGH_RECALL" | 7 of 22 posts | Hidden from recommendations to non-followers. |
+| Post labels "NSFW_HIGH_PRECISION" and "SPAM_HIGH_RECALL" | 1 of 22 posts each | Hidden from recommendations to non-followers. |
+
+What that means for you:
+- X won't push that account to strangers, even on a post with no nudity. A public issue filed on X's open-source code reads it the same way: the account label blocks discovery for every post from that account, clean ones included.
+- X says "NsfwAdmin" comes from a user report. You didn't switch it on, and a clean post still won't get recommended while it's there.
+- The Stinky Feet Report still works. It works on the people who already follow you, and they already send your store more traffic than anything else (doc 04). New buyers have to come through your other doors.
+- Both accounts post the same kind of content, so assume both carry the label until a report says otherwise. Pull the same report from both accounts and drop them in Drive. Then I can tell you which one carries it, or if both do.
 
 ### More evidence from your own channels
 
@@ -381,7 +423,10 @@ Write ONE test caption first and wait for KEEP / FIX / REWRITE.
 - [Feet Twitter Pin: Full Handoff (Aug 4, 2026)](https://app.notion.com/p/f837d98fa63543dfa273a121f628f11c) (rejected harsh tone, lives vs VC)
 
 **Your data**
-- X examples and numbers: from your message (the X page itself was blocked from this environment, see doc 05)
+- X examples and numbers: from your message, plus three files in your Google Drive (X itself is still blocked from this environment, see doc 05):
+  - [Bella_Blast_X_Domination_Blueprint](https://docs.google.com/document/d/1-aYLPyMEQFHqWeQJ1l8dbbJEZYwvEeW0HqKXS1OdFQQ/edit) (June 26, 2026, another AI's audit of your recent posts)
+  - [x-under-the-hood report, July 2026](https://drive.google.com/file/d/1FlbROuVelUmW3sSRrH9HXVgjzwl5r4DA/view) (X's own label report. The [Aug 15 copy](https://drive.google.com/file/d/10p8tNLvP6sUE7MENep48q2IWazLj_KIw/view) is the same file.)
+  - [Platform writing guide, Feb 2026](https://drive.google.com/file/d/1LtbojbevFekQTCzadNGQPYwlR0dy_b1V/view) (your earlier feet pin)
 - YouTube titles and views: vidIQ pull of @bootyfulgoddess, Sept 30, 2026
 - Beacons product copy and views: Beacons store and analytics pull, Sept 30, 2026
 
@@ -390,4 +435,5 @@ Write ONE test caption first and wait for KEEP / FIX / REWRITE.
 - Rozin P. et al. (2013). Glad to be sad, and other examples of benign masochism. *Judgment and Decision Making* 8(4):439-447. [Full text](https://www.sas.upenn.edu/~baron/journal/12/12502a/jdm12502a.html)
 - Loewenstein G. (1994). The psychology of curiosity: a review and reinterpretation. *Psychological Bulletin* 116:75-98. [Reference](https://www.scirp.org/reference/referencespapers?referenceid=2828034)
 - X/Twitter 2023 open-source ranking weights: [NYU CSMaP summary](https://csmapnyu.org/impact/news/what-can-we-learn-from-twitters-open-source-algorithm) · [Publora breakdown (2026)](https://publora.com/blog/x-algorithm-open-source)
+- X account labels and reach: [xai-org/x-algorithm issue #79](https://github.com/xai-org/x-algorithm/issues/79) (account labels block discovery for every post) · [ClimbX explainer](https://climbx.so/blog/x-algorithm-labels-visibility-filtering) · [issue #213](https://github.com/xai-org/x-algorithm/issues/213) (X hands users the report as a JSON file)
 - Morton's toe prevalence: [systematic review and meta-analysis](https://pmc.ncbi.nlm.nih.gov/articles/PMC13270189/) · [overview](https://en.wikipedia.org/wiki/Morton's_toe)
