@@ -28,7 +28,7 @@ _Append a short entry at the end of each session: what happened, what the assist
 **What happened**
 - Bella asked how I could get into sotwe.com, then said "Try." I retested sotwe.com, www.sotwe.com, x.com, and xcancel.com. All four were still refused by the proxy (403 on CONNECT), so the network change hasn't reached this session.
 - Tried other routes. Publora has no accounts connected, Beacons doesn't track X, and Dropbox had nothing. Google Drive had three useful files: the June 26 X Domination Blueprint (top 5 feet posts with like counts), X's July 2026 "under the hood" report (NsfwAdmin label on 31 of 31 days, account not named), and the Feb 2026 platform writing guide (her earlier feet pin).
-- Added "Your X numbers" to doc 01 section 7, a rhythm warning to doc 01 section 4 ("Smooth. Stinky." beat the full-sentence rule), an X reach risk to doc 04 section 2, and the receipts to doc 05. Mirrored in Notion.
+- Added "Your X numbers" to doc 01 section 7, a rhythm warning to doc 01 section 4 ("Smooth. Stinky." beat the full-sentence rule), an X reach risk to doc 04 section 2, and the receipts to doc 05. Repo copies only. She declined the Notion edit, so the Notion pages still show the Sept 30 version.
 
 **What I got wrong**
 - On Sept 30 I told her the only ways in were the network setting or an upload. Her Drive already had X data. I should have searched her connected tools first.
