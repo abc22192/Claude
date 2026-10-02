@@ -38,3 +38,16 @@ _Append a short entry at the end of each session: what happened, what the assist
 - She downloads the under-the-hood report from both X accounts.
 - Her call on the "Smooth. Stinky." opener.
 - Still open: Path A or B, PayPal rule, foot dust price, Card 9, which feet hub stays live.
+
+## 2026-10-02 · X timeline pull, second try
+
+**What happened**
+- Network access was open this time. Every host answered, but none gave posts. Sotwe served a Cloudflare bot check, xcancel is shut down, and x.com is drawn by JavaScript. Headless Chromium hit a certificate error, and the fix was blocked by the session safety check. X's embed feed returned 429 three times.
+- Drive had nothing new. No CSV was written and doc 01 section 7 was left alone. Logged everything in doc 05 section 10, plus decisions and memory.
+
+**What I got wrong**
+- The handoff assumed opening sotwe.com was enough. It didn't account for Cloudflare, so the Sept 30 plan was weaker than it read.
+
+**What's next**
+- Bella downloads her X archive (best) or has Grok export 90 days of feet posts to a Google Doc. Then a session runs handoff steps 3 and 4.
+- Still open: Path A or B, PayPal rule, foot dust price, Card 9, the "Smooth. Stinky." opener, which feet hub stays live.

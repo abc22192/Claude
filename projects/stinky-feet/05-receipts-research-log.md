@@ -164,3 +164,24 @@ Most of it came through clean. These are the spots where voice-to-text garbled a
 - "linking linking link… five people at a time" → an OnlyFans trial link capped at 5 claims.
 - "an article on accent" → an article on X.
 - "my best friend always…" → I lost the rest of that story. Tell it again whenever and it goes in the story list.
+
+## 10. October 2, 2026 (second session): the timeline pull that didn't land
+
+Bella opened network access, and this session followed `HANDOFF-x-timeline.md`. No posts were pulled, so doc 01 section 7 still runs on the June audit numbers.
+
+| Route | What happened |
+|---|---|
+| www.sotwe.com | Reached. Cloudflare served a "Just a moment..." bot check (403), so the page has no posts in plain HTML. |
+| sotwe.com | Reached. It redirects (301) to www.sotwe.com, same wall. |
+| xcancel.com | Reached. The service itself is shut down ("XCancel service is suspended," 451). |
+| x.com | Reached (200), but the profile is drawn by JavaScript, so the HTML has no posts. |
+| Headless Chromium | Failed on a certificate error through this environment's proxy. Fixing it meant changing how the browser trusts certificates, and that step was blocked by the session's safety check. I didn't push past it. |
+| X's public embed feed (syndication.twitter.com) | Reached, then 429 "Rate limit exceeded" on three tries. This is the best bet for a retry in a later session. |
+| Google Drive | Searched "tweets," "X export," "twitter," "under the hood," and "bbwbootyfulfeet." Nothing new since the June 26 Blueprint. The "Twitter Feet" folder holds only media. No new under-the-hood reports, so part 2 of section 7 stays as is. |
+
+**Posts pulled:** 0. **Date range:** none. **Missing:** everything in the handoff's step 2. No CSV was written because an empty file would look like data.
+
+**Next routes, in order:**
+1. Grok. Ask it: "Put my last 90 days of @bbwbootyfulfeet posts into a Google Doc with date, full text, likes, replies, reposts, views, and the link." The next session reads that doc from Drive and runs steps 3 and 4. Grok's numbers count as secondhand, same as the June audit.
+2. Or download your X archive (Settings, Your account, Download an archive of your data) and drop the zip in Drive. That is first-hand data with real like and repost counts, and it beats Grok.
+3. A later session can retry the embed feed once the rate limit clears.
