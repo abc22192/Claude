@@ -10,4 +10,6 @@ Four reports for the Bella Blast feet business, plus the receipts behind them. B
 | 04 | [Master Plan + New Ideas](04-master-plan-new-ideas.md) | The 90-day plan, weekly rhythm, scoreboard, and 3 new ideas with research |
 | 05 | [Receipts: Research Log + Sources](05-receipts-research-log.md) | Every search, page, and data pull, plus what couldn't be verified |
 
+**Handoff:** [Mine the X feet timeline](HANDOFF-x-timeline.md) is the brief for the next session, once sotwe.com is open (Oct 2, 2026).
+
 **Rules every doc follows:** your Voice Router wins every voice conflict · no em dashes or semicolons · "BBW," never "fat" · "soles," never "pads" · your dead platform is never named.

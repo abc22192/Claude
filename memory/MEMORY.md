@@ -4,6 +4,7 @@ _Your assistant reads this at the start of every session. Keep it short: what's 
 
 ## Active Work
 - **👣 Stinky Feet HQ** (Sept 30, 2026): 4 feet docs + receipts. Notion DB https://app.notion.com/p/a1eded41bad94d5b82185e7c410e7264, repo `projects/stinky-feet/`. Waiting on Bella: Path A or B, one PayPal rule, foot dust price, Card 9 into the Voice Router, which feet hub stays live. Oct 2: her X numbers from Google Drive are in the repo copy of doc 01 section 7 (she declined the Notion edit, so Notion still shows Sept 30). Also waiting on the "Smooth. Stinky." opener call and X's under-the-hood report from both accounts.
+- **X timeline handoff** (Oct 2): `projects/stinky-feet/HANDOFF-x-timeline.md`. Bella opens Network access to sotwe.com, then starts a new session that fetches branch `ccr-9c63ec63-7ibk0c` and follows the file.
 - **Onboarding** is pre-filled from known facts. Still open: assistant name, mission in her words, her own failure-mode list, 30-day success metric. Ask one at a time inside real work.
 
 ## Key Facts

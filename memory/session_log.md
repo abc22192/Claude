@@ -34,6 +34,7 @@ _Append a short entry at the end of each session: what happened, what the assist
 - On Sept 30 I told her the only ways in were the network setting or an upload. Her Drive already had X data. I should have searched her connected tools first.
 
 **What's next**
+- She opens Network access to sotwe.com and starts a new session with the handoff in `projects/stinky-feet/HANDOFF-x-timeline.md`.
 - She downloads the under-the-hood report from both X accounts.
 - Her call on the "Smooth. Stinky." opener.
 - Still open: Path A or B, PayPal rule, foot dust price, Card 9, which feet hub stays live.
