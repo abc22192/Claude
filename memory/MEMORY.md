@@ -4,14 +4,14 @@ _Your assistant reads this at the start of every session. Keep it short: what's 
 
 ## Active Work
 - **👣 Stinky Feet HQ** (Sept 30, 2026): 4 feet docs + receipts. Notion DB https://app.notion.com/p/a1eded41bad94d5b82185e7c410e7264, repo `projects/stinky-feet/`. Waiting on Bella: Path A or B, one PayPal rule, foot dust price, Card 9 into the Voice Router, which feet hub stays live. Oct 2: her X numbers from Google Drive are in the repo copy of doc 01 section 7 (she declined the Notion edit, so Notion still shows Sept 30). Also waiting on the "Smooth. Stinky." opener call and X's under-the-hood report from both accounts.
-- **X timeline handoff** (Oct 2): `projects/stinky-feet/HANDOFF-x-timeline.md`. Bella opens Network access to sotwe.com, then starts a new session that fetches branch `ccr-9c63ec63-7ibk0c` and follows the file.
+- **X timeline handoff** (Oct 2): tried with network open. Sotwe is behind Cloudflare, xcancel is dead, x.com needs JavaScript, headless Chromium was blocked, and the embed feed returned 429. Zero posts pulled (doc 05 section 10). Next: Bella drops her X archive zip or a Grok export into Drive, then a session runs steps 3 and 4 of `projects/stinky-feet/HANDOFF-x-timeline.md`.
 - **Onboarding** is pre-filled from known facts. Still open: assistant name, mission in her words, her own failure-mode list, 30-day success metric. Ask one at a time inside real work.
 
 ## Key Facts
 - Bella Blast, call her "babe." Solo adult creator, ADHD, psychology degree, 4+ years in.
 - Voice: the Notion Voice Router is the only writing authority. Feet captions use proposed Card 9 "Feet Mind Games" (doc 01).
 - Platform, pricing, and website facts live in the synced skills (`bella-platform-status`, `bella-pricing-source-of-truth`, `bella-website-source-of-truth`). The dead platform is never named.
-- This cloud environment blocks most outbound sites (x.com, sotwe.com, youtube.com, google.com). Web search and the MCP connectors (Notion, Beacons, vidIQ) work.
+- Network access opened Oct 2, but sotwe.com shows a Cloudflare bot check and the headless browser can't get through the proxy. Web search and the MCP connectors (Notion, Beacons, vidIQ) work.
 - Never read a brain dump back for confirmation (see `feedback_corrections.md`).
 - Her Google Drive has X files: the June 26 "X Domination Blueprint" (another AI's audit with like counts) and X's July 2026 "under the hood" report (NsfwAdmin label on all 31 days, account not named). Search her connected tools before asking her to upload anything.
 
