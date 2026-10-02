@@ -55,6 +55,42 @@ if (!$alreadyDone && ($_POST['action'] ?? '') === 'save') {
     // Telegram fields are optional — you can add them later by re-running install
     // (once you delete secrets.php) or by editing the file. Everything else works.
 
+    // --- Test the DB connection BEFORE saving. --------------------------------
+    // Saves her from the "set bad password, hit setup, error, try again" loop
+    // she's been stuck in. If localhost fails, try 127.0.0.1 (same thing, but
+    // some stacks only accept one). Only move on if we actually connected.
+    $testError = null;
+    $workingHost = null;
+    if (!$errors) {
+        $hostsToTry = array_unique([$vals['DB_HOST'], 'localhost', '127.0.0.1']);
+        foreach ($hostsToTry as $h) {
+            try {
+                $pdo = new PDO(
+                    "mysql:host={$h};dbname={$vals['DB_NAME']};charset=utf8mb4",
+                    $vals['DB_USER'], $vals['DB_PASS'],
+                    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_TIMEOUT => 5]
+                );
+                $workingHost = $h;
+                break;
+            } catch (PDOException $e) {
+                $testError = $e->getMessage();
+            }
+        }
+        if (!$workingHost) {
+            if (str_contains($testError, 'Access denied')) {
+                $errors[] = 'The database password is still wrong. In Hostinger → Databases → MySQL Databases, click "Change password" on the row for ' . htmlspecialchars($vals['DB_NAME']) . ', copy the NEW password it shows, and paste it into the DB password field below.';
+            } elseif (str_contains($testError, 'Unknown database')) {
+                $errors[] = 'The database name "' . htmlspecialchars($vals['DB_NAME']) . '" does not exist on this account. Check the exact spelling in Hostinger → Databases → MySQL.';
+            } elseif (str_contains($testError, 'getaddrinfo') || str_contains($testError, 'resolve')) {
+                $errors[] = 'The DB host is wrong. In Hostinger → Databases → MySQL, there is a column showing the hostname (often "localhost" but some plans use a different one). Paste that into the DB host field.';
+            } else {
+                $errors[] = 'Database test failed: ' . htmlspecialchars($testError);
+            }
+        } else {
+            $vals['DB_HOST'] = $workingHost;
+        }
+    }
+
     if (!$errors) {
         // Turn null-ish into real null in the file.
         $ownerLine = $vals['TELEGRAM_OWNER_ID'] === '' ? 'null' : var_export($vals['TELEGRAM_OWNER_ID'], true);
