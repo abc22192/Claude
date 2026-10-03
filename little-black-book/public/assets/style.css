@@ -76,3 +76,30 @@ button:hover { filter: brightness(1.08); }
 .login-card input { margin: 12px 0; }
 .login-card button { width: 100%; }
 code { background: #12111a; padding: 1px 6px; border-radius: 6px; font-size: 90%; }
+
+/* Phone-friendly dashboard */
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+.btn { display: block; text-align: center; background: var(--accent); color: #fff; border-radius: 12px; padding: 14px; font-weight: 600; text-decoration: none; }
+.btn.alt { background: var(--card); border: 1px solid var(--line); color: var(--ink); }
+.btn:hover { text-decoration: none; filter: brightness(1.08); }
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 12px 0; }
+.tile { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 8px; text-align: center; color: var(--muted); text-decoration: none; font-size: 14px; }
+.tile .num { display: block; font-size: 26px; font-weight: 700; color: var(--ink); }
+.tile.on { border-color: var(--accent); }
+.tile:hover { text-decoration: none; border-color: var(--accent); }
+.searchbar { display: flex; gap: 8px; margin: 14px 0 8px; }
+.searchbar input { flex: 1; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 14px; }
+.chip { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); text-decoration: none; font-size: 14px; }
+.chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip:hover { text-decoration: none; }
+.pcard { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; margin-bottom: 10px; color: var(--ink); text-decoration: none; }
+.pcard:hover { border-color: var(--accent); text-decoration: none; }
+.pname { font-weight: 600; font-size: 17px; word-break: break-word; }
+.pmeta { color: var(--muted); font-size: 14px; margin-top: 2px; word-break: break-word; }
+.pager { display: flex; justify-content: space-between; gap: 10px; margin: 16px 0; }
+.rcard { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+.rcard .why { background: #12111a; border-radius: 10px; padding: 10px 12px; margin: 10px 0; font-size: 14px; color: var(--ink); }
+.rbtns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.rbtns button { width: 100%; }
+button.ghost { background: transparent; border: 1px solid var(--line); color: var(--muted); }
