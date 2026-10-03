@@ -13,3 +13,8 @@ Format per entry: the correction, why it matters, how to apply it next time.
 - **Correction:** Hourly "PR #8 hasn't changed" messages got a "Huh" and then a "Stop."
 - **Why:** A pull request with no CI and no reviewers never changes on its own, so every check was noise. GitHub jargon means nothing to her.
 - **Apply:** Don't schedule recurring check-ins or watchers without asking her first. If one is needed, say in plain words what it watches, and stay silent unless something changes.
+
+## 2026-10-03: Don't ask which voice card
+- **Correction:** I asked which Voice Router card to use for a feet caption. She answered: "You knew my voice, erase that instruction."
+- **Why:** She trusts the assistant to know her voice. The question cost her a round trip before she got the caption.
+- **Apply:** If she doesn't name a card, pick the best fit, name it at the top, and write. Dominant is never the default. The Router itself was updated on Oct 3 to say this.

@@ -9,6 +9,7 @@ _One line per decision: the date, what was decided, and where it came from. Pend
 - **2026-09-30** · No more brain dump readbacks. Parse, decide, deliver.
 - **2026-10-03** · Doc 01 stays the master feet voice doc. GPT's sotwe numbers, 7 post types, and tone table are folded in. Its templates and paste-in block are not used. Source: Bella said yes on Oct 3.
 - **2026-10-03** · Hourly PR check-ins are off. Source: Bella said "Stop" on Oct 3.
+- **2026-10-03** · The Voice Router no longer makes the AI ask which card. The AI picks the best-fit card, names it at the top, and writes. Dominant is still never the default. Source: Bella, Oct 3 ("You knew my voice, erase that instruction"). Router edited the same day.
 
 ## Waiting on Bella
 - Path A ("Own the Buyer," recommended) or Path B ("Ride OnlyFans") for the feet funnel.

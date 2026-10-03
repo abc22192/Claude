@@ -59,3 +59,5 @@ _Append a short entry at the end of each session: what happened, what the assist
 - Synced Notion: doc 01 now shows the Oct 3 version, and doc 05 has the Oct 2 and Oct 3 updates. Doc 04 was not re-synced.
 - Built a "Start Here" page (Doc 0) in Stinky Feet HQ and linked it in the HQ Workspace Map.
 - Next: her open calls, which are listed on the Start Here page.
+- Wrote the caption for her feet video (the three-smells quiz) as Stinky Feet Report #001 in Feet Mind Games, plus the #002 answer post.
+- She told me to stop asking which voice card. I removed the "ask which card" rule from the Voice Router in Notion and logged it in decisions and corrections.
