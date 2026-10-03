@@ -60,6 +60,47 @@ function insert(string $sql, array $params = []): int
     return (int) db()->lastInsertId();
 }
 
+/** Does the sessions table have a "platform" column? Adds it once if not. */
+function sessions_have_platform(): bool
+{
+    static $has = null;
+    if ($has !== null) { return $has; }
+    try {
+        if (!q1("SHOW COLUMNS FROM sessions LIKE 'platform'")) {
+            db()->exec('ALTER TABLE sessions ADD COLUMN platform VARCHAR(64) DEFAULT NULL');
+        }
+        $has = (bool) q1("SHOW COLUMNS FROM sessions LIKE 'platform'");
+    } catch (Throwable $e) {
+        $has = false;
+    }
+    return $has;
+}
+
+/** Log one paid session for a person. Returns the new session id. */
+function log_session(int $contactId, string $what, ?float $amount, ?string $where, ?string $date, ?string $notes = null): int
+{
+    $type = 'purchase';
+    $level = null;
+    if (preg_match('/bella\s*effect/i', $what)) {
+        $type = 'bella_effect';
+        if (preg_match('/\bL([1-4])\b/i', $what, $m)) { $level = 'L' . $m[1]; }
+    }
+    $cols = ['contact_id', 'session_name', 'session_type', 'effect_level', 'session_date', 'amount_paid', 'notes'];
+    $vals = [$contactId, $what, $type, $level, $date ?: date('Y-m-d'), $amount, $notes];
+    if (sessions_have_platform()) {
+        $cols[] = 'platform';
+        $vals[] = ($where !== null && $where !== '') ? $where : null;
+    }
+    $id = insert(
+        'INSERT INTO sessions (' . implode(', ', $cols) . ') VALUES (' . implode(', ', array_fill(0, count($cols), '?')) . ')',
+        $vals
+    );
+    $sets = 'last_contact = NOW()';
+    if ($type === 'bella_effect') { $sets .= ', knows_bella_effect = 1'; }
+    q("UPDATE contacts SET $sets WHERE id = ?", [$contactId]);
+    return $id;
+}
+
 /** Create all tables from schema.sql if they do not exist yet. */
 function ensure_schema(): void
 {
