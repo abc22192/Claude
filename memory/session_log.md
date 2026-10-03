@@ -38,3 +38,18 @@ _Append a short entry at the end of each session: what happened, what the assist
 - She downloads the under-the-hood report from both X accounts.
 - Her call on the "Smooth. Stinky." opener.
 - Still open: Path A or B, PayPal rule, foot dust price, Card 9, which feet hub stays live.
+
+## 2026-10-03 · GPT's voice report vs doc 01
+
+**What happened**
+- She said "Stop" to the hourly PR #8 checks. Deleted the scheduled check and unsubscribed from the PR.
+- She sent GPT's "Stinky Feet Voice Report" and asked for my take. GPT's is cleaner and had real sotwe numbers. Mine keeps the stink, builds the Stinky Feet Report, enforces her banned words, and fits the Router as Card 9. GPT's Stories template has an em dash built in.
+- She said yes to folding in GPT's sotwe numbers (with the "One look" reply finding), its 7 post types, and its tone table. Done in the repo copy of doc 01, plus doc 05, the handoff, and the decisions log.
+
+**What I got wrong**
+- Ran hourly PR check-ins overnight that each messaged her. She didn't know what PR #8 was. Rule saved in `feedback_corrections.md`.
+
+**What's next**
+- Same open calls: Path A or B, PayPal rule, foot dust price, Card 9, which feet hub stays live, the "Smooth. Stinky." opener.
+- Test the reply idea: do "caught you" posts pull more replies per like than choice posts?
+- New session for the X timeline once sotwe.com is open (`projects/stinky-feet/HANDOFF-x-timeline.md`).

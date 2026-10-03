@@ -35,6 +35,8 @@ Web search still worked, because it runs outside my container. Every outside fac
 - **X's "under the hood" report for July 2026.** Two copies (Aug 15 and Aug 30) of the same file. It shows the "NsfwAdmin" account label on all 31 days. The file doesn't name the account. Now in doc 01, section 7, and doc 04, section 2.
 - **Platform writing guide (Feb 2026).** It has your earlier feet pin, quoted in doc 01, section 4.
 
+**Update, Oct 3, 2026.** You sent GPT's "Stinky Feet Voice Report." GPT reached sotwe on Sept 29, which I still can't. I folded three things into doc 01: its sotwe numbers (section 7, part 1), its 7 post types (end of section 3), and its tone table (section 2). I left out its templates and its paste-in block. Its Stories template has an em dash built in, its example captions leave the smell out, and its paste-in bans only "pads."
+
 ## 3. Every web search I ran
 
 | # | Search | Used in |
@@ -113,6 +115,7 @@ Web search still worked, because it runs outside my container. Every outside fac
 
 - Your X posts beyond the 4 examples you gave me (blocked, see section 2). The June audit in your Drive fills part of the gap, but only with another AI's numbers.
 - Which X account the July "under the hood" report came from.
+- GPT's sotwe numbers. Its "Kicked my feet up" numbers match yours, which is a good sign.
 - A written Repurpose.io rule about adult content.
 - All Things Worn features on allthingsworn.com (search only returned allthingsworn.org pages).
 - Whether OnlyFans' Promotions screen will accept a first-month price under $4.99.

@@ -9,7 +9,7 @@ _Written October 2, 2026 for the next Claude session. Bella starts that session 
 
 ## The goal
 
-Doc 01, section 7 has X numbers from another AI's June audit, and nobody has checked them against X. Replace them with real numbers from her @bbwbootyfulfeet timeline. That way the voice rules in Card 9 rest on her own top posts.
+Doc 01, section 7 has X numbers from GPT's sotwe pull (Sept 29) and another AI's June audit. Nobody has checked either against X. Replace them with real numbers from her @bbwbootyfulfeet timeline. That way the voice rules in Card 9 rest on her own top posts.
 
 ## Step 1: Check access
 
@@ -30,13 +30,14 @@ For every feet post you can reach (aim for the last 90 days, and more is fine):
 - Tag each top post with its moves from doc 01, section 3 (1 ordinary moment, 2 point his eyes, 3 put it in his body, 4 catch him, 5 leave it open).
 - Count how many top posts end on a question or a choice.
 - Count how many top posts open with a one- or two-word beat like "Smooth. Stinky." That answers her pending call in `decisions/log.md`.
-- Check the June audit numbers (141, 101, 72, 62, and 41 likes in doc 01, section 7) and say which ones hold.
+- Check GPT's sotwe numbers (part 1) and the June audit numbers (part 2: 141, 101, 72, 62, and 41 likes) in doc 01, section 7, and say which ones hold.
+- Test the reply idea in part 1: do "caught you" posts (Move 4) pull more replies per like than choice posts (Move 5)?
 - Find "Kicked my feet up and called it a night" and confirm its numbers. She said about 9K views, 514 likes, 43 replies, and 128 reposts.
 - Log how every numbered "Stinky Feet Report" post did, if any are live.
 
 ## Step 4: Write it up
 
-- **Doc 01, section 7:** replace part 1 ("Your top June posts") with the real top-posts table and what the numbers say. Keep part 2 (X's label report) unless new data changes it.
+- **Doc 01, section 7:** replace parts 1 and 2 (the sotwe numbers and the June audit) with the real top-posts table and what the numbers say. Keep part 3 (X's label report) unless new data changes it.
 - If the data contradicts a Card 9 rule, say so plainly in section 4. Her rule is that contradicting evidence goes first and never gets buried.
 - **Doc 05:** add a dated receipts entry (hosts reached, posts pulled, the date range, and anything missing).
 - Update `decisions/log.md`, `memory/MEMORY.md`, and `memory/session_log.md`.
@@ -45,7 +46,7 @@ For every feet post you can reach (aim for the last 90 days, and more is fine):
 ## If sotwe can't be reached at all
 
 1. Search her Google Drive for an X export she may have dropped in. Try "tweets," "X export," "under the hood," and "bbwbootyfulfeet."
-2. If you find new "under the hood" reports, read them and update doc 01, section 7, part 2 with which account carries the "NsfwAdmin" label.
+2. If you find new "under the hood" reports, read them and update doc 01, section 7, part 3 with which account carries the "NsfwAdmin" label.
 3. If Drive has nothing, give her the Grok route in two lines. Grok can read X, so she can ask it to put her last 90 days of feet posts into a Google Doc (date, text, likes, replies, reposts, views, link). Then you read that doc from Drive and run steps 3 and 4. Treat Grok's numbers as secondhand, the same way doc 01 treats the June audit.
 
 ## Guardrails

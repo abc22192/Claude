@@ -3,13 +3,14 @@
 > [!IMPORTANT]
 > **How to use this doc.** Paste section 10 (the paste-in block) into any AI before it writes a feet caption. Everything above section 10 is the why, with receipts. This doc adds a feet layer to your Voice Router. The Router's Layer 1 (DNA) and Layer 2 (auto-fail list) still apply to every word.
 
-**Built:** September 30, 2026 · **Updated:** October 2, 2026 (your X numbers from Google Drive, section 7) · **Scope:** feet only (stinky, dry, toe jam, soles, giantess feet, feet JOI) · **Status:** ready for your KEEP / FIX / REWRITE pass
+**Built:** September 30, 2026 · **Updated:** October 3, 2026 (X numbers in section 7, plus GPT's post types and tone table) · **Scope:** feet only (stinky, dry, toe jam, soles, giantess feet, feet JOI) · **Status:** ready for your KEEP / FIX / REWRITE pass
 
 ## 1. The short version
 
 - Your feet voice runs on 3 beats: an ordinary moment, then you catch him looking, then you leave him holding a question.
 - Your best X post is the proof: "Kicked my feet up and called it a night. Quick question..." plus a choice. About 9K views, 514 likes, 43 replies, 128 reposts.
 - Your June X numbers back it up. The posts that opened on your feet and ended on a question won (section 7).
+- Your sotwe numbers add one more lesson: your "caught you" post got almost as many replies as your best post on half the likes (section 7).
 - You point his eyes, you put the stink in his body, and you stop talking before you explain anything.
 - The dominance comes from certainty. You already know what he did, so you never have to beg, demand, or raise your voice.
 - Mechanics: complete sentences, one per line, ellipses for the pause. No em dashes, no semicolons, no fragment stacks, and never the word "pads."
@@ -30,6 +31,15 @@ It also fills an open slot you already named in your Tones & Voices index: **"Do
 | **3 hard NOTs** | Never explains why the fetish works · Never begs for likes, replies, or subs · Never goes cold bouncer (the tone you rejected on the Aug 4 pin) |
 | **Cuss level** | Light on public X (0 to 1 per post). Medium in Tellegramz previews and paid DMs. |
 | **Nearest neighbors** | **Bratty** laughs at him. Mind Games watches him and never giggles. **Dominant** hands down verdicts and humiliates. Mind Games only notices, and his own behavior does the work. **JOI** runs the count. Mind Games hands him the question and lets him finish it. |
+
+### Your lane (adapted from GPT's report)
+
+| Too soft | Your lane | Too hard |
+|---|---|---|
+| "Aren't my feet cute?" | "You saw them. What did you notice first?" | "You will obey every command." |
+| A long explanation of why feet smell | One smell or texture line, then let him do the rest | A full scene that leaves him nothing to imagine |
+| Asking for approval | Calm, confident observation | Insulting him by default |
+| Every post is a sales pitch | Heat first, the door second | A menu of links and prices |
 
 ### Bonus: a real line for your Girl Next Door card
 
@@ -77,6 +87,22 @@ End on a question, a choice, or a thought he has to finish himself. Leave it unr
 - Receipt 1: curiosity peaks when there's a small, specific gap in what someone knows (Loewenstein 1994, *Psychological Bulletin* 116:75-98). Give him 1 concrete detail and hold back the rest.
 - Receipt 2: in the ranking code X open-sourced in 2023, a reply was weighted 13.5 and a like 0.5, so one reply counted for about 27 likes. A reply that the author answers was weighted 75. Your choice-question ending is the exact thing the feed rewards, and answering the people who reply multiplies it. Your best post got 43 replies on 514 likes, which is 1 reply per 12 likes.
 - One limit: X's own July report shows an adult label on one of your accounts, and that label keeps its posts out of strangers' recommendations. So replies lift you in your followers' feeds, not in front of new people (section 7).
+
+### 7 post types to rotate (adapted from GPT's report)
+
+GPT named seven shapes your posts already take. They're the same 5 moves in different orders, so rotating them keeps the feed from repeating. Your Router says sensory first, and GPT's own templates for these left the smell out, so keep at least one smell, heat, or texture line in every one.
+
+| Post type | The shape | Moves | Example |
+|---|---|---|---|
+| Choice Trap | An ordinary moment, then "Quick question…" and an A or B choice | 1 + 5 | Yours: "Kicked my feet up and called it a night. Quick question..." |
+| Caught Scroll | A look, his reaction, then you catch him | 4 + 5 | Yours: "You think you're just scrolling…but you stopped, didn't you. Caught you." |
+| Attention Command | "Look," "stare," or "notice," then one detail | 2 | Test line: "Look between the toes… that's where the toe jam hides." |
+| Body Placement | The picture, then what it does to his body, then a pause | 2 + 3 | Yours: "Stare at my big feet. Feel that pull in your chest..." |
+| Casual Confession | Something ordinary you did, one feet detail, then a question | 1 + 2 + 5 | Test lines: "I did a long shift with no socks, and the shoes just came off. The stink got to the couch before I did. Quick question… socks tomorrow, or bare in the same shoes again?" |
+| Story Fragment | A small true memory, one smell detail, then today | 1 + 3 | No line yet. Your material: washing your feet at birthday parties, going without socks, toe jam, dry feet. Your pin already promises "The Stories of my Stinky Feet!" |
+| Withhold | Set up the reveal, then stop short | 5 | Test line: "I'll tell you what's inside the insoles tomorrow." |
+
+Your two flops were one-move posts (section 7), so stack at least two moves in every post.
 
 ## 4. Rhythm and mechanics (your rules, from your own mouth)
 
@@ -202,11 +228,26 @@ That last question is a real vote. Doc 4, idea 1 turns it into a sale.
 | "Stare at my big feet. Feel that pull in your chest..." | 2 + 3 | Instruction verbs borrowed from JOI, then the body. He's inside the moment. |
 | "Mmmm .... do you see it the stink just coming off of them" | 2 | Sub-par. See the rewrite below. |
 
-### Your X numbers (found in your Google Drive, Oct 2)
+### Your X numbers (added Oct 2 and 3)
 
-X is still blocked from my side. Your Drive had two files I could use instead.
+X is still blocked from my side. These numbers come from GPT's report (it reached sotwe on Sept 29) and two files in your Drive.
 
-**1. Your top June posts on @bbwbootyfulfeet.** Another AI's "X Domination Blueprint" (June 26, 2026) read your recent feet posts and logged these like counts. I can't open X to check them, so treat them as its numbers, not mine.
+**1. Your sotwe numbers (from GPT's report).** GPT read your @bbwbootyfulfeet page through sotwe, a public mirror of X. I can't open sotwe from here to check, but its numbers for "Kicked my feet up" match the ones you gave me exactly, so treat the rest as a solid rough guide.
+
+| Post | Views | Likes | Replies | Reposts | Moves |
+|---|---|---|---|---|---|
+| "Kicked my feet up and called it a night. Quick question..." + a choice | about 9K | 514 | 43 | 128 | 1 + 5 |
+| "One look and your whole day is ruined in the best way..." | about 7K | 246 | 37 | 57 | 4 + 5 |
+| "Stare at my big feet. Feel that pull in your chest..." | about 9K | not logged | not logged | not logged | 2 + 3 |
+| "Mmmm .... do you see it the stink just coming off of them" | about 2K | not logged | not logged | not logged | 2 |
+| "Turn the volume Up…" (GPT didn't log the full text) | about 2K | not logged | not logged | not logged | one bare command |
+
+What the numbers say:
+- "One look…" pulled 37 replies on 246 likes. "Kicked my feet up" pulled 43 on 514. That's almost the same replies on less than half the likes. So far your catch (Move 4) looks like your reply engine and your choice (Move 5) looks like your reach engine. That's two posts, so test it before you treat it as a rule.
+- "Stare at my big feet" matched your best post on views with no question at all. GPT didn't log its likes or replies, so we can't tell if it pulled replies too.
+- Both flops sat around 2K views, and both were one-move posts. Every post that did well stacked at least two moves.
+
+**2. Your top June posts on @bbwbootyfulfeet.** Another AI's "X Domination Blueprint" (June 26, 2026) read your recent feet posts and logged these like counts. I can't open X to check them, so treat them as its numbers, not mine.
 
 | Post (as the audit quoted it) | Likes | Moves | What it teaches |
 |---|---|---|---|
@@ -223,7 +264,7 @@ What the numbers say:
 - Lines the audit pulled from your winners: "marinating since 6 AM," "past the paint into the cracks," "wear my foot scent like a fragrance," and "You'd bury your face in it. Don't pretend otherwise."
 - Both of your X accounts were at about 13.4k to 13.8k followers on June 26 (same audit).
 
-**2. X's own report on your reach.** Two copies of X's "under the hood" report are in your Drive (downloaded Aug 15 and Aug 30, and they're the same file). It covers July 2026 and 22 posts. The file doesn't say which account it came from.
+**3. X's own report on your reach.** Two copies of X's "under the hood" report are in your Drive (downloaded Aug 15 and Aug 30, and they're the same file). It covers July 2026 and 22 posts. The file doesn't say which account it came from.
 
 | What X logged | How much | What X says it does |
 |---|---|---|
@@ -375,6 +416,9 @@ THE FEET MIND GAMES STRUCTURE:
 4. Catch him (say what he is doing right now).
 5. Leave it open (end on a choice or question he has to answer).
 Short caption = 3 moves. Stinky Feet Report = all 5.
+POST TYPES (rotate them, and stack at least 2 moves in each):
+Choice Trap · Caught Scroll · Attention Command · Body Placement ·
+Casual Confession · Story Fragment · Withhold.
 
 FEEL: She noticed him looking before he did. Calm, amused, certain.
 NEVER: explains the fetish · begs for engagement · cold bouncer tone
@@ -427,6 +471,7 @@ Write ONE test caption first and wait for KEEP / FIX / REWRITE.
   - [Bella_Blast_X_Domination_Blueprint](https://docs.google.com/document/d/1-aYLPyMEQFHqWeQJ1l8dbbJEZYwvEeW0HqKXS1OdFQQ/edit) (June 26, 2026, another AI's audit of your recent posts)
   - [x-under-the-hood report, July 2026](https://drive.google.com/file/d/1FlbROuVelUmW3sSRrH9HXVgjzwl5r4DA/view) (X's own label report. The [Aug 15 copy](https://drive.google.com/file/d/10p8tNLvP6sUE7MENep48q2IWazLj_KIw/view) is the same file.)
   - [Platform writing guide, Feb 2026](https://drive.google.com/file/d/1LtbojbevFekQTCzadNGQPYwlR0dy_b1V/view) (your earlier feet pin)
+- GPT's "Stinky Feet Voice Report" (you sent it Oct 3, sotwe checked Sept 29): source of the sotwe numbers, the 7 post types, and the lane table
 - YouTube titles and views: vidIQ pull of @bootyfulgoddess, Sept 30, 2026
 - Beacons product copy and views: Beacons store and analytics pull, Sept 30, 2026
 
