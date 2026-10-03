@@ -51,22 +51,30 @@ function load_csv(string $relative): array
     return [$rows, null];
 }
 
-/** Find or create a contact for a (client_id, name) pair. Returns [contact_id, created_bool]. */
+/** Find or create a contact for a (client_id, name) pair. Returns [contact_id, created_bool].
+ *  In dry-run, uses a per-request simulated map so each client_id is only counted
+ *  as "created" once, and returns a fake negative id so downstream loops can proceed. */
 function upsert_contact_for_import(string $clientId, string $name, ?string $firstDate, ?string $lastDate, bool $dryRun): array
 {
+    static $simMap = [];      // dry-run cache: clientId -> fake id
+    static $simCounter = 0;   // fake id generator
     $name = trim($name);
     if ($name === '') { return [null, false]; }
 
     // Search before create — exact name first, then LIKE as fallback.
     $existing = q1('SELECT * FROM contacts WHERE name = ? LIMIT 1', [$name]);
     if (!$existing) {
-        // Also try matching if the previous import already tagged the person via notes.
         $existing = q1("SELECT * FROM contacts WHERE notes LIKE ? LIMIT 1", ["%[imported-{$clientId}]%"]);
     }
-
     if ($existing) { return [$existing['id'], false]; }
 
-    if ($dryRun) { return [null, true]; }
+    if ($dryRun) {
+        // Only count a given client_id as "created" the first time we see it.
+        if (isset($simMap[$clientId])) { return [$simMap[$clientId], false]; }
+        $simCounter--;
+        $simMap[$clientId] = $simCounter;
+        return [$simCounter, true];
+    }
 
     $notes = "[imported-{$clientId}] [tag:" . IMPORT_TAG . "] from historical buyer list";
     $id = insert(
