@@ -53,3 +53,9 @@ _Append a short entry at the end of each session: what happened, what the assist
 - Same open calls: Path A or B, PayPal rule, foot dust price, Card 9, which feet hub stays live, the "Smooth. Stinky." opener.
 - Test the reply idea: do "caught you" posts pull more replies per like than choice posts?
 - New session for the X timeline once sotwe.com is open (`projects/stinky-feet/HANDOFF-x-timeline.md`).
+
+## Oct 3, 2026 (later)
+- She said she doesn't understand code. Told her Notion is home and GitHub is only a backup.
+- Synced Notion: doc 01 now shows the Oct 3 version, and doc 05 has the Oct 2 and Oct 3 updates. Doc 04 was not re-synced.
+- Built a "Start Here" page (Doc 0) in Stinky Feet HQ and linked it in the HQ Workspace Map.
+- Next: her open calls, which are listed on the Start Here page.
