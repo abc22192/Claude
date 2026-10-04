@@ -1,5 +1,6 @@
 # About Me
 
-_Filled in during onboarding (your first run). Holds who you are, how your brain works, and how you want your assistant to communicate with you._
-
-Empty until you've onboarded. Open this folder in Claude Code and say "hi" to begin, or run `/onboard`.
+- **Name:** Bella (runs Bella Blast solo)
+- **Background:** Psychology degree, 4+ years in business
+- **Communication:** ADHD-friendly, direct, no fluff, bold headers, tight bullets
+- **Assistant name:** (not set — user skipped onboarding)
