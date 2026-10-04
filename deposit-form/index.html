@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Reserve Your Bundle</title>
+<style>
+  :root {
+    --bg: #14090f;
+    --card: #21121b;
+    --line: #3b2232;
+    --text: #fbeef5;
+    --muted: #c9a9bb;
+    --accent: #ff4fa3;
+    --accent-ink: #1a0912;
+    --ok: #5be3a1;
+    --warn: #ffb347;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 24px 16px 56px; }
+  h1 { font-size: 1.7rem; line-height: 1.15; margin: 8px 0 6px; }
+  .lede { color: var(--muted); margin: 0 0 20px; }
+  .banner {
+    display: none;
+    background: #3a2300;
+    border: 1px solid var(--warn);
+    color: var(--warn);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    font-size: .95rem;
+  }
+  .step {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .step h2 { font-size: 1rem; margin: 0 0 12px; letter-spacing: .02em; }
+  .num {
+    display: inline-block; width: 24px; height: 24px; line-height: 24px;
+    text-align: center; border-radius: 50%;
+    background: var(--accent); color: var(--accent-ink);
+    font-weight: 700; font-size: .85rem; margin-right: 8px;
+  }
+  .bundle {
+    display: flex; gap: 10px; align-items: flex-start;
+    border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px; margin-bottom: 8px; cursor: pointer;
+  }
+  .bundle:has(input:checked) { border-color: var(--accent); background: #2b1522; }
+  .bundle input { margin-top: 4px; accent-color: var(--accent); }
+  .bundle b { display: block; }
+  .bundle span { color: var(--muted); font-size: .92rem; }
+  label.field { display: block; margin-bottom: 12px; font-size: .95rem; }
+  label.field small { color: var(--muted); }
+  input[type=text], textarea {
+    width: 100%; margin-top: 6px;
+    background: #17090f; color: var(--text);
+    border: 1px solid var(--line); border-radius: 10px;
+    padding: 12px; font: inherit;
+  }
+  textarea { min-height: 84px; resize: vertical; }
+  input:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  .pay { display: grid; gap: 8px; margin-bottom: 12px; }
+  .btn {
+    display: block; width: 100%; text-align: center; text-decoration: none;
+    border: 1px solid var(--accent); color: var(--text); background: transparent;
+    border-radius: 12px; padding: 13px 14px; font: inherit; font-weight: 600; cursor: pointer;
+  }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .btn[disabled] { opacity: .5; cursor: not-allowed; }
+  .note { color: var(--muted); font-size: .9rem; margin: 8px 0 0; }
+  .check { display: flex; gap: 10px; align-items: flex-start; margin: 10px 0; font-size: .95rem; }
+  .check input { margin-top: 4px; accent-color: var(--accent); }
+  .err { color: var(--warn); font-size: .92rem; min-height: 1.3em; margin: 8px 0 0; }
+  .ok { color: var(--ok); }
+  .fine { color: var(--muted); font-size: .82rem; text-align: center; margin-top: 18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="banner" class="banner" role="alert"></div>
+
+  <h1 id="title">Reserve your bundle</h1>
+  <p class="lede" id="lede"></p>
+
+  <form id="form" novalidate>
+    <section class="step">
+      <h2><span class="num">1</span>Pick what you want</h2>
+      <div id="bundles" role="radiogroup" aria-label="Bundle"></div>
+    </section>
+
+    <section class="step">
+      <h2><span class="num">2</span>How I reach you</h2>
+      <label class="field">Your Tellegramz @
+        <input type="text" id="handle" placeholder="@yourname" autocomplete="off" autocapitalize="none" required>
+      </label>
+      <label class="field">Anything I should know? <small>(optional)</small>
+        <textarea id="notes" placeholder="Details, name to use, timing"></textarea>
+      </label>
+    </section>
+
+    <section class="step">
+      <h2><span class="num">3</span>Send the <span id="depAmt"></span> deposit</h2>
+      <div class="pay" id="pay"></div>
+      <p class="note" id="payNote"></p>
+      <label class="check"><input type="checkbox" id="sent"> <span>I sent the deposit</span></label>
+      <label class="check"><input type="checkbox" id="adult"> <span>I am 18 or older</span></label>
+    </section>
+
+    <button class="btn primary" type="submit" id="go">Send my request</button>
+    <p class="err" id="err" aria-live="polite"></p>
+    <p class="note" id="fallbackNote" hidden>
+      If Tellegramz did not open,
+      <a href="#" id="copyLink">copy your message</a>
+      and send it to me directly.
+    </p>
+  </form>
+
+  <p class="fine">I confirm your deposit by hand and message you back. Nothing is automatic.</p>
+</div>
+
+<script>
+/* ===== EDIT THESE FIVE THINGS, THEN YOU ARE DONE ===== */
+var CONFIG = {
+  telegramUsername: "YOUR_TELEGRAM_USERNAME",   /* no @ sign */
+  deposit: 3,
+  youpayUrl: "https://youpay.me/BellaBlast",
+  cashApp: "$blastwithbella",
+  bundles: [
+    { id: "b1", name: "Bundle 1 (rename me)", blurb: "One line about what is in it" },
+    { id: "b2", name: "Bundle 2 (rename me)", blurb: "One line about what is in it" },
+    { id: "b3", name: "Single video (rename me)", blurb: "One line about what is in it" }
+  ]
+};
+/* ===================================================== */
+
+var $ = function (id) { return document.getElementById(id); };
+var configured = CONFIG.telegramUsername && CONFIG.telegramUsername.indexOf("YOUR_") !== 0;
+var lastMessage = "";
+
+function dollars(n) { return "$" + n; }
+
+(function init() {
+  $("depAmt").textContent = dollars(CONFIG.deposit);
+  $("lede").textContent = "Lock in your spot with a " + dollars(CONFIG.deposit) +
+    " deposit. I will message you on Tellegramz to finish up.";
+
+  var box = $("bundles");
+  CONFIG.bundles.forEach(function (b, i) {
+    var label = document.createElement("label");
+    label.className = "bundle";
+    var input = document.createElement("input");
+    input.type = "radio"; input.name = "bundle"; input.value = b.id;
+    if (i === 0) input.checked = true;
+    var text = document.createElement("div");
+    var name = document.createElement("b"); name.textContent = b.name;
+    var blurb = document.createElement("span"); blurb.textContent = b.blurb;
+    text.appendChild(name); text.appendChild(blurb);
+    label.appendChild(input); label.appendChild(text);
+    box.appendChild(label);
+  });
+
+  var pay = $("pay");
+  var a = document.createElement("a");
+  a.className = "btn"; a.href = CONFIG.youpayUrl; a.target = "_blank"; a.rel = "noopener";
+  a.textContent = "Pay " + dollars(CONFIG.deposit) + " with YouPay";
+  pay.appendChild(a);
+
+  var c = document.createElement("button");
+  c.type = "button"; c.className = "btn";
+  c.textContent = "Cash App: " + CONFIG.cashApp + " (tap to copy)";
+  c.addEventListener("click", function () {
+    copyText(CONFIG.cashApp, function (ok) {
+      c.textContent = ok ? "Copied " + CONFIG.cashApp : "Cash App: " + CONFIG.cashApp;
+    });
+  });
+  pay.appendChild(c);
+
+  $("payNote").textContent = "On Cash App, put only a period (.) or a gift emoji in the note. Nothing else.";
+
+  if (!configured) {
+    var banner = $("banner");
+    banner.style.display = "block";
+    banner.textContent = "Setup needed: add your Telegram username in the CONFIG block at the top of the script. The send button is off until you do.";
+    $("go").disabled = true;
+  }
+})();
+
+function copyText(text, cb) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { cb(true); }, function () { cb(false); });
+      return;
+    }
+  } catch (e) {}
+  try {
+    var t = document.createElement("textarea");
+    t.value = text; document.body.appendChild(t); t.select();
+    var ok = document.execCommand("copy");
+    document.body.removeChild(t); cb(ok);
+  } catch (e2) { cb(false); }
+}
+
+function chosenBundle() {
+  var sel = document.querySelector('input[name="bundle"]:checked');
+  var id = sel ? sel.value : "";
+  for (var i = 0; i < CONFIG.bundles.length; i++) {
+    if (CONFIG.bundles[i].id === id) return CONFIG.bundles[i];
+  }
+  return null;
+}
+
+$("form").addEventListener("submit", function (ev) {
+  ev.preventDefault();
+  var err = $("err");
+  err.textContent = "";
+  var handle = $("handle").value.trim();
+  var bundle = chosenBundle();
+
+  if (!bundle) { err.textContent = "Pick a bundle first."; return; }
+  if (!handle) { err.textContent = "Add your Tellegramz @ so I can reach you."; $("handle").focus(); return; }
+  if (!$("sent").checked) { err.textContent = "Send the deposit first, then tick the box."; return; }
+  if (!$("adult").checked) { err.textContent = "You have to be 18 or older."; return; }
+
+  var notes = $("notes").value.trim();
+  lastMessage = "Hi! Deposit sent (" + dollars(CONFIG.deposit) + ").\n" +
+    "Bundle: " + bundle.name + "\n" +
+    "My Tellegramz: " + (handle.charAt(0) === "@" ? handle : "@" + handle) +
+    (notes ? "\nNotes: " + notes : "");
+
+  $("fallbackNote").hidden = false;
+  var url = "https://t.me/" + encodeURIComponent(CONFIG.telegramUsername) +
+    "?text=" + encodeURIComponent(lastMessage);
+  window.location.href = url;
+});
+
+$("copyLink").addEventListener("click", function (ev) {
+  ev.preventDefault();
+  copyText(lastMessage, function (ok) {
+    $("err").className = ok ? "err ok" : "err";
+    $("err").textContent = ok ? "Copied. Paste it into a message to me." : "Could not copy. Select and copy it by hand.";
+  });
+});
+</script>
+</body>
+</html>
