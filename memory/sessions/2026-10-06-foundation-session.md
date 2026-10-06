@@ -212,28 +212,37 @@ Each free post ends with a specific product tie-in. No post leaves money on the 
 
 ---
 
-## Lipedema — potential public brand pillar (one-way door, her decision)
+## Lipedema (+ possible lymphoma — needs clarification) — potential public brand pillar (one-way door, her decision)
 
-Diagnosed last year. Medical condition that explains why standard weight loss doesn't work on her body no matter what she does. Significantly reframes the whole BBW story:
+Diagnosed with LIPEDEMA last year. Medical condition that explains why standard weight loss doesn't work on her body no matter what she does. Significantly reframes the whole BBW story:
 
 - Not "fat girl learns to love herself."
 - Instead: *"I was shamed for 20 years for a disease nobody knew I had. Every man who called me lazy, every teacher who called me a horse, every ex. They were abusing a sick kid who didn't have the diagnosis yet."*
 
 Opens doors to media, speaking, advocacy. One-way door though. If disclosed, it's part of the brand permanently. Her call.
 
+**OPEN QUESTION as of 2026-10-06 (added later in session):** She mentioned LYMPHOMA. That is a different condition (cancer of the lymphatic system) from lipedema (fat-distribution condition). Advanced lipedema can involve the lymphatic system (lipo-lymphedema). Do NOT guess which she means or write it into content before she confirms. One of three is true: lipedema only, lymphoma only, or both.
+
+**Reference point she mentioned (not finished):** Another BBW creator with huge hips and ass has publicly disclosed a similar condition. We need her name — important precedent for how to frame disclosure.
+
 ---
 
-## The guardrails ask (pending her yes)
+## The guardrails — DECIDED (2026-10-06, revised after her pushback)
 
-Posting weight content will attract trolls into a wound she's still healing. Her exact words that triggered the ask:
+My original ask was "comments off or heavily triaged." She pushed back and chose a different, informed path. She was right. Logging what she actually chose:
 
-> *"That stuff gets the views... it's almost like worth it now, I have tough skin but doesn't mean I'm invincible."*
+**Comments stay OPEN on the weight series.**
 
-Before any weight content goes live, three guardrails need yes:
+Her reasoning, in her words: she tried the "if you don't like it keep moving" line in early career, drew more hate by drawing attention to it, learned the hard way. She's wiser now, happier now, and knows the difference between navigating hate and inviting it. She also wants the engagement — even negative — because it serves the brand and she can handle it from where she is now.
 
-1. **Pre-decide the comment policy** before posting, not when the first troll shows up. Options: comments off / comments on with me triaging / comments on raw (not recommended unless she's grounded that day).
-2. **Don't read comments the first 24 hours.** I surface what's worth responding to.
-3. **"Pull the plug" signal agreed in advance.** If a post is hurting her, we take it down. No argument.
+**Guardrails she chose (operational):**
+
+1. **Platform + AI filters catch slurs and hate words before they hit her eyes.** Instagram and the other platforms have built-in word filters. Set them up aggressively before posting.
+2. **Fast takedown by request.** She names a comment, I take it down fast. No debate.
+3. **Pre-post grounding check-in.** Before every weight-series post goes live, I check in with her to confirm she's in a grounded headspace that day. If not, we delay.
+4. **She explicitly will NOT repeat the "just keep moving" play.** She knows that draws abuse. She navigates differently now.
+
+**What I was wrong about:** I assumed vulnerability + comments open = re-exposure wound. She's spent years learning the difference. The right move is to arm her with better filters, not shut the engagement off.
 
 ---
 

@@ -30,6 +30,8 @@ Solo BBW fetish content creator, 4-5 years in the business. Multiple niches: far
 
 ## Health
 - **Lipedema** — diagnosed last year. Medical condition that explains why standard weight loss doesn't work on her body. Historically treated as "lazy" or "disgusting" by people who didn't know she had it. Potential public brand pillar. Her call whether to disclose.
+- **Lymphoma (?)** — mentioned once on 2026-10-06 after already saying lipedema. Needs clarification: lipedema only, lymphoma only, or both (lipo-lymphedema is a real progression). Do NOT assume. Ask her to confirm the exact diagnosis before writing it into any content, article, or public-facing material.
+- **Trauma dissociation / memory protection** — she has described her memory as blocked except when a trigger spikes it. Framed as inner-child protection from childhood abuse. Important context: do not push her to recover specific memories for content purposes. She may have gaps she isn't aware of. Trust what she shares. Do not interrogate.
 
 ## Growing up
 - Plus-size her entire life. Developed extremely early (period at 8-9). Always back row in school pictures.
