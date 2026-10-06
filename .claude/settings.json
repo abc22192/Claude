@@ -10,6 +10,18 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /home/user/Claude && git pull --rebase origin main 2>/dev/null || true && git add context/ memory/ decisions/ 2>/dev/null || true && git diff --cached --quiet || git commit -m 'chore: auto-save session memory' && git push -u origin main 2>/dev/null || true",
+            "timeout": 30,
+            "statusMessage": "Saving memory to GitHub..."
+          }
+        ]
+      }
     ]
   }
 }
