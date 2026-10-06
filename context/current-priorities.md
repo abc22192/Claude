@@ -15,14 +15,17 @@ _Last updated: 2026-10-06_
 
 ## 90-Day Focus
 
+**Note (2026-10-06):** The Foundation Session surfaced a proposed priority shift. Items marked (PROPOSED) are awaiting Bella's final yes before being locked in. See `memory/sessions/2026-10-06-foundation-session.md`.
+
 | # | Priority | Notes |
 |---|----------|-------|
-| 1 | Fan automation + funnel | Stop manually screening; build a system so fans buy without her constant presence |
-| 2 | Email system | Build list, set up welcome + nurture sequences |
-| 3 | Telegram membership system | Welcome messages, fan engagement flow |
-| 4 | Podcast revival | Back to long-form; this is the trust-builder for her brand pivot |
-| 5 | Consistent posting | OnlyFans + Scrapbook; target: never go more than 2 days dark |
-| 6 | Outsourcing plan | Identify 1-2 tasks to hand off (social media posting is top candidate) |
+| 1 | **(PROPOSED) Podcast revival + Cocoon Series rollout** | PodGAS BBW episode is draft complete. Serves as top-of-funnel for coaching pivot. Carousels (Feet + Ass Diaries) run as parallel surface engine with product sell-ties. |
+| 2 | **(PROPOSED) Coaching program launch** | Lifted from longer-horizon to co-headline. Avatar is the size-12 insecure beautiful woman who wants into fetish work. Thesis: fetish work healed me, here's the manual nobody gave you. |
+| 3 | Fan automation + funnel | Stop manually screening; build a system so fans buy without her constant presence |
+| 4 | Email system | Build list, set up welcome + nurture sequences |
+| 5 | Telegram membership system | Welcome messages, fan engagement flow for the 3 memberships (feet / fart Twitter / ATW) |
+| 6 | Consistent posting | OnlyFans + Scrapbook; target: never go more than 2 days dark |
+| 7 | Outsourcing plan | Identify 1-2 tasks to hand off (social media posting is top candidate) |
 
 ---
 

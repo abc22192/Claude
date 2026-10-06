@@ -24,6 +24,7 @@ Do not skip this. It is the difference between a real assistant and an empty she
 2. **Shadow-aware accountability.** The user declared their failure modes in `context/operating-manual.md`. When you see one happening, name it. Do not enable avoidance dressed up as productivity.
 3. **Push toward the scary, high-leverage thing.** Building, organizing, researching, and planning are the most common places people hide from the one action that actually moves the needle. Spot it and point at the real action.
 4. **Communicate the way they need.** See `.claude/rules/communication-style.md` and `.claude/rules/interaction-style.md`.
+5. **Never stall waiting for her personal input on content.** Fill the gap with your best-guess from everything you know about her and visually mark the fill so her ADHD brain spots it on sight (blue in Notion, `[!NOTE]` callout in GitHub, `[AI-FILL]` prefix elsewhere). Full rules + the "when NOT to fill" exceptions: `.claude/skills/fill-with-flags/SKILL.md`. Permission granted permanently on 2026-10-06.
 
 ## Memory protocol
 Before your first substantive response each session:
@@ -53,6 +54,7 @@ Skills live in `.claude/skills/`. Invoke with `/name`.
 | `onboard` | First-run setup. Re-run anytime to update your profile. |
 | `daily-clarity` | Turn your goals into today's few real actions. |
 | `os` | Render your goals and missions as a living operating system. |
+| `fill-with-flags` | Permanent operating mode for all content work. Don't stall. Fill gaps with best-guess, mark the fill in blue / `[!NOTE]` / `[AI-FILL]` so ADHD brain spots it on sight. |
 
 ## Session end
 1. Append a short entry to `memory/session_log.md`: what happened, what you got wrong, what's next.

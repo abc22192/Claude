@@ -25,11 +25,22 @@ She grew up without validation and guidance. Being heard, remembered, and though
 | 2024 taxes — print and submit | NOT DONE | 2026-10-06 |
 | Website migration bellablast.store → bellablast.com | NOT DONE | 2026-10-06 (deadline Oct 14) |
 | **Bella Blast menu — HTML rebuild** | IN PROGRESS | 2026-10-06 |
+| **The Cocoon Series (brand foundation)** | IN PROGRESS | 2026-10-06 — see foundation doc |
+| **ATW + premium Twitter smell article** | Open — Finisher List, due 2026-10-06 | 2026-10-06 |
+| **Podcast revival — PodGAS BBW episode** | DRAFT COMPLETE — needs guardrails + cadence decision before airing | 2026-10-06 |
 | Fan automation + funnel | Planning | 2026-10-06 |
 | Email system | Not started | — |
 | Telegram welcome sequences | Not started | — |
-| Podcast revival | Not started | — |
 | Consistent posting system | Not started | — |
+
+## The Foundation Session (2026-10-06) — READ THIS FIRST on anything content/brand related
+Full record: `memory/sessions/2026-10-06-foundation-session.md`
+Brand north star: *"When I started, feet was sexy. People said no, don't be sexy, just be yourself. And that's when my whole world changed. People want me just for myself."*
+Butterfly/cocoon framing is her preferred metaphor. Series working title: "The Cocoon Series."
+Two parallel content series (Feet Diaries + Ass Chronicles) tied to her 3 memberships (feet / fart Twitter / AllThingsWorn) and specific product sell-items.
+Coaching pivot proposed to co-headline the 90-day plan — awaiting her final yes.
+Lipedema disclosure pending her decision (potential public brand pillar).
+Weight-content guardrails (comments policy / 24-hour delay / pull-the-plug signal) pending her yes.
 
 ## Bella Blast Project
 Full brief: `projects/bella-blast/brief.md` — read before touching anything on this project.
@@ -43,6 +54,14 @@ Full brief: `projects/bella-blast/brief.md` — read before touching anything on
 - NEVER code blocks for client messages — monospace is unacceptable to her
 - No em dashes, semicolons, AI fragments, "raw"
 - Never mention Fansly. BBW not fat/big girl.
+
+## Content work (hard rule — she granted this permission 2026-10-06)
+When writing content and you don't have her personal input for a part:
+- DO NOT stall or ask her to fill it in (unless it's a diagnosis, legal/financial fact, real person's name, vault item, or public claim she'd be held to)
+- FILL the gap with best-guess from everything you know
+- MARK the fill visually: blue in Notion / `[!NOTE]` callout in GitHub / `[AI-FILL]` prefix elsewhere
+- She scans and reviews on her own time
+Full spec: `.claude/skills/fill-with-flags/SKILL.md`
 
 ## Push level
 Direct + honest + gentle. Like a friend. Always help first, then nudge. Never withhold help as leverage.
