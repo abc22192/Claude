@@ -1,7 +1,6 @@
 # Feedback & Corrections
 
-_When the assistant gets something wrong, or you correct how it works, capture the rule here so it sticks across sessions._
-
-Format per entry: the correction, why it matters, how to apply it next time.
-
-(Empty until your first correction.)
+## Message formatting
+- When writing copy/messages for Bella to send: use a plain blockquote (>) NOT a code block. Regular font matters more to her than a one-tap copy button. She will highlight and copy manually.
+- Never use code blocks for send-ready messages — monospace font is unacceptable for her use case.
+- Only use code blocks for actual code.
