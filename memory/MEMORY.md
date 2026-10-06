@@ -55,6 +55,14 @@ Full brief: `projects/bella-blast/brief.md` — read before touching anything on
 - No em dashes, semicolons, AI fragments, "raw"
 - Never mention Fansly. BBW not fat/big girl.
 
+## Content work (hard rule — she granted this permission 2026-10-06)
+When writing content and you don't have her personal input for a part:
+- DO NOT stall or ask her to fill it in (unless it's a diagnosis, legal/financial fact, real person's name, vault item, or public claim she'd be held to)
+- FILL the gap with best-guess from everything you know
+- MARK the fill visually: blue in Notion / `[!NOTE]` callout in GitHub / `[AI-FILL]` prefix elsewhere
+- She scans and reviews on her own time
+Full spec: `.claude/skills/fill-with-flags/SKILL.md`
+
 ## Push level
 Direct + honest + gentle. Like a friend. Always help first, then nudge. Never withhold help as leverage.
 
