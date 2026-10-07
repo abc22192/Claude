@@ -35,7 +35,7 @@ function applyView(list, view, s) {
     case 'top': return list.filter((p) => p.total_spent > 0).sort(bySpend).slice(0, 10);
     case 'whales': return list.filter((p) => p.total_spent >= s.whale_min).sort(bySpend);
     case 'regulars': return list.filter((p) => p.total_spent >= s.regular_min && p.total_spent < s.whale_min).sort(bySpend);
-    case 'new': return list.filter((p) => p.status === 'new' || (p.date_met && fmt.daysBetween(p.date_met, today) <= 30)).sort((a, b) => b.id - a.id);
+    case 'new': return list.filter((p) => (p.status === 'new' && !p.purchases) || (p.date_met && fmt.daysBetween(p.date_met, today) <= 30)).sort((a, b) => b.id - a.id);
     case 'recent': return list.filter((p) => p.last_contact).sort((a, b) => b.last_contact.localeCompare(a.last_contact) || b.id - a.id);
     case 'quiet': return list.filter((p) => p.last_purchase_on && fmt.daysBetween(p.last_purchase_on, today) >= s.quiet_after_days).sort(bySpend);
     case 'vip': return list.filter((p) => p.status === 'vip').sort(bySpend);
@@ -158,7 +158,7 @@ router.get('/:id(\\d+)', wrap(async (req, res) => {
       ${ui.tile('Total spent', fmt.money(p.total_spent), '', 'good')}
       ${ui.tile('Purchases', String(p.purchases))}
       ${ui.tile('Last bought', p.last_purchase_on ? fmt.dateShort(p.last_purchase_on, false) : 'Never', p.last_purchase_on ? fmt.ago(p.last_purchase_on) : '')}
-      ${ui.tile('Since', p.first_purchase_on ? fmt.dateShort(p.first_purchase_on, true) : (p.date_met ? fmt.dateShort(p.date_met, true) : '–'), p.first_purchase_on ? 'first purchase' : 'met')}
+      ${ui.tile('Since', p.first_purchase_on ? fmt.dateShort(p.first_purchase_on, p.first_purchase_on.slice(0, 4) !== fmt.today().slice(0, 4)) : (p.date_met ? fmt.dateShort(p.date_met, p.date_met.slice(0, 4) !== fmt.today().slice(0, 4)) : '–'), p.first_purchase_on ? 'first purchase' : 'met')}
     </div>
 
     <div class="card gold">

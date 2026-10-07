@@ -2,6 +2,15 @@
 
 Read this whole file before doing anything. It replaces the long chat history.
 
+## STATUS (2026-10-07, latest): Node rebuild is built and tested, NOT deployed
+- Bella said: restart from scratch, do not read or copy the ChatGPT app at crm.bellablasts.com, go well beyond it. Done as a fresh Node app in `crm-node/`.
+- 74 integration tests pass against a real MariaDB (`node tests/run.js`, needs a throwaway database, it drops every `lbb_` table). A clean `npm ci` from the zip boots and reports healthy.
+- One deployable zip: `dist/little-black-book-v2.zip`. Deploy steps: `crm-node/README.md`. Browser agent script: `docs/MUSE-PROMPT-DEPLOY.md`. Ask Bella before deploying anything.
+- Built: login (90 days), Today, People (12 views incl. Top 10 and Email list), person report with tap-to-edit, quick log, purchases, reminders, Check-ins (1 month, 3 month, gone quiet, reminders), Money (income, costs, profit, by month, platform and service, top 10, CSV), Brain dump with receipt, approve or skip, wrong-person fix, nudges, global Undo and Redo, Activity history, Needs your OK (unconfirmed sales), Merge duplicates, Settings, downloads and full backup, Telegram bot (owner locked), public API with OpenAPI for Grok.
+- NOT built on purpose (Bella said later): Notion + buyer CSV + Telegram export merge, transcript import. Do those next with a dry run and a 5-client spot check.
+- Old PHP site (crm.blastwithbella.com) and `public/` are legacy. Retire after the new app is confirmed. `public/install.php` is unsafe, delete it on the server.
+- Test the sorter with `crm-node/lib/sorter.js` ideas in `tests/run.js` before changing it. It is precision first: only certain things file, the rest waits for her OK.
+
 ## READ THESE FIRST (updated 2026-10-07)
 1. `docs/BELLA-REQUIREMENTS-2026-10-07.md` is Bella's detailed, screen-by-screen feedback, her priorities, and the proposed phased plan. It overrides the batch plan at the bottom of this file.
 2. `docs/HOW-IT-WORKS-AND-SETUP.md` is the plain-English guide and setup runbook.

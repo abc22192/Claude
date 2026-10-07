@@ -25,7 +25,7 @@ function tierBadge(p) {
 function statusBadge(p) {
   if (p.status === 'vip') return html`<span class="badge gold">VIP</span>`;
   if (p.status === 'ghosted') return html`<span class="badge wine">Ghosted</span>`;
-  if (p.status === 'new') return html`<span class="badge">New</span>`;
+  if (p.status === 'new' && !p.purchases) return html`<span class="badge">New</span>`;
   return '';
 }
 

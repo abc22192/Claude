@@ -51,7 +51,8 @@ p { margin: 0 0 .8em; }
   background: linear-gradient(145deg, #2b2218, #0f0c09); border: 1px solid var(--gold); color: var(--gold2);
   font: 700 .72rem var(--sans); letter-spacing: .08em;
 }
-.brand-name { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; }
+.brand-name { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; white-space: nowrap; }
+@media (max-width: 480px) { .icon-btn span { display: none; } .icon-btn { padding: 8px 13px; font-size: 1.05rem; } .brand-name { font-size: 1.1rem; } }
 .topbar-actions { display: flex; gap: 6px; }
 .icon-btn {
   background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 999px;
@@ -72,11 +73,12 @@ p { margin: 0 0 .8em; }
 .tabbar a:hover { text-decoration: none; color: var(--ink); }
 .fab {
   position: fixed; right: 16px; bottom: calc(82px + env(safe-area-inset-bottom)); z-index: 25;
-  display: flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center; gap: 8px; width: 54px; height: 54px; border-radius: 999px; font-size: 1.4rem;
   background: linear-gradient(135deg, var(--gold2), var(--gold)); color: #1a1208; font-weight: 600;
   box-shadow: 0 8px 24px rgba(0,0,0,.5);
 }
-.fab span { font-size: .9rem; }
+.fab span { display: none; font-size: .9rem; }
+@media (min-width: 960px) { .fab { width: auto; height: auto; padding: 12px 18px; } .fab span { display: inline; } }
 .fab:hover { text-decoration: none; filter: brightness(1.06); }
 @media (min-width: 960px) {
   body { padding-bottom: 40px; }
@@ -94,6 +96,8 @@ p { margin: 0 0 .8em; }
 .row.between { justify-content: space-between; }
 .row.wrapit { flex-wrap: wrap; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid2 > *, .grid3 > *, .grid4 > * { min-width: 0; }
+@media (max-width: 640px) { .grid2.stack { grid-template-columns: 1fr; } }
 .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .grid4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 @media (min-width: 640px) { .grid4 { grid-template-columns: repeat(4, 1fr); } }
@@ -156,10 +160,9 @@ button:disabled { opacity: .5; cursor: default; }
 .money-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 12px 0 16px; }
 .money-strip .tile { padding: 10px 11px; }
 .money-strip .tile .value { font-size: 1.35rem; }
-.remember { display: grid; gap: 10px; }
-@media (min-width: 640px) { .remember { grid-template-columns: 1fr 1fr; } }
+.remember { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
 .rem {
-  background: var(--card2); border: 1px solid var(--line); border-radius: 14px; padding: 11px 13px; cursor: text; min-height: 66px;
+  background: var(--card2); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; cursor: text; min-height: 62px; min-width: 0;
 }
 .rem.big { grid-column: 1 / -1; }
 .rem .k { color: var(--gold); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
@@ -188,8 +191,11 @@ td.num, th.num { text-align: right; }
 .bar { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; min-width: 0; }
 .bar i { display: block; width: 100%; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, var(--gold2), var(--gold)); min-height: 2px; }
 .bar.cost i { background: linear-gradient(180deg, #8a3a52, var(--wine)); }
+.bar .pair { display: flex; align-items: flex-end; gap: 2px; width: 100%; height: 100%; }
+.bar .pair i { flex: 1; }
+.bar .pair i.cost { background: linear-gradient(180deg, #8a3a52, var(--wine)); }
 .bar span { font-size: .66rem; color: var(--muted); margin-top: 4px; white-space: nowrap; }
-.hbar { display: grid; grid-template-columns: 110px 1fr auto; align-items: center; gap: 10px; margin: 8px 0; font-size: .9rem; }
+.hbar { display: grid; grid-template-columns: minmax(70px, 110px) 1fr auto; align-items: center; gap: 10px; margin: 8px 0; font-size: .9rem; }
 .hbar .track { height: 10px; background: #0f0c0a; border-radius: 999px; overflow: hidden; }
 .hbar .track i { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold2)); }
 

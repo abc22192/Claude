@@ -12,8 +12,8 @@ const router = express.Router();
 
 function bars(months) {
   const max = Math.max(1, ...months.map((m) => Math.max(m.income, m.expense)));
-  return html`<div class="bars">${months.map((m) => html`<div class="bar" title="${m.label}: ${fmt.money(m.income)} in, ${fmt.money(m.expense)} out"><i style="height:${Math.max(1, Math.round((m.income / max) * 100))}%"></i><span>${m.label.slice(0, 3)}</span></div>
-    <div class="bar cost"><i style="height:${Math.max(1, Math.round((m.expense / max) * 100))}%"></i><span></span></div>`)}</div>`;
+  const h = (v) => (v > 0 ? Math.max(2, Math.round((v / max) * 100)) : 0);
+  return html`<div class="bars">${months.map((m) => html`<div class="bar" title="${m.label}: ${fmt.money(m.income)} in, ${fmt.money(m.expense)} out"><div class="pair"><i style="height:${h(m.income)}%"></i><i class="cost" style="height:${h(m.expense)}%"></i></div><span>${m.label.slice(0, 3)}</span></div>`)}</div>`;
 }
 
 function hbars(rows) {
@@ -36,7 +36,7 @@ router.get('/', wrap(async (req, res) => {
       ${ui.tile('Average sale', fmt.money(m.sales ? m.income / m.sales : 0))}
     </div>
     <div class="card"><h2>Month by month</h2>${bars(m.months)}<p class="faint small">Gold is money in. Rose is costs.</p></div>
-    <div class="grid2" style="align-items:start">
+    <div class="grid2 stack" style="align-items:start">
       <div class="card"><h3>By platform</h3>${hbars(m.byPlatform)}</div>
       <div class="card"><h3>By service</h3>${hbars(m.byKind)}</div>
     </div>
