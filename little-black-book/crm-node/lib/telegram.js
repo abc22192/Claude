@@ -71,11 +71,12 @@ function receiptText(rec) {
   const { proposal, person } = rec;
   const lines = [];
   if (person) lines.push(`Saved under ${person.name}${proposal.person.created ? ' (new person)' : ''}.`);
-  else lines.push('Saved your words, but I am not sure who this is about.');
+  else if (proposal.person && proposal.person.isNew && proposal.person.name) lines.push(`Saved your words. Is ${proposal.person.name} someone new? Tap below and I will file everything.`);
+  else if (proposal.person && proposal.person.candidates && proposal.person.candidates.length) lines.push('Saved your words. I found more than one match. Tap who it is.');
+  else lines.push('Saved your words, but I am not sure who this is about. Reply to this with "name: Their Name" and I will file it.');
   for (const i of proposal.items.filter((x) => x.state === 'applied' && x.type !== 'interaction').slice(0, 8)) lines.push('✓ ' + i.label);
   const waiting = proposal.items.filter((x) => x.state === 'waiting');
   if (waiting.length && person) lines.push(`? ${waiting.length} thing${waiting.length === 1 ? '' : 's'} need your OK.`);
-  if (!person) lines.push('Open the app to pick who it is.');
   if (person && proposal.nudges && proposal.nudges[0]) lines.push('Worth adding: ' + proposal.nudges[0]);
   return { text: lines.join('\n'), waiting: waiting.length };
 }
@@ -87,6 +88,11 @@ function keyboardFor(rec, waiting) {
   const url = appLink(`/dump/${rec.raw.id}`);
   const rows = [];
   if (row.length) rows.push(row);
+  if (!rec.person) {
+    const p = rec.proposal.person || {};
+    if (p.isNew && p.name) rows.push([{ text: `Yes, ${p.name} is new`, callback_data: `new:${rec.raw.id}` }]);
+    for (const c of (p.candidates || []).slice(0, 4)) rows.push([{ text: c.name, callback_data: `pick:${rec.raw.id}:${c.id}` }]);
+  }
   if (url) rows.push([{ text: 'Open in the book', url }]);
   return rows.length ? { reply_markup: { inline_keyboard: rows } } : {};
 }
@@ -174,6 +180,20 @@ async function handleUpdate(update) {
       const ids = rec ? rec.proposal.items.filter((i) => i.state === 'waiting' && i.conf !== 'low').map((i) => i.id) : [];
       if (ids.length) { await dump.approve(Number(idStr), ids); answer = `Added ${ids.length}.`; } else answer = 'Nothing to add.';
     }
+    if (kind === 'new' || kind === 'pick') {
+      const parts = String(cq.data).split(':');
+      const rawId = Number(parts[1]);
+      const rec = await dump.receiptFor(rawId);
+      if (!rec || rec.raw.person_id) answer = 'That one is already filed.';
+      else {
+        const out = kind === 'new'
+          ? await dump.assignPerson(rawId, { newName: rec.proposal.person.name })
+          : await dump.assignPerson(rawId, { personId: parts[2] });
+        await api('answerCallbackQuery', { callback_query_id: cq.id, text: 'Filed.' }).catch(() => {});
+        if (chatId) await replyDump(chatId, out);
+        return { handled: 'callback' };
+      }
+    }
     await api('answerCallbackQuery', { callback_query_id: cq.id, text: answer.slice(0, 180) }).catch(() => {});
     if (chatId) await send(chatId, answer);
     return { handled: 'callback' };
@@ -200,6 +220,17 @@ async function handleUpdate(update) {
   if (msg.text && msg.text.startsWith('/') && !forwardedFrom(msg)) {
     await handleCommand(chatId, msg.text);
     return { handled: 'command' };
+  }
+
+  const named = /^name\s*:\s*(.{2,60})$/i.exec(text.trim());
+  if (named) {
+    const pending = await db.one("SELECT id FROM lbb_raw WHERE status = 'needs_person' AND source = 'telegram' ORDER BY id DESC LIMIT 1");
+    if (pending) {
+      const known = await people.matchExisting({ name: named[1].trim() });
+      const out = await dump.assignPerson(pending.id, known ? { personId: known.id } : { newName: named[1].trim() });
+      await replyDump(chatId, out);
+      return { handled: 'name' };
+    }
   }
 
   const fwd = forwardedFrom(msg);

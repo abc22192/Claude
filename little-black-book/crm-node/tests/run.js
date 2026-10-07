@@ -607,6 +607,32 @@ async function main() {
     await hook(upd(71, 'hello beautiful', { forward_origin: { type: 'user', sender_user: { id: 8888, first_name: 'Stranger', last_name: 'Danger' } } }));
     assert.strictEqual((await db.one('SELECT COUNT(*) AS n FROM lbb_people')).n, before);
   });
+  await test('an unknown name gets a one-tap "is new" button that files everything', async () => {
+    tgSent.length = 0;
+    await hook(upd(300, 'Zed bought a clip for $22 today'));
+    const reply = tgSent.find((m) => m.method === 'sendMessage');
+    assert.ok(/Is Zed someone new/.test(reply.body.text), reply.body.text);
+    const kb = JSON.stringify(reply.body.reply_markup);
+    const cb = /"callback_data":"(new:\d+)"/.exec(kb);
+    assert.ok(cb, kb);
+    assert.ok(!(await personByName('Zed')));
+    tgSent.length = 0;
+    await hook({ update_id: 301, callback_query: { id: 'cb9', from: { id: 555 }, data: cb[1], message: { chat: { id: 555 } } } });
+    const z = await personByName('Zed');
+    assert.ok(z, 'Zed created after the tap');
+    assert.strictEqual(await totalOf(z.id), 22);
+    assert.ok(tgSent.some((m) => m.method === 'sendMessage' && /Saved under Zed/.test(m.body.text)));
+  });
+  await test('two matches show a button for each, and "name:" files the last unfiled dump', async () => {
+    tgSent.length = 0;
+    await hook(upd(310, 'Mike sent $15 tip today'));
+    const kb = JSON.stringify(tgSent.find((m) => m.method === 'sendMessage').body.reply_markup);
+    assert.ok((kb.match(/pick:/g) || []).length === 2, kb);
+    tgSent.length = 0;
+    await hook(upd(311, 'who knows'));
+    await hook(upd(312, 'name: Quinn'));
+    assert.ok(await personByName('Quinn'));
+  });
   await test('commands answer: /top /today /who /undo', async () => {
     for (const c of ['/top', '/today', '/who kaiser', '/help', '/undo']) {
       tgSent.length = 0;
