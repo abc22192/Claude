@@ -109,3 +109,49 @@ Must be visible on the main screen, without scrolling through a form:
 - **Phase 4:** look and feel using her book art.
 - **Phase 5:** history import and merge from Notion and Telegram, Grok webhook, payments.
 - Every phase is tested on a real database, delivered as one zip plus one browser-agent prompt, and checked by Bella on about 5 real clients before the next phase starts.
+
+---
+
+# Update 2: decisions confirmed (Bella's second message, 2026-10-07)
+
+These override anything above that conflicts.
+
+## Decisions
+1. **Build it as a Node.js app and deploy it with ONE zip upload on Hostinger's "Deploy an app" screen.** She prefers this to File Manager. "Just putting a zip file on, uploading it, was much easier." She told me this at the start and I overruled her with PHP. That was the wrong call. Secrets go in that screen's environment variables form, so no settings file is ever edited by hand.
+   - The existing app at `crm.bellablasts.com` is the app slot. It is Node 22, Express preset, entry file `server.js`, npm. Its tabs are People, Email List, Follow-ups and Sessions.
+   - `crm.blastwithbella.com` (PHP, File Manager) was only a workaround domain because the PHP zip was rejected by the app screen. Retire it once the Node app replaces it.
+   - Not verified: how many app slots her Hostinger plan allows. Redeploying into the existing slot avoids needing a new one.
+   - Not in this repo: the source code of the app currently running at `crm.bellablasts.com`. Find out where it was built. If nobody has it, rebuild it to match its layout.
+2. **Check-ins happen once a month and again at three months** after a purchase.
+3. **She wants a "top 10" view AND several other views.** Not one long list of everyone. She also wants money views (how much is being made) and expense views.
+4. **The Notion Little Black Book is the source of truth for existing people.** Other copies are archived. Everything exported from Telegram needs to be redone properly: collect it, organize it, and TEST it before running for real. "You never test them."
+5. **Grok must work from both the Grok app and Grok in the browser.**
+6. **She is not buying credits.** Plans must fit what she already pays for. Prefer included tools.
+
+## What I found in the Notion Little Black Book (read-only look, 2026-10-07)
+- Database id `02958ddc-e7ae-48f8-abaf-e5acc95f342d`, data source `77e388ba-5bc9-4de4-809c-89c8acface87`. A separate Sessions database sits beside it (`2b18021b-6561-4688-aa56-9dd76b53c740`).
+- **421 people.** 294 have fetishes, 417 have notes, 56 have a tone, 41 have magic words, 13 have a dream night, 63 have a purchases list. 371 are Telegram, 37 are other platforms.
+- **Only 6 Sessions rows exist in Notion.** So Notion holds the relationship intel, and the buyer CSVs hold the money. The CRM currently only has the money (179 people). Neither is complete alone. The real fix is one merged record per person.
+- The existing Notion fields are the model to match. People fields: Client Name, Username, Telegram ID, Email, Chat On (select), Met Where, Date Met, Fetishes, Tone, Dream Night, Magic Words, What They Like About Me, Call Me, Plans to Finish, Payment Method, Payment Vibe (multi-select: Haggles, Easy, Tipper, Have to Ask, Cheap, Doesnt Pay, Loyal but Broke, Whale), Purchases, Knows Audio, Knows Bella Effect, Knows Inhalers, Status (VIP, Active, Need Follow-up, Ghosted, New), Follow-up Cadence (7 or 14 days), Last Contact, Notes. Calculated: Follow-up Date, Follow-up Status, Spender Tier, Total Spent, number of sessions.
+- Views she already has and clearly likes: Total Revenue, Top Spenders (bar chart), Client Money, VIP Whales, Bella Effect, Priority Follow-Up, Open Threads, New Leads to Nurture, By Status board, Quick Scan.
+- One field she asked for is NOT in Notion either: **"How they made me feel."**
+- The Chat On list in Notion still contains a retired platform option. Do not carry it into the CRM.
+- This answers the earlier open questions about "top 10", check-in timing and which Notion database to use.
+
+## Risk to check before anything else: two apps may share one database
+- The PHP install form pre-filled the old app's database name and user, which I copied from her screenshot of the old app's settings. She then reset that database user's password so the PHP app could connect. If the old app at `crm.bellablasts.com` uses the same user, its saved password no longer matches and it may be broken. It looked empty in her last screenshot.
+- The PHP tables (`contacts`, `sessions`, `follow_ups` and others) may also sit in the same database as the old app's tables.
+- **Read-only check:** in Hostinger, Databases, open phpMyAdmin for that database, list the table names and row counts, and change nothing. Then decide whether the new app gets its own separate database (recommended).
+
+## Open questions that remain
+1. Where did the app at `crm.bellablasts.com` come from (which chat or tool), and is its code saved anywhere?
+2. Is the look of that app (cream, serif, gold) the target?
+3. What are her monthly costs? A simple list is enough.
+4. Which Grok setup does she use inside the Grok app, so the connection fits?
+
+## Revised plan (replaces the phases above where they conflict)
+- **Phase 0:** security cleanup, database check (above), and a decision on keeping or rebuilding the Node app.
+- **Phase 1:** one Node app, one zip, secrets in the environment form. Person report screen, new person with platform chips, "how they made me feel," quick log of a session, check-ins at 1 and 3 months, Top 10 and other views, stay-logged-in.
+- **Phase 2:** money views and expenses, undo and redo, brain dump v2.
+- **Phase 3:** one merged import from the Notion book plus the buyer CSVs plus the Telegram export, with a review step and a dry run on a copy BEFORE the real run. She spot-checks about 5 real clients.
+- **Phase 4:** look and feel with her book art, Grok connection for the app and browser, webhooks and payments.

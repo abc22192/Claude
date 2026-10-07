@@ -1,5 +1,7 @@
 # How the Little Black Book works, and how to set it up
 
+> **Note (2026-10-07):** this guide describes the current PHP version. The plan is to move to a Node app deployed by one zip upload on Hostinger. See `BELLA-REQUIREMENTS-2026-10-07.md`, "Update 2". Rewrite this guide when that move happens.
+
 Plain English first. Technical details at the bottom. Written so a person or a browser agent (Muse) can follow it with no coding.
 
 ## The five pieces

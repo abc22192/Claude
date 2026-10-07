@@ -8,6 +8,10 @@ Read this whole file before doing anything. It replaces the long chat history.
 3. `docs/design/` holds her black book art and the old app reference screenshot.
 4. **Plan first. Build nothing until Bella approves the plan.** She has said the plan and the documentation matter most. Never make her repeat herself. Record every new instruction in the requirements file.
 5. Spot-check gate: before asking her to rely on the CRM, have her verify about 5 real clients she knows.
+6. **Platform decision (2026-10-07): build a Node.js app deployed by ONE zip on Hostinger's "Deploy an app" screen, with secrets in its environment variables form.** This replaces the PHP and File Manager approach, which she never wanted. See "Update 2" in the requirements file.
+7. **The Notion Little Black Book is the source of truth for existing people** (database `02958ddc-e7ae-48f8-abaf-e5acc95f342d`, 421 people, only 6 session rows). The buyer CSVs hold the money. Merge both with a dry run on a copy first.
+8. **Check the shared-database risk first** (requirements file, "Update 2"). Do not write into the old app's database until it is confirmed safe.
+9. She is not buying credits. Keep every step small, tested and efficient.
 
 ## Rules for working with Bella (she is "Babe")
 - She runs Bella Blast solo. She is not a coder. Never ask her to edit code, files or fields by hand.
