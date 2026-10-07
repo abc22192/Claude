@@ -2,6 +2,13 @@
 
 Read this whole file before doing anything. It replaces the long chat history.
 
+## READ THESE FIRST (updated 2026-10-07)
+1. `docs/BELLA-REQUIREMENTS-2026-10-07.md` is Bella's detailed, screen-by-screen feedback, her priorities, and the proposed phased plan. It overrides the batch plan at the bottom of this file.
+2. `docs/HOW-IT-WORKS-AND-SETUP.md` is the plain-English guide and setup runbook.
+3. `docs/design/` holds her black book art and the old app reference screenshot.
+4. **Plan first. Build nothing until Bella approves the plan.** She has said the plan and the documentation matter most. Never make her repeat herself. Record every new instruction in the requirements file.
+5. Spot-check gate: before asking her to rely on the CRM, have her verify about 5 real clients she knows.
+
 ## Rules for working with Bella (she is "Babe")
 - She runs Bella Blast solo. She is not a coder. Never ask her to edit code, files or fields by hand.
 - She is out of patience and credits. Work in ONE tested batch. One zip. One browser-agent (Muse) prompt. No piecemeal fixes and no "try this and tell me".
