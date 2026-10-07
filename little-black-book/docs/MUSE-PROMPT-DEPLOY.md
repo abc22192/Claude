@@ -1,16 +1,16 @@
-# Prompt for the browser agent (Muse): deploy the new Little Black Book
+# Prompt for the browser agent (Muse): put the new Little Black Book on crm.bellablasts.com
 
-Paste everything below the line into Muse. Bella logs into Hostinger herself and types the passwords herself. Muse never needs them in chat.
+Bella approved this on 2026-10-07. Paste everything below the line into Muse. Bella logs into Hostinger herself and types every password herself. Muse never needs a secret in chat.
 
 ---
-You are helping me deploy a Node.js app on Hostinger. I will log in to Hostinger myself and I will type every password and secret myself. Do not ask me to paste any secret into this chat. If a field needs a secret, stop and tell me which field, and wait while I type it.
+You are helping me replace the app at crm.bellablasts.com in Hostinger with a new Node.js app. I will log in to Hostinger myself and I will type every password and secret myself. Never ask me to paste a secret into this chat. If a field needs a secret, tell me which field and wait while I type it.
 
-Do not delete, edit or open anything that already exists (other apps, databases, files). Only add.
+Rules: Do not delete any database, any table, or any other website or app. Only change the app that serves crm.bellablasts.com. Read values to me only if they are not passwords.
 
-1. In hPanel go to Websites, Add website, choose Node.js Apps (Deploy an app). Pick the domain or subdomain I tell you. Upload `little-black-book-v2.zip` from my downloads.
-2. Build settings: Framework Express, Node version 22, package manager npm, entry file server.js, start command npm start.
-3. Open the Environment Variables form. Add these names and leave the values empty for me to type: DB_HOST (value localhost, you may fill this), DB_PORT (3306, you may fill this), DB_NAME, DB_USER, DB_PASSWORD, ADMIN_PASSWORD, SESSION_SECRET, PUBLIC_URL, API_KEY, TELEGRAM_BOT_TOKEN. Tell me when each is waiting for me.
-4. For the database values, open Databases, MySQL Databases and read the NAME and USER to me. Do not reveal or reset the password. If I need a new password I will press Change password myself.
-5. After I have typed everything, press Deploy. Wait for it to finish. Open the site address. Tell me exactly what the page says. If it says "Almost ready", read me the sentences on it.
-6. Open the site address followed by /health and tell me the result.
-7. Stop there. Do not log in for me.
+1. In hPanel open Websites, then the Node.js app that serves crm.bellablasts.com. Tell me its name and what it currently shows (just describe it).
+2. Open its Environment Variables. READ ME THE NAMES ONLY, not the values. Tell me which of these already exist: DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD, ADMIN_PASSWORD, SESSION_SECRET, PUBLIC_URL, API_KEY, TELEGRAM_BOT_TOKEN. Keep the DB_ ones that exist. Leave any other existing names alone.
+3. Upload the new code: use the app's option to upload a new build or redeploy from a zip, and choose `little-black-book-v2.zip`. Settings must be: Framework Express, Node 22, package manager npm, entry file server.js, start command npm start.
+4. Add or fill these variables. Fill the safe ones yourself and leave the secret ones for me to type: DB_HOST = localhost, DB_PORT = 3306, PUBLIC_URL = https://crm.bellablasts.com, APP_TZ = America/New_York. For me to type: ADMIN_PASSWORD (10 or more characters), SESSION_SECRET (16 or more random characters), API_KEY (20 or more random characters), TELEGRAM_BOT_TOKEN. If DB_NAME, DB_USER or DB_PASSWORD are missing or I changed the password, open Databases, MySQL Databases, read me the database NAME and USER, and let me type the password myself. Do not reset or reveal any password.
+5. When I say everything is typed, press Deploy and wait for it to finish.
+6. Open https://crm.bellablasts.com/health and tell me exactly what it says. Then open https://crm.bellablasts.com and tell me what the page says. If it says "Almost ready", read me every sentence on it.
+7. Stop. Do not log in for me.
