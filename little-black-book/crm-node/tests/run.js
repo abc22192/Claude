@@ -20,6 +20,7 @@ process.env.API_KEY = 'test-api-key-0123456789abcdef';
 process.env.TELEGRAM_BOT_TOKEN = '123:TESTTOKEN';
 process.env.PUBLIC_URL = 'https://book.example.test';
 process.env.APP_TZ = 'America/New_York';
+process.env.LBB_NO_START = '1';
 
 const { config } = require('../lib/config');
 const db = require('../lib/db');
@@ -698,7 +699,7 @@ async function main() {
   await test('the app still starts and explains a wrong database password in plain English', async () => {
     const port = 3900 + Math.floor(Math.random() * 90);
     const child = spawn('node', [path.join(__dirname, '..', 'server.js')], {
-      env: { ...process.env, PORT: String(port), DB_PASSWORD: 'definitely-wrong', TELEGRAM_BOT_TOKEN: '' }, stdio: 'ignore',
+      env: { ...process.env, LBB_NO_START: '', PORT: String(port), DB_PASSWORD: 'definitely-wrong', TELEGRAM_BOT_TOKEN: '' }, stdio: 'ignore',
     });
     try {
       let res;
@@ -716,10 +717,28 @@ async function main() {
       child.kill();
     }
   });
+  await test('starts and listens when another file require()s it, the way Hostinger launches it', async () => {
+    const port = 3700 + Math.floor(Math.random() * 90);
+    const child = spawn('node', ['-e', "require('./server.js')"], {
+      cwd: path.join(__dirname, '..'), env: { ...process.env, LBB_NO_START: '', PORT: String(port), TELEGRAM_BOT_TOKEN: '' }, stdio: 'ignore',
+    });
+    try {
+      let res;
+      const t0 = Date.now();
+      for (let i = 0; i < 20; i++) {
+        try { res = await fetch(`http://127.0.0.1:${port}/health`); break; } catch (_) { await new Promise((r) => setTimeout(r, 150)); }
+      }
+      assert.ok(res, 'must listen');
+      assert.ok(Date.now() - t0 < 3000, 'must listen within 3 seconds');
+      assert.strictEqual(res.status, 200);
+    } finally {
+      child.kill();
+    }
+  });
   await test('a weak admin password is refused at login', async () => {
     const port = 3800 + Math.floor(Math.random() * 90);
     const child = spawn('node', [path.join(__dirname, '..', 'server.js')], {
-      env: { ...process.env, PORT: String(port), ADMIN_PASSWORD: 'short', TELEGRAM_BOT_TOKEN: '' }, stdio: 'ignore',
+      env: { ...process.env, LBB_NO_START: '', PORT: String(port), ADMIN_PASSWORD: 'short', TELEGRAM_BOT_TOKEN: '' }, stdio: 'ignore',
     });
     try {
       let res;

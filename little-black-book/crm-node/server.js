@@ -118,6 +118,11 @@ async function start() {
   return server;
 }
 
-if (require.main === module) start();
+// Hostinger loads this file through its own launcher, so never guard on require.main.
+// Tests set LBB_NO_START=1 so they can build the app without opening a port.
+if (process.env.LBB_NO_START !== '1') start();
+
+process.on('unhandledRejection', (err) => console.error('[unhandled]', err && err.stack ? err.stack : err));
+process.on('uncaughtException', (err) => console.error('[uncaught]', err && err.stack ? err.stack : err));
 
 module.exports = { createApp, ensureDb, start };
