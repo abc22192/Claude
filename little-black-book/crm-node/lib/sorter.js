@@ -451,7 +451,10 @@ function sort(text, ctx) {
   const c = { ...ctx, today };
   let person = resolvePerson(raw, c);
   if (c.forwarded && person.conf === 'low' && c.suggestName) {
-    person = { id: null, name: clean(c.suggestName), isNew: true, conf: 'medium', reason: 'Forwarded from a Telegram user who is not in your book yet.', candidates: [] };
+    const same = (buildNameIndex((c.index && c.index.people) || []).get(tokens(c.suggestName).join(' ')) || []).slice(0, 4);
+    if (same.length) {
+      person = { id: null, name: null, isNew: false, conf: 'low', reason: `The sender's name matches someone in your book. Tap who it is.`, candidates: same.map((p) => ({ id: p.id, name: p.name })) };
+    } else person = { id: null, name: clean(c.suggestName), isNew: true, conf: 'medium', reason: 'Forwarded from a Telegram user who is not in your book yet.', candidates: [] };
   }
   const items = [];
   const nudges = [];
@@ -510,6 +513,17 @@ function sort(text, ctx) {
       items.push({ type: 'platform', conf: 'high', label: `${fmt.PLATFORMS[platform]}: @${username}`, data: { platform, username } });
     }
     for (const s of sentences) {
+      const alias = /\b(?:is now|now goes by|now|changed (?:his|her|their) (?:user ?name|handle|name) to|new (?:user ?name|handle)(?: is)?|renamed (?:to|himself)|also (?:goes by|known as)|aka|a\.k\.a\.)\s*:?\s*@([A-Za-z0-9_.]{3,32})/i.exec(s);
+      if (alias && !idxHasHandle(c.index, alias[1])) {
+        const plats = platformsIn(s);
+        const platform = plats.length === 1 ? plats[0] : (c.source === 'telegram' ? 'telegram' : (textPlatforms.length === 1 ? textPlatforms[0] : null));
+        const username = alias[1].replace(/[.]+$/, '');
+        if (platform && !seenHandles.has(platform + ':' + username.toLowerCase())) {
+          seenHandles.add(platform + ':' + username.toLowerCase());
+          items.push({ type: 'platform', conf: 'high', label: `New username: ${fmt.PLATFORMS[platform]} @${username}`, data: { platform, username } });
+        }
+        continue;
+      }
       const bare = [...s.matchAll(/(?<![\w.])@([A-Za-z0-9_.]{3,32})/g)].map((x) => x[1].replace(/[.]+$/, ''));
       if (!bare.length) continue;
       const plats = platformsIn(s);

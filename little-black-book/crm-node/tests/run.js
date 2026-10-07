@@ -633,6 +633,37 @@ async function main() {
     await hook(upd(312, 'name: Quinn'));
     assert.ok(await personByName('Quinn'));
   });
+  await test('a forward teaches the app his Telegram number, so a renamed account is still recognised', async () => {
+    const zed = await personByName('Zed');
+    const before = (await db.one('SELECT COUNT(*) AS n FROM lbb_people')).n;
+    tgSent.length = 0;
+    await hook(upd(320, 'hey it is me again', { forward_origin: { type: 'user', sender_user: { id: 9191, first_name: 'Zed', username: 'zed_old' } } }));
+    // not known yet: waits. Tap pick on Zed.
+    const kb = JSON.stringify(tgSent.find((m) => m.method === 'sendMessage').body.reply_markup);
+    assert.ok(/pick:\d+:/.test(kb), 'a sender whose name matches Zed offers Zed: ' + kb);
+    const rawRow = await db.one("SELECT id FROM lbb_raw WHERE text = 'hey it is me again' ORDER BY id DESC LIMIT 1");
+    await post(`/dump/${rawRow.id}/person`, { person_id: String(zed.id) });
+    const pl = await db.one("SELECT * FROM lbb_platforms WHERE person_id = ? AND external_id = '9191'", [zed.id]);
+    assert.ok(pl, 'Telegram ID saved on his card');
+    assert.strictEqual(pl.username, 'zed_old');
+    assert.strictEqual((await db.one('SELECT COUNT(*) AS n FROM lbb_people')).n, before);
+    // he renames his account: same number, new username
+    tgSent.length = 0;
+    await hook(upd(321, 'still me', { forward_origin: { type: 'user', sender_user: { id: 9191, first_name: 'Zed', username: 'zed_new' } } }));
+    assert.ok(/Saved under Zed/.test(tgSent.find((m) => m.method === 'sendMessage').body.text));
+    const pl2 = await db.one("SELECT username FROM lbb_platforms WHERE person_id = ? AND external_id = '9191'", [zed.id]);
+    assert.strictEqual(pl2.username, 'zed_new');
+  });
+  await test('"now @newname" adds the new username to the same person', async () => {
+    const r = S('Kaiser is now @kaiser_2 on telegram. He bought a clip for $10');
+    assert.ok(r.items.some((i) => i.type === 'platform' && i.data.username === 'kaiser_2' && i.data.platform === 'telegram'));
+  });
+  await test('search finds someone by what you remember about them', async () => {
+    const k = await personByName('Kaiser');
+    await postJson(`/people/${k.id}/field`, { field: 'notes', value: 'Tall guy, works nights, loves boots' });
+    const r = await get('/people?q=' + encodeURIComponent('works nights'));
+    assert.ok(r.text.includes('Kaiser'));
+  });
   await test('commands answer: /top /today /who /undo', async () => {
     for (const c of ['/top', '/today', '/who kaiser', '/help', '/undo']) {
       tgSent.length = 0;

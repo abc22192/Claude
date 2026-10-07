@@ -84,6 +84,20 @@ async function applyItem(t, personId, item, rawId, opts = {}) {
   }
 }
 
+/** Keep the Telegram number ID on the card. It survives username changes, so he is still recognised later. */
+async function rememberTelegramId(t, personId, externalId, username) {
+  const uname = username ? String(username).replace(/^@/, '') : null;
+  const rows = await t.q("SELECT * FROM lbb_platforms WHERE person_id = ? AND platform = 'telegram'", [personId]);
+  const byId = rows.find((r) => String(r.external_id) === String(externalId));
+  if (byId) {
+    if (uname && String(byId.username || '').toLowerCase() !== uname.toLowerCase()) await t.update('lbb_platforms', byId.id, { username: uname });
+    return;
+  }
+  const byName = uname ? rows.find((r) => String(r.username || '').toLowerCase() === uname.toLowerCase()) : null;
+  if (byName) { await t.update('lbb_platforms', byName.id, { external_id: String(externalId) }); return; }
+  await t.insert('lbb_platforms', { person_id: personId, platform: 'telegram', username: uname, external_id: String(externalId), is_primary: rows.length ? 0 : 1, met_here: 0 });
+}
+
 /** Find or create the person the proposal points at. Returns { id, created, name } or null if not certain. */
 async function settlePerson(t, person, source) {
   if (person.conf !== 'high') return null;
@@ -150,6 +164,8 @@ async function receive(opts) {
     }
   }
 
+  proposal.origin = { externalId: opts.externalId || null, username: opts.username || null, forwarded: !!opts.forwarded };
+
   // The "how did they make you feel" style nudges only help when that card is still empty
   let label = 'Brain dump';
   const result = await changes.run('Brain dump', async (t) => {
@@ -165,6 +181,7 @@ async function receive(opts) {
       proposal.person.id = settled.id;
       proposal.person.name = settled.name;
       proposal.person.created = settled.created;
+      if (opts.externalId) await rememberTelegramId(t, settled.id, opts.externalId, opts.username);
       for (const item of proposal.items) {
         if (item.conf === 'high') {
           const r = await applyItem(t, settled.id, item, rawId, { source });
@@ -230,7 +247,8 @@ async function assignPerson(rawId, { personId, newName }) {
   const source = rec.raw.source;
   // Remove the waiting copy, then file it properly so it is one clean undoable step.
   await changes.run('Removed unfiled dump', async (t) => { await t.delete('lbb_raw', rawId); });
-  const out = await receive({ text, source, personId: personId ? Number(personId) : undefined, newName: newName || undefined });
+  const origin = rec.proposal.origin || {};
+  const out = await receive({ text, source, personId: personId ? Number(personId) : undefined, newName: newName || undefined, forwarded: !!origin.forwarded, externalId: origin.externalId || undefined, username: origin.username || undefined });
   return out;
 }
 
@@ -243,9 +261,10 @@ async function fixPerson(rawId, { personId, newName }) {
   }
   const text = rec.raw.text;
   const source = rec.raw.source;
+  const origin = rec.proposal.origin || {};
   const u = await changes.undo(rec.setId);
   if (!u.ok) return { ok: false, reason: u.reason };
-  const out = await receive({ text, source, personId: personId ? Number(personId) : undefined, newName: newName || undefined });
+  const out = await receive({ text, source, personId: personId ? Number(personId) : undefined, newName: newName || undefined, forwarded: !!origin.forwarded, externalId: origin.externalId || undefined, username: origin.username || undefined });
   return { ok: true, ...out };
 }
 

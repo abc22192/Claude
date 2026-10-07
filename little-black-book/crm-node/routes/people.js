@@ -57,6 +57,7 @@ router.get('/', wrap(async (req, res) => {
     const lq = q.toLowerCase().replace(/^@/, '');
     list = list.filter((p) => fmt.normName(p.name).includes(nq)
       || (p.email && p.email.toLowerCase().includes(lq))
+      || ['notes', 'tone', 'felt', 'fetishes', 'dream_night', 'magic_words', 'likes_about_me', 'plans', 'purchases_text'].some((f) => p[f] && String(p[f]).toLowerCase().includes(q.toLowerCase()))
       || p.platforms.some((pl) => pl.username && String(pl.username).toLowerCase().includes(lq)))
       .sort((a, b) => b.total_spent - a.total_spent || a.name.localeCompare(b.name));
   } else {
@@ -72,7 +73,7 @@ router.get('/', wrap(async (req, res) => {
     <div class="row between"><h1>People</h1><a class="btn small" href="/people/new">+ Add</a></div>
     ${ui.flash(req)}
     <form class="searchbar" method="get" action="/people">
-      <input type="search" name="q" value="${q}" placeholder="Search name, username or email" autocomplete="off">
+      <input type="search" name="q" value="${q}" placeholder="Search name, username, email or what you remember" autocomplete="off">
       <button type="submit">Find</button>
     </form>
     ${ui.chips(VIEWS, q ? '' : view, '/people?v=')}
