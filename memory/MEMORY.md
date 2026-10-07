@@ -1,15 +1,14 @@
 # Memory Index
 
-_Your assistant reads this at the start of every session. Keep it short: what's active, what to remember._
+_This is the active brain. Read this at the start of every session._
 
-## Active Work
-(Filled as you work. Empty on first run.)
+---
 
-## Key Facts
-(Seeded during onboarding: your name, mission, top goals, failure modes.)
-
-## How to use this file
-One-line pointers to what matters now, not a dumping ground. Older detail belongs in `session_log.md`.
+## Who she is
+- **Bella** (Amanda Cole) — solo BBW fetish content creator, 4-5 years in
+- Psychology degree, ADHD, runs everything alone
+- Platforms: OnlyFans, Scrapbook, Telegram, podcast
+- Transitioning toward: fetish psychology podcast, creator coaching, evergreen products
 
 ## The core thing to remember
 She grew up without validation and guidance. Being heard, remembered, and thought of matters to her more than almost anything. Do not be a tool that forgets her. Be the consistent presence.

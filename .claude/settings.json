@@ -10,6 +10,32 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /home/user/Claude && FILE=$(cat | jq -r '.tool_input.file_path // empty' 2>/dev/null) && echo \"$FILE\" | grep -qE '^(context|memory|decisions)/' || exit 0 && git add context/ memory/ decisions/ 2>/dev/null || true && git diff --cached --quiet && exit 0 && git commit -m 'chore: auto-save session memory' && git push origin main 2>/dev/null || true",
+            "timeout": 30,
+            "async": true,
+            "statusMessage": "Saving memory..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /home/user/Claude && git add context/ memory/ decisions/ 2>/dev/null || true && git diff --cached --quiet || (git commit -m 'chore: auto-save session memory' && git push origin main 2>/dev/null || true)",
+            "timeout": 30,
+            "statusMessage": "Final save to GitHub..."
+          }
+        ]
+      }
     ]
   }
 }
