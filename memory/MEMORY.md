@@ -56,10 +56,11 @@ Full brief: `projects/bella-blast/brief.md` — read before touching anything on
 - Funnel she wants: $3 deposit → unlocks game → upsell: $10 Telegram access → extra for Google Voice number
 - "Fans shouldn't know they're being profiled" — game feels like fun, not a form
 
-## AI pipeline note (unresolved)
-- Her CRM pipeline per Notion (locked 7/24): Telegram bot → AppDeploy → **Gemini Pro** → LBB CRM
-- She mentioned "Grok bot" via voice-to-text ("Crockpot") — unclear if new addition or voice confusion with Gemini
-- Must clarify before wiring anything to AI
+## AI pipeline note
+- She confirmed 2026-10-07: she is using **Grok / Grok bot**, not Gemini
+- CONFLICT: Her Notion CRM pipeline page (locked 7/24/2026) still lists **Gemini Pro** as the AI brain
+- Either Notion is stale (update needed) or she runs both Grok + Gemini for different jobs — needs resolving before any AI wiring
+- Default assumption going forward: Grok is the AI unless she says otherwise. Flag the Notion discrepancy whenever AI comes up.
 
 ## Formatting rules (hard — she corrected this)
 - Send-ready client messages: plain blockquote (>) — regular font, she highlights and copies
