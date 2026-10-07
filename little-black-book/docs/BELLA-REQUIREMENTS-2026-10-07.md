@@ -155,3 +155,9 @@ These override anything above that conflicts.
 - **Phase 2:** money views and expenses, undo and redo, brain dump v2.
 - **Phase 3:** one merged import from the Notion book plus the buyer CSVs plus the Telegram export, with a review step and a dry run on a copy BEFORE the real run. She spot-checks about 5 real clients.
 - **Phase 4:** look and feel with her book art, Grok connection for the app and browser, webhooks and payments.
+
+## Answer received: who built the old app
+- `crm.bellablasts.com` was built by **ChatGPT** (Bella: "Chat built it"). Its source code is NOT in this repo.
+- Next step: locate the original zip or code (the ChatGPT conversation that built it, her phone Downloads, Google Drive, or the app's folder in Hostinger File Manager).
+- If found: audit it and extend it. It already has the People, Email List, Follow-ups and Sessions tabs and the look she likes.
+- If not found: rebuild to match its look (cream background, serif headings, gold accents, "BELLA HQ") using the screenshot in `docs/design/`.
