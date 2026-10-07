@@ -5,6 +5,7 @@ const fmt = require('../lib/format');
 const { html, page } = require('../lib/html');
 const ui = require('../lib/ui');
 const dump = require('../lib/dump');
+const people = require('../lib/people');
 const { wrap, act, back } = require('../lib/http');
 
 const router = express.Router();
@@ -47,6 +48,8 @@ router.get('/:id(\\d+)', wrap(async (req, res) => {
   const dups = proposal.items.filter((i) => i.state === 'dup');
   const waiting = proposal.items.filter((i) => i.state === 'waiting');
   const opts = await peopleOptions(person ? person.id : null);
+  const find = String(req.query.find || '').trim();
+  const found = find ? (await people.search(find)).slice(0, 12) : null;
 
   const body = html`
     <div class="row between wrapit"><h1>${person ? 'Saved' : 'Saved, but who is it?'}</h1>
@@ -67,6 +70,13 @@ router.get('/:id(\\d+)', wrap(async (req, res) => {
         <select name="person_id"><option value="">Choose…</option>${opts}</select></div><button class="small" type="submit">File it there</button></form>
       <form method="post" action="/dump/${raw.id}/person" style="margin-top:12px"><div class="field"><label>Or add a new person</label><input name="new_name" placeholder="Name or username"></div><button class="small ghost" type="submit">Add and file</button></form>
     </div>`}
+
+    ${!person || proposal.person.created ? html`<div class="card"><h3>Is he someone you already know?</h3>
+      <p class="muted small">New account, deleted account, new name? Search what you remember: a name, a username, a word from your notes.</p>
+      <form method="get" action="/dump/${raw.id}"><div class="searchbar"><input name="find" value="${find}" placeholder="boots, works nights, Mike..."><button type="submit">Find</button></div></form>
+      ${found ? (found.length ? found.map((f) => html`<div class="receipt-item"><div style="flex:1"><a href="/people/${f.id}"><b>${f.name}</b></a><div class="faint small">${fmt.money(f.total_spent)} · ${f.purchases} purchases${f.last_contact ? ' · talked ' + fmt.ago(f.last_contact) : ''}</div></div>
+        <form method="post" action="/dump/${raw.id}/${person ? 'fix' : 'person'}"><input type="hidden" name="person_id" value="${f.id}"><button class="small" type="submit">That is him</button></form></div>`) : html`<p class="muted">No one matches that. Try another word.</p>`) : ''}
+    </div>` : ''}
 
     ${applied.length ? html`<div class="card"><h3>Filed for you</h3>
       ${applied.map((i) => html`<div class="receipt-item"><span class="tick">✓</span><div>${i.label}</div></div>`)}</div>` : ''}

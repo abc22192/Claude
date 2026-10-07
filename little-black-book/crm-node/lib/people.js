@@ -92,11 +92,12 @@ async function getPerson(id) {
 /** Name, username, Telegram id and email lookups used by search and the sorter. */
 async function findIndex() {
   const people = await db.query('SELECT id, name, email FROM lbb_people WHERE archived = 0');
-  const plats = await db.query('SELECT person_id, platform, username, external_id FROM lbb_platforms');
+  const plats = await db.query('SELECT person_id, platform, username, external_id, gone FROM lbb_platforms');
   const handles = new Map();
   const ids = new Map();
   for (const pl of plats) {
-    if (pl.username) handles.set(String(pl.username).replace(/^@/, '').toLowerCase(), pl.person_id);
+    // A deleted account's username can be taken by a stranger, so it never matches. The Telegram number still does.
+    if (pl.username && !pl.gone) handles.set(String(pl.username).replace(/^@/, '').toLowerCase(), pl.person_id);
     if (pl.external_id) ids.set(String(pl.external_id), pl.person_id);
   }
   return { people, handles, ids };
@@ -125,7 +126,25 @@ async function matchExisting({ name, username, externalId, email }) {
   return null;
 }
 
+const SEARCH_FIELDS = ['notes', 'tone', 'felt', 'fetishes', 'dream_night', 'magic_words', 'likes_about_me', 'plans', 'purchases_text'];
+
+/** Find people by name, username, email, or anything you remember about them. */
+function matchesQuery(p, q) {
+  const nq = normName(q);
+  const lq = String(q).toLowerCase().replace(/^@/, '');
+  return (nq && normName(p.name).includes(nq))
+    || (p.email && p.email.toLowerCase().includes(lq))
+    || p.platforms.some((pl) => pl.username && String(pl.username).toLowerCase().includes(lq))
+    || SEARCH_FIELDS.some((f) => p[f] && String(p[f]).toLowerCase().includes(lq));
+}
+
+async function search(q) {
+  const list = await allPeople();
+  return list.filter((p) => matchesQuery(p, q)).sort((a, b) => b.total_spent - a.total_spent || a.name.localeCompare(b.name));
+}
+
 module.exports = {
+  matchesQuery, search,
   DEFAULT_SETTINGS, getSettings, saveSettings, tierFor, allPeople, getPerson,
   findIndex, matchExisting, attachPlatforms, STATS_JOIN, STATS_COLS,
 };

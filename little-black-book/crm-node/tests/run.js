@@ -664,6 +664,29 @@ async function main() {
     const r = await get('/people?q=' + encodeURIComponent('works nights'));
     assert.ok(r.text.includes('Kaiser'));
   });
+  await test('a deleted account never matches a stranger who reuses the username', async () => {
+    await post('/people', { name: 'Ghosty', platform: 'telegram', username: '@ghosty_1' });
+    const g = await personByName('Ghosty');
+    const pl = await db.one('SELECT id FROM lbb_platforms WHERE person_id = ?', [g.id]);
+    let r = await post(`/people/${g.id}/platform/${pl.id}/gone`, { gone: '1' });
+    assert.strictEqual(r.status, 302);
+    const idx = await require('../lib/people').findIndex();
+    assert.ok(!idx.handles.has('ghosty_1'), 'deleted handle does not match');
+    assert.ok((await get(`/people/${g.id}`)).text.includes('deleted account'));
+    await post(`/people/${g.id}/platform/${pl.id}/gone`, { gone: '0' });
+    assert.ok((await require('../lib/people').findIndex()).handles.has('ghosty_1'));
+  });
+  await test('the receipt lets you search what you remember and tap "that is him"', async () => {
+    const { rawId, receipt } = await dumpText('Newguy88 bought a clip for $12 today');
+    assert.ok(receipt.includes('Is he someone you already know?'));
+    const found = await get(`/dump/${rawId}?find=` + encodeURIComponent('works nights'));
+    assert.ok(found.text.includes('Kaiser') && found.text.includes('That is him'));
+    const k = await personByName('Kaiser');
+    const before = await totalOf(k.id);
+    await post(`/dump/${rawId}/person`, { person_id: String(k.id) });
+    assert.strictEqual(await totalOf(k.id), before + 12);
+    assert.ok(!(await personByName('Newguy88')));
+  });
   await test('commands answer: /top /today /who /undo', async () => {
     for (const c of ['/top', '/today', '/who kaiser', '/help', '/undo']) {
       tgSent.length = 0;

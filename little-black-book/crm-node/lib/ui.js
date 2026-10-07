@@ -13,7 +13,7 @@ function flash(req) {
 
 function platformChips(platforms) {
   if (!platforms || !platforms.length) return '';
-  return html`<div class="platforms">${platforms.map((p) => html`<span class="plat">${fmt.PLATFORMS[p.platform] || p.platform}${p.username ? ' @' + String(p.username).replace(/^@/, '') : ''}</span>`)}</div>`;
+  return html`<div class="platforms">${platforms.map((p) => html`<span class="plat" style="${p.gone ? 'text-decoration:line-through;opacity:.55' : ''}">${fmt.PLATFORMS[p.platform] || p.platform}${p.username ? ' @' + String(p.username).replace(/^@/, '') : ''}${p.gone ? ' (deleted)' : ''}</span>`)}</div>`;
 }
 
 function tierBadge(p) {

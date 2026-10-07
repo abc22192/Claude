@@ -53,12 +53,7 @@ router.get('/', wrap(async (req, res) => {
   const s = await people.getSettings();
   let list = await people.allPeople();
   if (q) {
-    const nq = fmt.normName(q);
-    const lq = q.toLowerCase().replace(/^@/, '');
-    list = list.filter((p) => fmt.normName(p.name).includes(nq)
-      || (p.email && p.email.toLowerCase().includes(lq))
-      || ['notes', 'tone', 'felt', 'fetishes', 'dream_night', 'magic_words', 'likes_about_me', 'plans', 'purchases_text'].some((f) => p[f] && String(p[f]).toLowerCase().includes(q.toLowerCase()))
-      || p.platforms.some((pl) => pl.username && String(pl.username).toLowerCase().includes(lq)))
+    list = list.filter((p) => people.matchesQuery(p, q))
       .sort((a, b) => b.total_spent - a.total_spent || a.name.localeCompare(b.name));
   } else {
     list = applyView(list, view, s);
@@ -235,8 +230,9 @@ router.get('/:id(\\d+)', wrap(async (req, res) => {
 
     <div class="card">
       <h3>Where we talk</h3>
-      <ul class="list">${p.platforms.map((pl) => html`<li><div class="row between"><span>${fmt.PLATFORMS[pl.platform] || pl.platform}${pl.username ? ' @' + String(pl.username).replace(/^@/, '') : ''}${pl.is_primary ? ' · main' : ''}</span>
-        <form method="post" action="/people/${p.id}/platform/${pl.id}/remove"><button class="small ghost" type="submit">Remove</button></form></div></li>`)}</ul>
+      <ul class="list">${p.platforms.map((pl) => html`<li><div class="row between"><span style="${pl.gone ? 'text-decoration:line-through;opacity:.6' : ''}">${fmt.PLATFORMS[pl.platform] || pl.platform}${pl.username ? ' @' + String(pl.username).replace(/^@/, '') : ''}${pl.is_primary ? ' · main' : ''}</span>${pl.gone ? html` <span class="badge wine">deleted account</span>` : ''}
+        <div class="row"><form method="post" action="/people/${p.id}/platform/${pl.id}/gone"><input type="hidden" name="gone" value="${pl.gone ? 0 : 1}"><button class="small ghost" type="submit">${pl.gone ? 'Account is back' : 'Account deleted'}</button></form>
+        <form method="post" action="/people/${p.id}/platform/${pl.id}/remove"><button class="small ghost" type="submit">Remove</button></form></div></div></li>`)}</ul>
       <form method="post" action="/people/${p.id}/platform">
         <div class="grid2"><div class="field"><label>Platform</label><select name="platform">${ui.platformOptions('telegram')}</select></div>
         <div class="field"><label>Username</label><input name="username" placeholder="@name"></div></div>
@@ -358,6 +354,13 @@ router.post('/:id(\\d+)/platform/:pid(\\d+)/remove', wrap(async (req, res) => {
   const out = await act(req, res, `/people/${id}`, () => ops.removePlatform(id, Number(req.params.pid)));
   if (!out) return;
   reply(req, res, `/people/${id}`, out, 'Removed.');
+}));
+
+router.post('/:id(\\d+)/platform/:pid(\\d+)/gone', wrap(async (req, res) => {
+  const id = Number(req.params.id);
+  const out = await act(req, res, `/people/${id}`, () => ops.setPlatformGone(id, Number(req.params.pid), req.body.gone === '1' || req.body.gone === 1 || req.body.gone === true));
+  if (!out) return;
+  reply(req, res, `/people/${id}`, out, 'Saved.');
 }));
 
 router.post('/:id(\\d+)/archive', wrap(async (req, res) => {

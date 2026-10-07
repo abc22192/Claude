@@ -155,6 +155,15 @@ async function removePlatform(personId, platformId) {
   return { setId: res.setId };
 }
 
+async function setPlatformGone(personId, platformId, gone) {
+  const row = await db.one('SELECT pl.*, p.name FROM lbb_platforms pl JOIN lbb_people p ON p.id = pl.person_id WHERE pl.id = ? AND pl.person_id = ?', [platformId, personId]);
+  if (!row) throw new Error('That platform is not on this person.');
+  const res = await changes.run(`${gone ? 'Marked deleted' : 'Restored'}: ${fmt.PLATFORMS[row.platform] || row.platform} ${row.username ? '@' + row.username : ''} (${row.name})`, async (t) => {
+    await t.update('lbb_platforms', platformId, { gone: gone ? 1 : 0 });
+  });
+  return { setId: res.setId };
+}
+
 async function archivePerson(personId, archived) {
   const person = await db.one('SELECT name FROM lbb_people WHERE id = ?', [personId]);
   if (!person) throw new Error('Person not found.');
@@ -247,5 +256,5 @@ async function mergePeople(keepId, fromId) {
 
 module.exports = {
   EDITABLE, createPerson, setField, addSale, updateSale, deleteSale, addInteraction, addPlatform, removePlatform,
-  archivePerson, addExpense, removeExpense, findDuplicates, mergePeople, cleanAmount, cleanDate,
+  archivePerson, setPlatformGone, addExpense, removeExpense, findDuplicates, mergePeople, cleanAmount, cleanDate,
 };

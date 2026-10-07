@@ -148,6 +148,12 @@ const MIGRATIONS = [
       ) ${T}`,
     ],
   },
+  {
+    version: 2,
+    statements: [
+      'ALTER TABLE lbb_platforms ADD COLUMN gone TINYINT(1) NOT NULL DEFAULT 0',
+    ],
+  },
 ];
 
 async function migrate() {
