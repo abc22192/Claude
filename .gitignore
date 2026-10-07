@@ -3,6 +3,8 @@ context/.onboarded
 
 # secrets / credentials
 secrets/
+secrets.php
+little-black-book/public/secrets.php
 .env
 *.key
 .claude/settings.local.json

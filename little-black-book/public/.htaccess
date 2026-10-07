@@ -1,0 +1,22 @@
+# Little Black Book — Apache/LiteSpeed rules for Hostinger shared hosting.
+
+# 1) Never serve the secrets file, the app internals, schema, or docs.
+<FilesMatch "^(secrets\.php|secrets\.example\.php)$">
+  Require all denied
+</FilesMatch>
+
+<FilesMatch "\.(sql|md|log|csv)$">
+  Require all denied
+</FilesMatch>
+
+# Block the /app folder from direct web access (it's includes-only).
+RedirectMatch 403 ^/app/
+
+# 2) Force HTTPS (Telegram webhooks require it).
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# 3) Basic hardening.
+Options -Indexes
+ServerSignature Off

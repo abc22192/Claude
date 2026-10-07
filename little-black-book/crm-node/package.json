@@ -1,0 +1,18 @@
+{
+  "name": "little-black-book",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Bella's Little Black Book: private relationship memory, money and follow-ups.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/run.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "mysql2": "^3.11.5"
+  }
+}
