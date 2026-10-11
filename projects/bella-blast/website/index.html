@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Bella Blast</title>
+<meta name="description" content="Bella Blast">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Tenor+Sans&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --velvet: #1a0608;
+    --curtain: #3d0b11;
+    --gold: #c8a008;
+    --gold-glow: #ffce4a;
+    --off-white: #f5f0eb;
+    --pink: #ff2f94;
+    --pink-glow: #ff6fb8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--black);
+    color: var(--off-white);
+    font-family: 'Tenor Sans', serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  .stage {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 20px 32px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at top, rgba(200,160,8,0.08) 0%, transparent 40%),
+      radial-gradient(ellipse at bottom, rgba(61,11,17,0.6) 0%, transparent 60%),
+      linear-gradient(180deg, #0a0a0a 0%, #140506 50%, #0a0a0a 100%);
+  }
+  .curtain-left, .curtain-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 18vw;
+    max-width: 110px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .curtain-left {
+    left: 0;
+    background:
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.5) 0 8px, transparent 8px 20px),
+      linear-gradient(90deg, #4a0a12 0%, #78101b 40%, #3d0b11 100%);
+    box-shadow: inset -12px 0 24px rgba(0,0,0,0.6);
+  }
+  .curtain-right {
+    right: 0;
+    background:
+      repeating-linear-gradient(90deg, rgba(0,0,0,0.5) 0 8px, transparent 8px 20px),
+      linear-gradient(270deg, #4a0a12 0%, #78101b 40%, #3d0b11 100%);
+    box-shadow: inset 12px 0 24px rgba(0,0,0,0.6);
+  }
+  .marquee {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 14px 28px 12px;
+    margin-top: 8px;
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(26,6,8,0.9) 100%);
+    box-shadow:
+      0 0 24px rgba(200,160,8,0.35),
+      inset 0 0 18px rgba(255,206,74,0.15);
+    max-width: 90%;
+  }
+  .marquee::before, .marquee::after {
+    content: '';
+    position: absolute;
+    left: 10px; right: 10px;
+    height: 6px;
+    background-image: radial-gradient(circle, var(--gold-glow) 0 2.5px, transparent 3px);
+    background-size: 14px 6px;
+    background-repeat: repeat-x;
+    filter: drop-shadow(0 0 4px var(--gold-glow));
+  }
+  .marquee::before { top: 4px; }
+  .marquee::after { bottom: 4px; }
+  .marquee h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    font-size: clamp(1.6rem, 7vw, 2.6rem);
+    color: var(--gold-glow);
+    text-shadow:
+      0 0 6px rgba(255,206,74,0.9),
+      0 0 18px rgba(255,206,74,0.5),
+      0 0 32px rgba(200,160,8,0.4);
+    line-height: 1;
+  }
+  .photo-frame {
+    position: relative;
+    z-index: 2;
+    margin: 28px auto 20px;
+    width: min(78vw, 320px);
+    aspect-ratio: 3 / 4;
+    border-radius: 6px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2a0810 0%, #1a0608 100%);
+    border: 1px solid rgba(200,160,8,0.35);
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.6),
+      0 20px 50px rgba(0,0,0,0.7),
+      0 0 40px rgba(255,47,148,0.15);
+  }
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    text-align: center;
+    color: rgba(245,240,235,0.5);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    background:
+      repeating-linear-gradient(45deg, rgba(255,47,148,0.05) 0 10px, transparent 10px 20px),
+      linear-gradient(180deg, #2a0810 0%, #1a0608 100%);
+    border: 1px dashed rgba(255,47,148,0.4);
+  }
+  .photo-placeholder strong {
+    display: block;
+    color: var(--pink-glow);
+    font-weight: normal;
+    margin-bottom: 6px;
+    letter-spacing: 0.12em;
+  }
+  .neon-greeting {
+    position: relative;
+    z-index: 2;
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.4rem, 10vw, 3.4rem);
+    color: var(--pink-glow);
+    text-shadow:
+      0 0 6px var(--pink),
+      0 0 14px var(--pink),
+      0 0 28px rgba(255,47,148,0.6),
+      0 0 44px rgba(255,47,148,0.3);
+    margin: 4px 0 28px;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+  .enter-btn {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 54px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 0.4em;
+    color: var(--off-white);
+    text-decoration: none;
+    text-transform: uppercase;
+    background: rgba(10,2,8,0.5);
+    border: 2px solid var(--pink);
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow:
+      0 0 10px var(--pink),
+      inset 0 0 10px rgba(255,47,148,0.3),
+      0 0 24px rgba(255,47,148,0.4);
+    transition: transform 150ms ease, box-shadow 200ms ease, background 200ms ease;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 48px;
+  }
+  .enter-btn:hover, .enter-btn:focus-visible {
+    background: rgba(255,47,148,0.12);
+    box-shadow:
+      0 0 14px var(--pink),
+      inset 0 0 14px rgba(255,47,148,0.4),
+      0 0 36px rgba(255,47,148,0.6);
+    outline: none;
+    transform: translateY(-1px);
+  }
+  .enter-btn:active { transform: translateY(0); }
+  .footer-glow {
+    position: absolute;
+    bottom: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140%;
+    height: 60%;
+    background: radial-gradient(ellipse at center, rgba(255,47,148,0.18) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  @media (min-width: 520px) {
+    .stage { padding: 40px 24px; }
+    .marquee { padding: 18px 40px 16px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .enter-btn {
+      animation: pulse-glow 2.6s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow:
+          0 0 10px var(--pink),
+          inset 0 0 10px rgba(255,47,148,0.3),
+          0 0 24px rgba(255,47,148,0.4);
+      }
+      50% {
+        box-shadow:
+          0 0 14px var(--pink),
+          inset 0 0 12px rgba(255,47,148,0.4),
+          0 0 32px rgba(255,47,148,0.6);
+      }
+    }
+  }
+</style>
+</head>
+<body>
+  <main class="stage" role="main">
+    <div class="curtain-left" aria-hidden="true"></div>
+    <div class="curtain-right" aria-hidden="true"></div>
+
+    <div class="marquee">
+      <h1>BELLA BLAST</h1>
+    </div>
+
+    <figure class="photo-frame" aria-label="Bella">
+      <!-- Swap this placeholder for <img src="img/img_3629.jpeg" alt="Bella"> once the file is in /img -->
+      <div class="photo-placeholder" role="img" aria-label="Bella photo placeholder">
+        <strong>Photo slot</strong>
+        IMG_3629.jpeg<br>goes here
+      </div>
+    </figure>
+
+    <div class="neon-greeting" aria-hidden="true">Hey, I&rsquo;m Bella</div>
+    <span class="sr-only" style="position:absolute;left:-9999px;">Hey, I'm Bella</span>
+
+    <a href="/box-office/" class="enter-btn" aria-label="Enter Bella Blast">Enter</a>
+
+    <div class="footer-glow" aria-hidden="true"></div>
+  </main>
+</body>
+</html>
