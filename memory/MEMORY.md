@@ -40,6 +40,19 @@ She grew up without validation and guidance. Being heard, remembered, and though
 | Telegram welcome sequences | Not started | — |
 | Podcast revival | Not started | — |
 | Consistent posting system | Not started | — |
+| **Instagram CRO build — bio, channel, auto-reply, Telegram welcome** | DRAFTED NOT DEPLOYED | 2026-10-12 |
+
+## Instagram CRO (2026-10-12)
+Full handoff package at `projects/instagram-cro/HANDOFF.md`. **Read before touching any IG work.**
+- @bootyfulfarts is tease-only (IG has stripped her permissions once already)
+- @bellablastss is business handle
+- NEW: Instagram Channel ("Bella's Deep End") is the firewall holding links IG won't allow in bio
+- Funnel: Reel → Channel → Telegram or @bellablastss → sale
+- 15.9% share rate on "stink is coming from above" (Jun 20) reel — biggest viral asset, needs pinned comment
+- Her leak: 11.3K profile visits → 300 follows = 2.6%. Bio is the bottleneck, not content.
+- She pushed back on manual DM strategy. Rule: IG DMs = ONE auto-reply, no manual replies. Real DMs happen on Telegram/OF only.
+- Session ended with Bella overwhelmed — "I can't deal with you right now, start a new chat." Everything saved for pickup.
+- Build drafted but NOTHING is live on her profiles yet. 45-min morning sprint planned.
 
 ## Bella Blast Project
 Full brief: `projects/bella-blast/brief.md` — read before touching anything on this project.
