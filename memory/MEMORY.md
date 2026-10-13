@@ -30,8 +30,9 @@ She grew up without validation and guidance. Being heard, remembered, and though
 ## Active tasks (never let these fall off)
 | Task | Status | Last touched |
 |------|--------|-------------|
-| 2024 taxes — print and submit | NOT DONE | 2026-10-06 |
-| Website migration bellablast.store → bellablast.com | NOT DONE | 2026-10-06 (deadline Oct 14) |
+| 2024 taxes — print and submit | BLOCKED on printer (she claims). Called out as false blocker 10/13. UPS Store / e-file is the fix. | 2026-10-13 |
+| Website migration bellablast.store → bellablast.com | DOMAIN SAFE — bellablast.com now points to Beacons. Pressure off. Still need to confirm Beacons page content and decide permanent home. | 2026-10-13 |
+| **Substy platform** — $9 wallet, OF connected (Bella Blast, chatInboxEnabled=false), Telegram now in Substy too | PLAN PHASE | 2026-10-13 |
 | **Bella Blast menu — HTML rebuild** | IN PROGRESS | 2026-10-06 |
 | **Bella Effect Intake form (v1)** | SHIPPED pending share-flip | 2026-10-07 |
 | **Match Game rebuild** (replaces Embeddables build, killed 6/25 for cost) | Not started — queued after intake | 2026-10-07 |
