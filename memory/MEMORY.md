@@ -40,6 +40,7 @@ She grew up without validation and guidance. Being heard, remembered, and though
 | Email system | Not started | — |
 | Telegram welcome sequences | Not started | — |
 | Podcast revival | Not started | — |
+| **Asian Vibes series trailers** (7 x 10-15s, series = 11 episodes) | 7 trailers BUILT in Riverside, waiting on her listen-through. Map + links: `projects/asian-vibes/trailers.md`. Waiting on her 11-episode list, export go-ahead, and full talk-over cleanup go-ahead. NOT done until she confirms. | 2026-10-13 |
 | Consistent posting system | Not started | — |
 
 ## Bella Blast Project
