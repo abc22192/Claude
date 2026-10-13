@@ -42,3 +42,12 @@
 **What's next:**
 - Answer 5 planning questions (in projects/bella-blast/brief.md) then rebuild HTML menu
 - After menu: reaction menu → availability calendar → proof page → intake form
+
+---
+## 2026-10-13 — Instagram channel copy
+
+**What happened:** Bella asked for the writing inside her Instagram broadcast channel (profile viewers to channel to links). Drafted bio line, channel name, description, and a two-message welcome (link alone, then routing). Routing rule: business goes to the Bella Blast account, compliments and comments go to @podcast.fart (handle typed from voice, needs her confirmation). No em dashes, no "free", no platform names on Instagram.
+
+**Open:** Need the exact link (my notes have bellablast.com, the website skill says BellaBlasts.com) and the exact Bella Blast handle. Taxes still open, UPS Store or e-file is the fix.
+
+**Housekeeping:** context/.onboarded was missing even though onboarding was done 10/6. Created the marker so the startup hook stops re-triggering onboarding.
