@@ -41,6 +41,7 @@ She grew up without validation and guidance. Being heard, remembered, and though
 | Telegram welcome sequences | Not started | — |
 | Podcast revival | Not started | — |
 | **Asian Vibes series trailers** (7 x 10-15s, series = 11 episodes) | 7 trailers BUILT in Riverside, waiting on her listen-through. Map + links: `projects/asian-vibes/trailers.md`. Waiting on her 11-episode list, export go-ahead, and full talk-over cleanup go-ahead. NOT done until she confirms. | 2026-10-13 |
+| **Riverside exit** (she wants to cancel, says ~$50/mo, too much) | PLAN DRAFTED, nothing cancelled or exported. Checklist: `projects/riverside-exit/checklist.md`. Account has 0 hosted podcasts (feed lives on Captivate, do NOT cancel Captivate first). Waiting on: plan name + renewal date, whether finished Godiva eps are already saved, go-ahead to start export renders. Claude cannot download big files (sandbox blocks private-assets.riverside.com, export tool returns no link, Drive connector can't carry big media). | 2026-10-14 |
 | Consistent posting system | Not started | — |
 
 ## Bella Blast Project

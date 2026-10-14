@@ -65,3 +65,23 @@
 - Her 11-episode list so each trailer maps to an episode
 - Go-ahead on exports (loudness leveling + noise removal) and on the full talk-over cleanup
 - Taxes and website follow-up is due (Oct 14 is tomorrow, domain is safe, taxes still open)
+
+---
+
+## 2026-10-14 — Riverside cost and file exit
+
+**What happened:** Bella said Riverside (about $50/mo) is too expensive and she wants her files out. She asked if I can store them myself, whether Riverside's editing is worth keeping, and about export quality tiers. Inventoried the account: 1 studio, 35 recordings, 230 edits, 2 media files, 0 hosted podcasts. Searched Riverside, Captivate and Google storage facts. Tested a file download from the sandbox and got blocked. Wrote `projects/riverside-exit/checklist.md`.
+
+**Key facts:**
+- Her RSS feed is on Captivate, not Riverside. Riverside hosting would replace a ~$19 host with a $50 tool.
+- Public plan prices for solo creators run $24 to $39/mo, so her $50 may be a higher tier or add-on. Unverified, I cannot see her invoice.
+- Sources conflict on cancel timing and on free-tier limits. Rule: download first, cancel last.
+- Most of the 230 edits are scaffolding (auto Magic clips, review slices, copies, drafts). Real raw material is about a dozen recordings.
+- I cannot be her file locker for big media. I can store text (transcripts, checklists).
+
+**What I got wrong / could not do:** Nothing exported or moved. Could not see her plan or renewal date.
+
+**What's next:**
+- Her plan name, renewal date, and whether the Godiva finals are saved elsewhere
+- Her go-ahead to start export renders
+- Offered: transcript backup to Notion, and a subscription overlap audit across her AI tools (not started)
