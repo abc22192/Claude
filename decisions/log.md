@@ -11,9 +11,11 @@
 - **MyMembers.io vaults stay untouched:** All My Curves $10, VIFL $15, VISL $30 — separate from any Substy Telegram presence, do not consolidate.
 
 ### Pricing updates (SUPERSEDES pricing source-of-truth skill where noted)
+- **OF Free page**: $0 (confirmed 10/13)
 - **OF Feet VIP: $5/month** (confirmed by Bella 10/13). Supersedes historical "under $5" note in pricing-source-of-truth.
-- **OF Fart VIP: price not yet confirmed** (she mentioned $10 then clarified $5 is Feet — Fart VIP price still open).
-- **Voice rate: UNRESOLVED** — Bella said $1/min + $2-5 add-ons. Claude pushed back that $1/min is below her own historical floor ($2/min on audio sessions). Awaiting her yes to $2.50/min or counter.
+- **OF Fart VIP: $10/month** (confirmed by Bella 10/14).
+- **Voice/audio rate: TIERED $1-$4/min** based on SFW vs NSFW and type of work (confirmed by Bella 10/14). Exact tier breakdown by work type still to be mapped.
+- Supersedes earlier flat-rate recommendation of $2.50/min. Her actual pricing is more sophisticated than a single rate.
 
 ### Open decisions (still pending Bella)
 1. Fart VIP OF subscription price
