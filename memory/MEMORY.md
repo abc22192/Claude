@@ -31,7 +31,8 @@ She grew up without validation and guidance. Being heard, remembered, and though
 | Task | Status | Last touched |
 |------|--------|-------------|
 | 2024 taxes — print and submit | BLOCKED on printer (she claims). Called out as false blocker 10/13. UPS Store / e-file is the fix. | 2026-10-13 |
-| Website migration bellablast.store → bellablast.com | DOMAIN SAFE — bellablast.com now points to Beacons. Pressure off. Still need to confirm Beacons page content and decide permanent home. | 2026-10-13 |
+| Website migration bellablast.store → bellablast.com | CORRECTED 10/17: the "points to Beacons" note was wrong. bellablast.com (singular) is a parking page. bellablasts.com (plural, the real domain) serves a Hostinger "Coming soon" page. bellablast.store did not load from my side (may be expired, unverified). No live front door yet. | 2026-10-17 |
+| **Instagram channel copy** — link is bellablasts.com, business IG is BellaBlastss, comments go to podcast.fart | Copy drafted 10/13, handles confirmed 10/17. HOLD launch until bellablasts.com shows a real page. | 2026-10-17 |
 | **Substy platform** — $9 wallet, OF connected (Bella Blast, chatInboxEnabled=false), Telegram now in Substy too | PLAN PHASE | 2026-10-13 |
 | **Bella Blast menu — HTML rebuild** | IN PROGRESS | 2026-10-06 |
 | **Bella Effect Intake form (v1)** | SHIPPED pending share-flip | 2026-10-07 |
