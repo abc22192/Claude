@@ -1,7 +1,7 @@
 # Bella Blast HQ
 _Our working brain. Claude updates this at every session end. Check it anytime at github.com/abc22192/Claude._
 
-**Last updated:** 2026-10-14
+**Last updated:** 2026-10-17
 
 ---
 
@@ -9,8 +9,8 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 
 | # | Task | Status | Deadline |
 |---|------|--------|----------|
-| 1 | **2024 Taxes** — just needs print + submit. IRS threatened to file on her behalf. UPS Store / e-file are both options. NO PRINTER REQUIRED. | OVERDUE | NOW |
-| 2 | **Website migration** — bellablast.store → bellablast.com. Domain safe — .com now points to Beacons. Need to confirm Beacons page content is correct and decide the permanent home. | IN PROGRESS | Oct 14 (today) |
+| 1 | **2024 Taxes** — UPS Store / e-file. No printer needed. IRS threatened to file on her behalf. | OVERDUE | NOW |
+| 2 | **Website migration** — bellablast.com points to Beacons. Confirm page content, decide permanent home. | PENDING | Oct 14 (past due) |
 
 ---
 
@@ -18,16 +18,20 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 
 | Task | Status | Notes |
 |------|--------|-------|
-| Fan automation + funnel | PLANNING | Stop manually screening fans; build self-serve buy flow |
+| **Telegram Bot System** | ACTIVE | Job 1 done. WAITING on Bella: Round 1 price decisions before Job 2 can start. Notion parent: https://app.notion.com/p/3f9600bfc17781a0a3dec88803856038 |
+| **Bot Job 1 — Price Conflicts** | DONE — needs Bella's picks | Notion page: https://app.notion.com/p/3fc600bfc17781dbb3f2c1b4b727440e — P1/P7/P8/P9/P12/P20 + R1/R2/R3/R6 need decisions |
+| **Bot Job 2 — Front Desk copy** | BLOCKED | Waiting on Round 1 price locks |
+| Fan automation + funnel | NOW = bot system | Bot system IS the automation answer |
 | Email system | NOT STARTED | List build + welcome sequence |
-| Telegram welcome sequences | NOT STARTED | Fans going cold after joining |
+| Telegram welcome sequences | Bot system | Welcome bot is Job 2 |
 | Podcast revival (PodGasFarts) | BLOCKED | 8 episodes ready to record, zero ever recorded |
 | Consistent posting (OF + Scrapbook) | IN PROGRESS | Target: never go dark more than 2 days |
 | Bella Effect intake form | SHIPPED (not shared) | Private — she needs to flip share toggle to "Anyone with the link" |
 | Match Game rebuild | QUEUED | After intake. MASH-style, $3 deposit → unlocks |
 | Bella Blast menu HTML rebuild | IN PROGRESS | v1 exists, needs full rebuild |
-| Substy platform | PLAN PHASE | $9 wallet, OF connected, Telegram connected |
+| Substy platform | LEANING CANCEL | She doesn't like it. Wants greeter bot instead. Trial ongoing. |
 | Prompt Directory App | RESEARCH DONE | Architecture built, awaiting go-ahead to build |
+| MyMembers Smart Recovery | QUICK WIN | 30 cancels — just a settings switch, no build needed |
 
 ---
 
@@ -84,6 +88,15 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 
 ## 📝 RECENT SESSION LOG
 
+### 2026-10-17 — Telegram Bot System, Job 1
+- Bella uploaded a structured bot system prompt — division of labor: Claude writes, Grok builds
+- Fetched PROPOSED Bot Plan Notion parent + both Scout pages (25 price conflicts, 18 rule conflicts)
+- Created Job 1 Notion page: full price conflict decision table, Round 1 (bot-blocking) + Round 2
+- Added newest Blast Day structure from Oct 14 call that wasn't in Notion yet
+- Updated MEMORY.md with full Telegram Bot System section
+- Pushed branch, created draft PR #20
+- **What I got wrong:** Did not open with fires (taxes, website). Third session in a row. Must fix this.
+
 ### 2026-10-14 — YouTube Strategy + Infrastructure
 - Ran 6 parallel agents: Hype research, brand voice, VidIQ channel audit, Notion episode inventory, Hype script, synthesis
 - Surfaced the viral formula (relationship framing = 41% of all views) and the podcast block (8 ready topics, zero recorded)
@@ -91,11 +104,6 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 - Added mandatory quality check to CLAUDE.md
 - Built this HQ file
 - **What I got wrong:** Did not flag taxes and website deadline at session open. Always fires first, always.
-
-### 2026-10-13 — Substy, website pressure, taxes reframe
-- Website domain confirmed safe — bellablast.com pointing to Beacons
-- Substy platform exploration — connected OF + Telegram
-- Taxes: called out printer excuse as false blocker. UPS Store / e-file are the fix.
 
 ---
 
