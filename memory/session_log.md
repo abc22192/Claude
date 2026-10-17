@@ -51,3 +51,12 @@
 **Open:** Need the exact link (my notes have bellablast.com, the website skill says BellaBlasts.com) and the exact Bella Blast handle. Taxes still open, UPS Store or e-file is the fix.
 
 **Housekeeping:** context/.onboarded was missing even though onboarding was done 10/6. Created the marker so the startup hook stops re-triggering onboarding.
+
+---
+## 2026-10-17 — Instagram channel copy, handles confirmed
+
+**What happened:** Bella confirmed the link is bellablasts.com and the business IG is BellaBlastss. Checked the domain before handing over final copy. bellablasts.com serves a Hostinger "Coming soon" page, so IG traffic would hit a dead end. bellablast.com (singular) is a parking page, not Beacons as my notes said. bellablast.store did not load from my side.
+
+**What I got wrong:** My 10/13 note said bellablast.com points to Beacons. It does not. Corrected in MEMORY.md.
+
+**Open:** Which existing page goes behind bellablasts.com (needs her OK before any DNS or deploy change). Taxes still open as far as I know, last pushed 10/13.
