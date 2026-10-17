@@ -32,11 +32,13 @@ She grew up without validation and guidance. Being heard, remembered, and though
 |------|--------|-------------|
 | 2024 taxes — print and submit | BLOCKED on printer (she claims). Called out as false blocker 10/13. UPS Store / e-file is the fix. | 2026-10-13 |
 | Website migration bellablast.store → bellablast.com | DOMAIN SAFE — bellablast.com now points to Beacons. Pressure off. Still need to confirm Beacons page content and decide permanent home. | 2026-10-13 |
-| **Substy platform** — $9 wallet, OF connected (Bella Blast, chatInboxEnabled=false), Telegram now in Substy too | PLAN PHASE | 2026-10-13 |
+| **Substy** | She doesn't like it. Wants a greeter bot instead. Trial ongoing, leaning cancel. | 2026-10-17 |
+| **Telegram Bot System** — Job 1 done. Claude=thinking+writing, Grok Bot=building+hosting. NSFW on Hostinger, SFW on AppDeploy. | WAITING on Bella to complete Round 1 price decisions | 2026-10-17 |
+| **Bot Job 1 — Price Conflict List** | DONE. Notion page live: https://app.notion.com/p/3fc600bfc17781dbb3f2c1b4b727440e — Bella needs to pick winners for P1/P7/P8/P9/P12/P20 + R1/R2/R3/R6 before Job 2 starts | 2026-10-17 |
 | **Bella Blast menu — HTML rebuild** | IN PROGRESS | 2026-10-06 |
 | **Bella Effect Intake form (v1)** | SHIPPED pending share-flip | 2026-10-07 |
 | **Match Game rebuild** (replaces Embeddables build, killed 6/25 for cost) | Not started — queued after intake | 2026-10-07 |
-| Fan automation + funnel | Planning | 2026-10-06 |
+| Fan automation + funnel | NOW ACTIVE as bot system | 2026-10-17 |
 | Email system | Not started | — |
 | Telegram welcome sequences | Not started | — |
 | Podcast revival | Not started | — |
@@ -64,6 +66,14 @@ Full brief: `projects/bella-blast/brief.md` — read before touching anything on
 - Was being built on Embeddables, killed 6/25/2026 for cost — rebuild on free tech (same approach as Bella Effect intake)
 - Funnel she wants: $3 deposit → unlocks game → upsell: $10 Telegram access → extra for Google Voice number
 - "Fans shouldn't know they're being profiled" — game feels like fun, not a form
+
+## Telegram Bot System (active as of Oct 17)
+- **Division of labor:** Claude = thinking + writing. Grok Bot = building, hosting, Telegram setup, payments wiring, testing.
+- **Hosting rules (confirmed by Bella):** NSFW bots on Hostinger (Business plan). SFW bots on AppDeploy. here.now for tests.
+- **Architecture:** Small single-job bots. Telegram front door + web version of every bot. One shared member file (numbers only, no names). One price file (bots only quote Bella-confirmed rows).
+- **Confirmed by Bella Oct 17:** Doesn't like Substy, wants a greeter. The Desk stays as-is until she approves a change. bellablast.com = web side of the bot system, not a separate project.
+- **Job order:** 1 (price conflicts — DONE), 2 (Front Desk copy), 3 (vault/archive copy), 4 (Bella Effect intake), 5 (follow-up nudges), 6 (Blast Day name ideas).
+- **Bot plan Notion parent:** https://app.notion.com/p/3f9600bfc17781a0a3dec88803856038
 
 ## AI pipeline note
 - She confirmed 2026-10-07: she is using **Grok / Grok bot**, not Gemini
