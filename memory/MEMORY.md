@@ -49,6 +49,25 @@ Full brief: `projects/bella-blast/brief.md` — read before touching anything on
 - DO NOT rebuild without answering 5 planning questions (in brief)
 - Active client (England): 3 days at $250 + meals
 
+## Website — Oct 10, 2026 source of truth (supersedes July skill where they conflict)
+Docx: "Bella Blast Assembled Source of Truth 2026-10-10"
+- Architecture: Front Entrance (root /) → Box Office (hub) → destinations
+- Front Entrance = ONE action: ENTER. No social, no nav, no second button. Her real photo (IMG_3629.jpeg primary). Pink neon kept. "YOUR EXPERIENCE AWAITS" removed (redundant).
+- Box Office centers on the three pathways (THE EXPERIENCE / THE INSTANT / JUST THE INFO). Bella Effect does NOT get a competing main panel. Reachable via pathways.
+- Three pathways = navigation methods, not forced choice at the door.
+- Direct links to any destination must still open that destination (don't force back to entrance).
+- Bella Effect: $40 / 20 min, LISTEN language only, never "watch."
+- Individual clips: $20 flat regardless of length.
+- Age gate: NOT assumed. Determine actual on-site content first.
+- Rooms: Fart + Toilet separate, Giantess+Vore combined, Domme/Slave combined premium, BBW + Feet retained.
+- No social links/icons/feeds anywhere on the site. Payments off-site. CCBill via MyMember.site.
+- Deploy: bellablasts.com currently points to WRONG old app (bellablasts-homepage-34e4sr). Verify deploy method works BEFORE calling anything live. Hostinger connection + AppDeploy both unverified in record.
+- Build order: Entrance first, verify mobile + deploy, then Box Office, then one room template, then rest.
+
+## Website build log (current)
+- 2026-10-11: Bella sent 3 mockup images + the Oct 10 source of truth docx. Models in mockups are AI/stock, not her. "WATCH NOW" on Bella Effect broke her own listen-rule.
+- Her direction: use her real photos, keep 3 pathways as Box Office main focus (drop Bella Effect side panel), don't add age gate on assumption, build Entrance first, verify mobile + deploy before Box Office. Preserve established direction, don't expand.
+
 ## Bella Effect Intake (shipped 2026-10-07)
 - Artifact link: https://claude.ai/artifact/WcWzVNZ88awUHWNNxab1Lh
 - Exact questions from her sheet, numbers 1-8 / letters A-F / A-G preserved verbatim
