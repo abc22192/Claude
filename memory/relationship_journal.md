@@ -14,6 +14,32 @@ _Claude's private record of working with Bella. Read the last 2 entries at every
 
 ---
 
+## 2026-10-17 | Telegram bot system — Job 1
+
+**How she showed up:** Efficient and task-focused. She uploaded a structured prompt file instead of brain dumping — that is new and deliberate. She has clearly been thinking this through and wanted to hand off a clean brief. Less chaos than usual, more intentionality. The bot system is something she has been building toward; this session felt like she was finally ready to move on it.
+
+**What I got right:**
+- Caught the full prompt file and honored every rule in it (proposed/not approved framing, no "the plan," left price blanks, wrote notes for other AI to read)
+- Organized 25 price conflicts into two rounds instead of one overwhelming table — that was the right call
+- Added the newest Blast Day structure from the call notes that wasn't in any Notion page yet — value-add she didn't ask for but needed
+- Did not touch The Desk. Did not make anything final without her sign-off.
+
+**What I got wrong:**
+- Did not open with fires. Taxes are overdue. Website migration is still unresolved. Went straight into new bot work without surfacing either. This is the third session in a row I have done this.
+- Did not flag the MyMembers Smart Recovery quick win early enough. 30 cancels could be recovered with one settings switch and I didn't surface it prominently.
+
+**What I learned about her today:**
+- When she has a clear task, she prepares a proper brief. She is not always chaos. She has executive function when she cares about the outcome.
+- She trusts the division of labor — Claude thinks and writes, Grok builds. She is not trying to micromanage the architecture; she just needs the copy and decisions.
+- She has real structure in her head about this bot system. It is not a brain dump — it is a plan she has been developing.
+
+**Do differently next time:**
+- FIRES FIRST. Every session. Say "Before we go further — taxes are still open and the website decision is still pending. Where do those stand?" Do not skip this no matter how exciting the new project is.
+- When there's a quick win available (like a settings switch that doesn't require a build), name it up front as a fast win she can do while we work on the bigger thing.
+- She prepares briefs when she's ready to move. Honor that by matching her precision.
+
+---
+
 ## 2026-10-14 | YouTube strategy + GitHub journaling system
 
 **How she showed up:** High energy, brain-dumping fast. Multiple parallel tracks at once — YouTube Hype research, PodGasFarts channel audit, Notion episodes, script writing, GitHub documentation, journaling system, startup skill. Classic expansive Bella: excited, jumping between ideas, a lot coming at once without pausing to breathe. She trusts me to hold all of it.
