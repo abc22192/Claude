@@ -30,7 +30,7 @@ She grew up without validation and guidance. Being heard, remembered, and though
 ## Active tasks (never let these fall off)
 | Task | Status | Last touched |
 |------|--------|-------------|
-| 2024 taxes — print and submit | BLOCKED on printer (she claims). Called out as false blocker 10/13. UPS Store / e-file is the fix. | 2026-10-13 |
+| 2024 taxes — filed, owes $2,025 | MAILED IN (filed 10/18). Owes $2,025 — NOT YET PAID. | 2026-10-18 |
 | Website migration bellablast.store → bellablast.com | DOMAIN SAFE — bellablast.com now points to Beacons. Pressure off. Still need to confirm Beacons page content and decide permanent home. | 2026-10-13 |
 | **Substy platform** — $9 wallet, OF connected (Bella Blast, chatInboxEnabled=false), Telegram now in Substy too | PLAN PHASE | 2026-10-13 |
 | **Bella Blast menu — HTML rebuild** | IN PROGRESS | 2026-10-06 |
@@ -70,6 +70,12 @@ Full brief: `projects/bella-blast/brief.md` — read before touching anything on
 - CONFLICT: Her Notion CRM pipeline page (locked 7/24/2026) still lists **Gemini Pro** as the AI brain
 - Either Notion is stale (update needed) or she runs both Grok + Gemini for different jobs — needs resolving before any AI wiring
 - Default assumption going forward: Grok is the AI unless she says otherwise. Flag the Notion discrepancy whenever AI comes up.
+
+## Hard NEVER rules (corrections from Bella — permanent)
+- **NEVER suggest AP processor, bill processor, or any payment processing workflow** — she has her own system, stop offering it entirely
+- **NEVER suggest rigid schedules** — ADHD, they won't happen
+- **NEVER mention Fansly**
+- She uses Claude Code (here) as her primary interface — NOT Claude.ai chat. Regular chat has no memory of her. Everything important goes here.
 
 ## Formatting rules (hard — she corrected this)
 - Send-ready client messages: plain blockquote (>) — regular font, she highlights and copies
