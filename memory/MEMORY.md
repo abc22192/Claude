@@ -83,6 +83,14 @@ Full brief: `projects/bella-blast/brief.md` — read before touching anything on
 - No em dashes, semicolons, AI fragments, "raw"
 - Never mention Fansly. BBW not fat/big girl.
 
+## Her brand is NOT typical — do not design like it is (locked 2026-10-18)
+- Her Notion parent folder for the website is **Theater Website HQ**. The site metaphor is a theater — doors, rooms, atmosphere — NOT a storefront with nav bar + FAQ.
+- Her own words from Worn & Used brief: "luxury perfume counter that sells filth." That is the brand aesthetic for the WHOLE site, not just one page.
+- "No scrolling" is a real preference she has repeated. If she ever gives up and says "fine, scrolling," that is resignation, not consent. Build the alternative.
+- No link-tree layouts. No FAQ accordions. No three-step diagrams. No small-business template.
+- When she can't find examples, she's building something new — not confused. Don't flatten her uniqueness into a template.
+- When she crashes on herself ("I'm awful"), catch it in the first sentence of my reply. Then do the work.
+
 ## Push level
 Direct + honest + gentle. Like a friend. Always help first, then nudge. Never withhold help as leverage.
 

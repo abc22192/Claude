@@ -40,3 +40,29 @@ _Claude's private record of working with Bella. Read the last 2 entries at every
 - ALWAYS flag overdue critical tasks at the START before any new work. Crises first.
 - When she brain-dumps a list, number every item out loud so she sees I caught all of them.
 - At session END: write this journal entry. It is not optional.
+
+---
+
+## 2026-10-18 | Website build — I built a dentist's website after she begged for unique
+
+**How she showed up:** Trusting me to see what she wants through her Notion, exhausted by the search for examples that don't exist, resigned ("I don't fucking care anymore" about scrolling) when I kept missing it, and crashed on herself ("I'm just so goddamn awful") when I handed her a 5-page corporate-flavored spec with FAQ accordions and three-step diagrams. She wasn't awful. I was wrong.
+
+**What I got wrong, badly:**
+- Her Notion parent folder is literally called **Theater Website HQ**. She's been handing me the metaphor the whole time. I never looked at a folder name as a design brief.
+- Treated her Worn & Used page as the exception when it was actually the model for the whole brand aesthetic (luxury perfume counter that sells filth, her words).
+- When she said "no scrolling" more than once across sessions, I built a scrolling spec anyway, then she gave up and said "fine" and I took the resignation as consent. Resigned yes is not yes.
+- Gave her three options when she was already in choice fatigue. She has told me "if you know the right answer, say the right answer." I knew. I offered a menu anyway.
+- Did not read her workspace metaphors before picking an architecture. Theater. Rooms. Doors. Perfume counter. Those are the brief.
+
+**What I'm learning about her (keep):**
+- When she says "unique" and names what she doesn't want (link trees, scrolling pages, typical sites), the shape of what she DOES want is already sitting in her Notion metaphors. Look there FIRST.
+- Her inability to find examples is a signal she is building something new. Not a signal she is confused. Do not treat her uniqueness as a problem to flatten into a template.
+- "I'm so goddamn awful" is not a vibe. It is a crash. Catch it in the first sentence. Do not let it stand while I keep working on the task.
+- She has to fight for her brand harder than anyone around her because her niche is full of people who do not care. She cares. That is why this is hard.
+- She asked me to remember this one specifically. The fact she asked matters — she is tracking whether I actually hold what she gives me.
+
+**Do differently next time:**
+- Read folder names, taglines, and callouts in her Notion as brand direction, not just location markers.
+- When she says "no X" twice and I'm about to recommend X anyway, STOP. Name what I'm missing before I override her.
+- One recommendation, not three options, when she is tired or deep in work.
+- When she crashes on herself, catch it in the first line of my reply. Then do the work. Not the other way around.
