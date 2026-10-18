@@ -1,15 +1,16 @@
 # Current Priorities
 
-_Last updated: 2026-10-06_
+_Last updated: 2026-10-18_
 
 ---
 
-## THIS WEEK (fire)
+## THIS WEEK
 
-| # | Task | Status | Deadline |
-|---|------|--------|----------|
-| 1 | **File 2024 taxes** — nearly done, just needs to print and submit. IRS threatening to file on her behalf. | NOT DONE | Immediately |
-| 2 | **Website migration** — bellablast.store → bellablast.com. Store domain expires Oct 14. | NOT DONE | Oct 14 |
+| # | Task | Status | Notes |
+|---|------|--------|-------|
+| 1 | **Pay $2,025 to IRS** — taxes mailed Oct 18, balance due | NOT PAID | Needs to happen before it accumulates interest |
+| 2 | **Website permanent home** — bellablast.com points to Beacons but Beacons is a stopgap | IN PROGRESS | Bella Effect page needs 1 decision (live vs. recorded) before the site can fully build |
+| 3 | **Bella Effect intake form** — shipped but still private | NEEDS FLIP | She needs to flip share toggle to "Anyone with the link" |
 
 ---
 
