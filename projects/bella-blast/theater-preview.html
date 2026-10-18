@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bella Blast</title>
-<meta name="description" content="A guided game that ends with the right thing for you. No pages. No menu. One path.">
+<meta name="description" content="Full-bleed luxury panels for bellablasts.com. One screen at a time. Swipe or arrow between them.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -12,10 +12,8 @@
 :root {
   --onyx: #0B0B0C;
   --soft-black: #15151A;
-  --soft-black-2: #1a0f12;
   --rose: #B76E79;
   --rose-light: #D7A1A0;
-  --rose-glow: rgba(183,110,121,0.35);
   --champagne: #E7C9BE;
   --ivory: #F5F0EC;
   --smoke: #8A8A92;
@@ -32,529 +30,477 @@ html, body {
   height: 100vh;
   width: 100vw;
   -webkit-font-smoothing: antialiased;
+  touch-action: pan-y;
 }
 
 body::before {
   content: "";
   position: fixed; inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, rgba(231,201,190,0.015) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(231,201,190,0.02) 1px, transparent 0);
   background-size: 3px 3px;
   pointer-events: none;
-  z-index: 2;
+  z-index: 10;
   mix-blend-mode: overlay;
 }
 
-.vignette {
-  position: fixed; inset: 0;
-  background: radial-gradient(ellipse at center, transparent 35%, rgba(183,110,121,0.07) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.hairline {
-  position: fixed; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--rose) 50%, transparent);
-  opacity: 0.3; z-index: 5;
-}
-.hairline.top    { top: 24px; }
-.hairline.bottom { bottom: 24px; }
-
-/* progress dots - super subtle */
-.progress {
+/* story-bar progress at top (Instagram-style, luxury version) */
+.story-bars {
   position: fixed;
-  top: 32px; left: 50%;
-  transform: translateX(-50%);
+  top: 20px;
+  left: 20px;
+  right: 20px;
   display: flex;
-  gap: 10px;
-  z-index: 10;
-  opacity: 0;
-  transition: opacity 600ms ease;
+  gap: 6px;
+  z-index: 20;
 }
-.progress.show { opacity: 0.7; }
-.progress .dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: rgba(231,201,190,0.2);
-  transition: all 400ms ease;
+.story-bar {
+  flex: 1;
+  height: 2px;
+  background: rgba(231,201,190,0.12);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
 }
-.progress .dot.done { background: var(--rose); }
-.progress .dot.current {
+.story-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--rose), var(--champagne));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 600ms ease;
+}
+.story-bar.done::after { transform: scaleX(1); }
+.story-bar.current::after {
+  transform: scaleX(1);
   background: var(--rose-light);
-  box-shadow: 0 0 10px var(--rose-glow);
+  box-shadow: 0 0 10px var(--rose);
 }
 
-/* every card is a full viewport */
-.card {
-  position: fixed; inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 5rem 1.5rem 4rem;
+/* every slide is full viewport */
+.slide {
+  position: fixed;
+  inset: 0;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(20px);
-  transition: opacity 700ms ease, transform 700ms ease;
-  z-index: 3;
-  text-align: center;
+  transition: opacity 800ms ease;
+  z-index: 2;
 }
-.card.active {
+.slide.active {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0);
 }
 
-/* --- OPENING --- */
-.open-name {
+/* full-bleed image/mood layer */
+.mood {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.mood::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--mood-base, linear-gradient(135deg, #15151A 0%, #1a0f12 50%, #0B0B0C 100%));
+}
+.mood::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--mood-glow, radial-gradient(ellipse at 50% 50%, rgba(183,110,121,0.3), transparent 60%));
+}
+
+/* bottom gradient so text reads over image */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(11,11,12,0) 0%, rgba(11,11,12,0.3) 50%, rgba(11,11,12,0.85) 100%);
+  pointer-events: none;
+}
+
+/* content layer */
+.content {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem 2.5rem 5rem;
+  max-width: 700px;
+}
+
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.4em;
+  color: var(--rose);
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.title {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  font-size: clamp(2rem, 7vw, 4rem);
-  letter-spacing: 0.4em;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
   color: var(--ivory);
   margin-bottom: 1.5rem;
 }
-.open-line {
+
+.body {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-weight: 300;
-  font-size: clamp(1rem, 2.3vw, 1.3rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  line-height: 1.65;
   color: var(--champagne);
-  margin-bottom: 3.5rem;
-  max-width: 500px;
-  line-height: 1.6;
-}
-.begin {
-  background: none;
-  border: 1px solid var(--rose);
-  color: var(--ivory);
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 0.75rem;
-  letter-spacing: 0.4em;
-  padding: 1rem 2.5rem;
-  cursor: pointer;
-  transition: all 600ms ease;
-  text-transform: uppercase;
-}
-.begin:hover, .begin:focus-visible {
-  background: linear-gradient(135deg, var(--rose), var(--champagne), var(--rose));
-  color: var(--onyx);
-  letter-spacing: 0.5em;
-  outline: none;
+  margin-bottom: 2.25rem;
+  max-width: 520px;
 }
 
-/* --- QUESTIONS --- */
-.q-prompt {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(1.4rem, 3.5vw, 2.1rem);
-  color: var(--ivory);
-  margin-bottom: 3rem;
-  max-width: 640px;
-  line-height: 1.4;
-}
-
-.options {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 220px));
-  gap: 1rem;
-  max-width: 500px;
-  width: 100%;
-}
-.options.three { grid-template-columns: repeat(auto-fit, minmax(140px, 220px)); max-width: 720px; }
-@media (max-width: 500px) {
-  .options { grid-template-columns: 1fr; max-width: 320px; }
-}
-
-.option {
-  background: var(--soft-black);
-  border: 1px solid rgba(231,201,190,0.15);
-  color: var(--ivory);
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
-  letter-spacing: 0.05em;
-  padding: 1.4rem 1rem;
-  cursor: pointer;
-  transition: all 450ms ease;
-  position: relative;
-  overflow: hidden;
-}
-.option::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 150%, var(--rose-glow), transparent 70%);
-  opacity: 0;
-  transition: opacity 500ms ease;
-}
-.option:hover, .option:focus-visible {
-  border-color: var(--rose);
-  color: var(--rose-light);
-  outline: none;
-}
-.option:hover::before, .option:focus-visible::before { opacity: 1; }
-.option span { position: relative; z-index: 1; }
-
-/* --- REVEAL --- */
-.reveal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 680px;
-}
-.reveal-eyebrow {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.4em;
-  color: var(--rose);
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-}
-.reveal-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 300;
-  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
-  letter-spacing: 0.08em;
-  line-height: 1.1;
-  margin-bottom: 2rem;
-  color: var(--ivory);
-}
-.reveal-body {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--champagne);
-  margin-bottom: 2.75rem;
-  max-width: 540px;
-}
-.reveal-cta {
+.cta {
+  display: inline-block;
   padding: 1rem 2.5rem;
   border: 1px solid var(--rose);
   background: transparent;
   color: var(--ivory);
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   letter-spacing: 0.35em;
   cursor: pointer;
   transition: all 500ms ease;
   text-transform: uppercase;
+  width: fit-content;
   text-decoration: none;
-  display: inline-block;
 }
-.reveal-cta:hover, .reveal-cta:focus-visible {
+.cta:hover, .cta:focus-visible {
   background: linear-gradient(135deg, var(--rose), var(--champagne), var(--rose));
   color: var(--onyx);
   letter-spacing: 0.45em;
   outline: none;
 }
 
-.reveal-second {
-  margin-top: 1.5rem;
+/* HOME slide — centered, grand */
+.slide#home .content {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: none;
+  padding: 2rem;
+}
+.slide#home .title {
+  letter-spacing: 0.35em;
+  font-size: clamp(2rem, 7vw, 4rem);
+}
+.slide#home .body { text-align: center; max-width: 600px; }
+
+/* arrows */
+.arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
-  border: none;
-  color: var(--smoke);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
+  border: 1px solid rgba(231,201,190,0.2);
+  color: var(--ivory);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
   cursor: pointer;
-  padding: 0.5rem;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 400ms ease;
+  backdrop-filter: blur(6px);
+  background: rgba(11,11,12,0.4);
+}
+.arrow:hover, .arrow:focus-visible {
+  border-color: var(--rose);
+  color: var(--rose-light);
+  outline: none;
+}
+.arrow.left  { left: 28px; }
+.arrow.right { right: 28px; }
+.arrow[disabled] { opacity: 0; pointer-events: none; }
+
+/* slide label — bottom right of each slide, small */
+.slide-label {
+  position: absolute;
+  bottom: 2rem;
+  right: 2.5rem;
+  z-index: 3;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--smoke);
   text-transform: uppercase;
+}
+
+/* photo placeholder tag */
+.photo-tag {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  color: rgba(231,201,190,0.3);
+  text-transform: uppercase;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* mood presets per slide */
+#home .mood {
+  --mood-base: radial-gradient(ellipse at 50% 50%, #1a0f12 0%, #0B0B0C 60%);
+  --mood-glow: radial-gradient(circle at 50% 42%, rgba(183,110,121,0.35) 0%, transparent 55%);
+}
+#effect .mood {
+  --mood-base: linear-gradient(135deg, #0B0B0C 0%, #2a0d12 70%, #15151A 100%);
+  --mood-glow: radial-gradient(ellipse at 30% 50%, rgba(183,110,121,0.5), transparent 60%);
+}
+#customs .mood {
+  --mood-base: linear-gradient(160deg, #0B0B0C 0%, #15151A 60%, #0d0d10 100%);
+  --mood-glow: radial-gradient(ellipse at 70% 40%, rgba(231,201,190,0.22), transparent 65%);
+}
+#worn .mood {
+  --mood-base: linear-gradient(135deg, #15151A 0%, #0B0B0C 50%, #1a0f12 100%);
+  --mood-glow: radial-gradient(ellipse at 50% 60%, rgba(183,110,121,0.4), transparent 55%);
+}
+#vaults .mood {
+  --mood-base: radial-gradient(ellipse at 50% 50%, #0d0d10, #0B0B0C 70%);
+  --mood-glow: linear-gradient(90deg, transparent 42%, rgba(231,201,190,0.4) 50%, transparent 58%);
+}
+#faq .mood {
+  --mood-base: linear-gradient(180deg, #0B0B0C 0%, #15151A 100%);
+  --mood-glow: radial-gradient(ellipse at 50% 30%, rgba(138,138,146,0.2), transparent 60%);
+}
+
+/* FAQ layout - a bit different, uses the whole slide */
+#faq .content {
+  justify-content: flex-start;
+  padding-top: 7rem;
+  max-width: 800px;
+}
+#faq .body { max-width: 640px; margin-bottom: 1.5rem; }
+.faq-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 640px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  color: var(--ivory);
+}
+.faq-list details {
+  border-top: 1px solid rgba(231,201,190,0.12);
+  padding: 0.75rem 0;
+}
+.faq-list summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-style: italic;
+  color: var(--champagne);
   transition: color 400ms ease;
 }
-.reveal-second:hover { color: var(--rose-light); }
-
-/* breathing frame around reveal */
-.reveal-frame {
-  position: relative;
-  padding: 2.5rem 2rem;
-  margin-bottom: 2rem;
-}
-.reveal-frame::before, .reveal-frame::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--rose), transparent);
-}
-.reveal-frame::before { top: 0; }
-.reveal-frame::after  { bottom: 0; }
-
-/* back button on question cards */
-.back-step {
-  position: fixed;
-  top: 32px; left: 24px;
-  background: none;
-  border: none;
-  color: var(--smoke);
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after {
+  content: "+";
+  color: var(--rose);
   font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  cursor: pointer;
-  padding: 0.5rem;
-  z-index: 10;
-  text-transform: uppercase;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 400ms ease, color 400ms ease;
+  font-size: 1rem;
+  transition: transform 400ms ease;
 }
-.back-step.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-.back-step:hover { color: var(--rose-light); }
-
-.whisper {
-  position: fixed;
-  bottom: 32px; left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.58rem;
-  letter-spacing: 0.3em;
-  color: var(--smoke);
-  z-index: 5;
-  text-transform: uppercase;
+.faq-list details[open] summary::after { transform: rotate(45deg); }
+.faq-list details p {
+  margin-top: 0.75rem;
+  font-style: normal;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--ivory);
+  line-height: 1.6;
 }
 
-@media (max-width: 500px) {
-  .card { padding: 4.5rem 1.25rem 3.5rem; }
-  .back-step { top: 20px; left: 16px; }
-  .whisper { bottom: 22px; font-size: 0.5rem; }
-  .progress { top: 22px; }
-  .reveal-frame { padding: 1.75rem 1rem; }
+@media (max-width: 600px) {
+  .content { padding: 2rem 1.5rem 4rem; }
+  .arrow { width: 40px; height: 40px; }
+  .arrow.left { left: 12px; }
+  .arrow.right { right: 12px; }
+  .slide-label { right: 1.5rem; bottom: 1.25rem; font-size: 0.55rem; }
+  .story-bars { top: 14px; left: 14px; right: 14px; }
+  #faq .content { padding-top: 5.5rem; }
 }
 </style>
 </head>
 <body>
 
-<div class="vignette"></div>
-<div class="hairline top"></div>
-<div class="hairline bottom"></div>
+<!-- story-bar progress -->
+<div class="story-bars" id="bars" role="navigation" aria-label="Slide progress"></div>
 
-<div class="progress" id="progress" aria-hidden="true">
-  <div class="dot"></div>
-  <div class="dot"></div>
-  <div class="dot"></div>
-</div>
+<!-- arrows -->
+<button class="arrow left"  id="prev" aria-label="Previous">‹</button>
+<button class="arrow right" id="next" aria-label="Next">›</button>
 
-<button class="back-step" id="backStep">← Back</button>
-
-<!-- OPENING -->
-<section class="card active" id="open" aria-label="Opening">
-  <h1 class="open-name">B E L L A &nbsp; B L A S T</h1>
-  <p class="open-line">I'll figure you out faster than you can lie to yourself.<br>Three questions. One answer.</p>
-  <button class="begin" data-step="q1">Begin</button>
-</section>
-
-<!-- Q1 — niche -->
-<section class="card" id="q1" aria-label="Question 1">
-  <p class="q-prompt">What pulled you here first?</p>
-  <div class="options">
-    <button class="option" data-answer="niche:body"><span>My body</span></button>
-    <button class="option" data-answer="niche:feet"><span>My feet</span></button>
-    <button class="option" data-answer="niche:gas"><span>My gas</span></button>
-    <button class="option" data-answer="niche:dark"><span>Something darker</span></button>
+<!-- SLIDE 1: HOME -->
+<section class="slide active" id="home" aria-label="Home">
+  <div class="mood"></div>
+  <div class="photo-tag">HERO PHOTO · HALF-LIT, BLACK BACKDROP</div>
+  <div class="scrim"></div>
+  <div class="content">
+    <h1 class="title">B E L L A &nbsp; B L A S T</h1>
+    <p class="body">Fetish, built on purpose. Not performed.<br>Four years in. Psychology brain. Switch.<br>Keep going.</p>
+    <a class="cta" href="#" onclick="go(1); return false;">Enter</a>
   </div>
+  <div class="slide-label">01 · Welcome</div>
 </section>
 
-<!-- Q2 — format -->
-<section class="card" id="q2" aria-label="Question 2">
-  <p class="q-prompt">How do you want it?</p>
-  <div class="options three">
-    <button class="option" data-answer="format:custom"><span>Made for me</span></button>
-    <button class="option" data-answer="format:ongoing"><span>Rotating drops</span></button>
-    <button class="option" data-answer="format:physical"><span>Something I can hold</span></button>
+<!-- SLIDE 2: THE BELLA EFFECT -->
+<section class="slide" id="effect" aria-label="The Bella Effect">
+  <div class="mood"></div>
+  <div class="photo-tag">CLOSE-UP · ROSE LIGHTING</div>
+  <div class="scrim"></div>
+  <div class="content">
+    <div class="eyebrow">The Signature</div>
+    <h2 class="title">The Bella Effect</h2>
+    <p class="body">Not a clip pulled off a shelf. A session built around you — the scene in your head, the pace, the words, the tone. You tell me what it is. I come back with scope and a quote. We refine it in DM until it fits. You get a file nobody else sees.</p>
+    <a class="cta" href="#">Request yours</a>
   </div>
+  <div class="slide-label">02 · The Bella Effect</div>
 </section>
 
-<!-- Q3 — intensity -->
-<section class="card" id="q3" aria-label="Question 3">
-  <p class="q-prompt">And how deep do you want to go?</p>
-  <div class="options three">
-    <button class="option" data-answer="intensity:easy"><span>Easy on me</span></button>
-    <button class="option" data-answer="intensity:medium"><span>I can take more</span></button>
-    <button class="option" data-answer="intensity:deep"><span>Make me beg</span></button>
+<!-- SLIDE 3: CUSTOMS -->
+<section class="slide" id="customs" aria-label="Customs">
+  <div class="mood"></div>
+  <div class="photo-tag">SCRIPT, PEN, BLACK FABRIC</div>
+  <div class="scrim"></div>
+  <div class="content">
+    <div class="eyebrow">Built to Brief</div>
+    <h2 class="title">Customs</h2>
+    <p class="body">Audio or video. Short, standard, or layered. Tell me the scene, the tone, and anything that is a hard no. I come back with what the file looks like and what it costs. You lock the scope before anything is paid.</p>
+    <a class="cta" href="#">Tell me the scene</a>
   </div>
+  <div class="slide-label">03 · Customs</div>
 </section>
 
-<!-- REVEAL -->
-<section class="card" id="reveal" aria-label="Your match">
-  <div class="reveal">
-    <div class="reveal-frame">
-      <div class="reveal-eyebrow" id="revealEyebrow">THE MATCH</div>
-      <h2 class="reveal-title" id="revealTitle">—</h2>
-      <p class="reveal-body" id="revealBody">—</p>
+<!-- SLIDE 4: WORN & USED -->
+<section class="slide" id="worn" aria-label="Worn and Used">
+  <div class="mood"></div>
+  <div class="photo-tag">FLAT-LAY ON BLACK FABRIC</div>
+  <div class="scrim"></div>
+  <div class="content">
+    <div class="eyebrow">Off My Body</div>
+    <h2 class="title">Worn &amp; Used</h2>
+    <p class="body">Days on my body. Sealed the second I take it off, vacuum packed, discreet, tracked. Every order is filmed being made. No exceptions. Diamond Seller, five star rated, verified.</p>
+    <a class="cta" href="#">Build yours</a>
+  </div>
+  <div class="slide-label">04 · Worn &amp; Used</div>
+</section>
+
+<!-- SLIDE 5: VAULTS -->
+<section class="slide" id="vaults" aria-label="Vaults">
+  <div class="mood"></div>
+  <div class="photo-tag">A DOOR LEFT AJAR, LIGHT LEAKING</div>
+  <div class="scrim"></div>
+  <div class="content">
+    <div class="eyebrow">Members Only</div>
+    <h2 class="title">The Vaults</h2>
+    <p class="body">Three private Telegram channels. Up close, rotating, never on my public pages. If a scene hits, grab it before it leaves. The door opens for members only.</p>
+    <a class="cta" href="#">Pick a vault</a>
+  </div>
+  <div class="slide-label">05 · Vaults</div>
+</section>
+
+<!-- SLIDE 6: FAQ -->
+<section class="slide" id="faq" aria-label="FAQ">
+  <div class="mood"></div>
+  <div class="scrim"></div>
+  <div class="content">
+    <div class="eyebrow">Before You Ask</div>
+    <h2 class="title">The House Rules</h2>
+    <p class="body">The questions I answer most. In one place. So your first message does not have to be them.</p>
+    <div class="faq-list">
+      <details>
+        <summary>How do I buy from you?</summary>
+        <p>Everything starts with the Request form on the right page. I come back with scope and a quote. Payment happens off this site, through the methods I send you after.</p>
+      </details>
+      <details>
+        <summary>Do you do live calls?</summary>
+        <p>No. Not right now, in any format. Customs, The Bella Effect, Worn &amp; Used, and the vaults are the ways to buy from me.</p>
+      </details>
+      <details>
+        <summary>How discreet is shipping?</summary>
+        <p>Unmarked outer packaging. Vacuum sealed where it applies. USPS tracking on every US order. You can give me a name that is not yours for the label.</p>
+      </details>
+      <details>
+        <summary>Can I stay anonymous?</summary>
+        <p>Yes. All I need is a name you want me to use and a way to reach you — Telegram or email.</p>
+      </details>
+      <details>
+        <summary>What will you not do?</summary>
+        <p>Nothing involving minors, animals, non-consent, or hidden cameras. I decline on those lines without negotiation.</p>
+      </details>
+      <details>
+        <summary>Why Telegram?</summary>
+        <p>It is where I am most reachable and where I run my vaults. You do not have to use Telegram to buy a custom or a worn item. Email works for both.</p>
+      </details>
     </div>
-    <a class="reveal-cta" id="revealCta" href="#">Request this</a>
-    <button class="reveal-second" id="restart">Start over</button>
   </div>
+  <div class="slide-label">06 · FAQ</div>
 </section>
-
-<div class="whisper" id="whisper">18+ · Consent only · Replies within 24 hours</div>
 
 <script>
-  const state = { niche: null, format: null, intensity: null };
-  const steps = ['open','q1','q2','q3','reveal'];
-  let stepIdx = 0;
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const bars   = document.getElementById('bars');
+  const prev   = document.getElementById('prev');
+  const next   = document.getElementById('next');
+  let idx = 0;
 
-  const progress = document.getElementById('progress');
-  const dots = progress.querySelectorAll('.dot');
-  const backBtn = document.getElementById('backStep');
+  // build bars
+  slides.forEach((_, i) => {
+    const bar = document.createElement('div');
+    bar.className = 'story-bar';
+    bar.addEventListener('click', () => go(i));
+    bars.appendChild(bar);
+  });
 
-  function showCard(id) {
-    document.querySelectorAll('.card').forEach(c => c.classList.toggle('active', c.id === id));
-    stepIdx = steps.indexOf(id);
-    // progress visible on q1-q3 only
-    const onQuestion = ['q1','q2','q3'].includes(id);
-    progress.classList.toggle('show', onQuestion);
-    dots.forEach((d, i) => {
-      d.classList.remove('done','current');
-      if (onQuestion) {
-        const qIdx = ['q1','q2','q3'].indexOf(id);
-        if (i < qIdx) d.classList.add('done');
-        if (i === qIdx) d.classList.add('current');
-      }
+  function go(i) {
+    idx = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach((s, k) => s.classList.toggle('active', k === idx));
+    bars.childNodes.forEach((b, k) => {
+      b.classList.toggle('done',    k < idx);
+      b.classList.toggle('current', k === idx);
     });
-    backBtn.classList.toggle('show', onQuestion);
-    if (id === 'reveal') renderReveal();
+    prev.toggleAttribute('disabled', idx === 0);
+    next.toggleAttribute('disabled', idx === slides.length - 1);
   }
+  // expose for inline onclick (home slide "Enter")
+  window.go = go;
 
-  document.querySelectorAll('[data-step]').forEach(el => {
-    el.addEventListener('click', () => showCard(el.dataset.step));
-  });
+  prev.addEventListener('click', () => go(idx - 1));
+  next.addEventListener('click', () => go(idx + 1));
 
-  document.querySelectorAll('[data-answer]').forEach(el => {
-    el.addEventListener('click', () => {
-      const [key, val] = el.dataset.answer.split(':');
-      state[key] = val;
-      if (key === 'niche') showCard('q2');
-      else if (key === 'format') showCard('q3');
-      else if (key === 'intensity') showCard('reveal');
-    });
-  });
-
-  backBtn.addEventListener('click', () => {
-    const cur = steps[stepIdx];
-    if (cur === 'q1') showCard('open');
-    else if (cur === 'q2') { state.niche = null; showCard('q1'); }
-    else if (cur === 'q3') { state.format = null; showCard('q2'); }
-  });
-
-  document.getElementById('restart').addEventListener('click', () => {
-    state.niche = state.format = state.intensity = null;
-    showCard('open');
-  });
-
-  // ---- MATCH LOGIC ----
-  // The Bella Effect takes the center. Most "custom" paths lead there.
-  function match() {
-    const { niche, format, intensity } = state;
-
-    if (format === 'custom') {
-      // Bella Effect takes everything custom
-      return {
-        eyebrow: 'THE SIGNATURE',
-        title: 'The Bella Effect',
-        body: nicheLineCustom(niche, intensity),
-        cta: 'Request yours',
-      };
-    }
-
-    if (format === 'ongoing') {
-      // Route to the matching vault or ongoing channel
-      const nicheMap = {
-        body: {
-          title: 'All My Curves',
-          body: 'My private body vault. Mostly teasing, rotating clips and pics that never hit my public pages. For the ones who are here for the body first.',
-          cta: 'Enter the vault',
-          eyebrow: 'MEMBERS ONLY',
-        },
-        feet: {
-          title: 'Rotating Feet',
-          body: 'Feet on repeat live on AllThingsWorn and my OnlyFans. New drops week to week. Pick a lane and I\'ll meet you there.',
-          cta: 'Follow the drops',
-          eyebrow: 'ONGOING',
-        },
-        gas: {
-          title: 'VIFL',
-          body: 'The private fart vault. BBW volume, real frequency, up close. At least eight scenes streaming at any time. If one hits, grab it before it leaves.',
-          cta: 'Enter the vault',
-          eyebrow: 'MEMBERS ONLY',
-        },
-        dark: {
-          title: 'VISL',
-          body: 'The private scat vault. Up close, mostly from behind, rotating. Ten behind-the-toilet scenes streaming at any time. Content that never touches my public pages.',
-          cta: 'Enter the vault',
-          eyebrow: 'MEMBERS ONLY',
-        },
-      };
-      return nicheMap[niche];
-    }
-
-    if (format === 'physical') {
-      return {
-        eyebrow: 'OFF MY BODY',
-        title: 'Worn & Used',
-        body: physicalLine(niche, intensity),
-        cta: 'Build yours',
-      };
-    }
-  }
-
-  function nicheLineCustom(niche, intensity) {
-    const nicheWord = {
-      body: 'the body',
-      feet: 'the feet',
-      gas: 'the gas',
-      dark: 'the darker places',
-    }[niche];
-
-    const closer = {
-      easy: 'I will take it easy with you. We build it together.',
-      medium: 'I give you what you asked for, then a little past it.',
-      deep: 'You asked for it. I will not stop until you break.',
-    }[intensity];
-
-    return `A session built around you, aimed at ${nicheWord}. You tell me the scene in your head. I come back with scope and a quote. We refine it in DM until it fits. You get a file nobody else sees. ${closer}`;
-  }
-
-  function physicalLine(niche, intensity) {
-    const item = {
-      body: 'worn panties, face masks, or a mystery set from my stash',
-      feet: 'worn socks, insoles, foot dust, or shoes if I have a pair worth sending',
-      gas: 'a scent inhaler or a face mask that sat where it mattered',
-      dark: 'the darker items I only ship to people who ask correctly',
-    }[niche];
-
-    const wear = {
-      easy: 'Short wear, fresh for you.',
-      medium: 'Standard wear. The longer it rides, the more there is.',
-      deep: 'Long haul wear. Days on my body, daily photos the whole time, cheaper per day past day ten.',
-    }[intensity];
-
-    return `${wear} ${item.charAt(0).toUpperCase() + item.slice(1)}. Sealed the second it comes off, vacuum packed, discreet, tracked. Every order is filmed being made.`;
-  }
-
-  function renderReveal() {
-    const m = match();
-    if (!m) return;
-    document.getElementById('revealEyebrow').textContent = m.eyebrow;
-    document.getElementById('revealTitle').textContent = m.title;
-    document.getElementById('revealBody').textContent = m.body;
-    document.getElementById('revealCta').textContent = m.cta;
-  }
-
-  // Escape returns to opening
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      state.niche = state.format = state.intensity = null;
-      showCard('open');
-    }
+    if (e.key === 'ArrowRight') go(idx + 1);
+    if (e.key === 'ArrowLeft')  go(idx - 1);
   });
+
+  // swipe
+  let touchX = 0;
+  document.addEventListener('touchstart', (e) => { touchX = e.changedTouches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend',   (e) => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 60) go(idx + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  go(0);
 </script>
 
 </body>
