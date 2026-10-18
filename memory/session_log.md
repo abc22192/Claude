@@ -2,6 +2,37 @@
 
 ---
 
+## 2026-10-18 — System audit + custom agent build
+
+**What happened:** Bella asked for a full system overhaul — custom agents, memory audit, GitHub check, website organization, token audit, prompt dictionary, and daily automations. Built everything in one session.
+
+**What was built:**
+- 5 custom agents: `/memory-auditor` `/github-auditor` `/website-organizer` `/session-cleaner` `/claude-code-tutor`
+- Prompt dictionary: `docs/prompt-dictionary.md`
+- Daily morning brief: fires 9:47 AM ET, push to phone
+- Daily evening wrap: fires 8:51 PM ET, push to phone
+- Fixed stale data: HQ.md and current-priorities.md updated (taxes no longer OVERDUE, Oct 14 fire cleared)
+- Created `.onboarded` marker (was missing)
+- Token audit written into HQ.md
+
+**What I got right:**
+- Did the full audit before touching anything — found real issues (stale fires, 40+ dead connectors)
+- Built practical agents with specific jobs, not vague generic helpers
+- Prompt dictionary is immediately usable on mobile
+
+**What I got wrong / gaps:**
+- Notion connector is failing (proxy tunnel error) — cannot update Notion HQ this session. Bella asked for Notion display — flagged to her but not done
+- Daily automation triggers have no MCP connectors loaded — they won't reach Notion, Gmail etc. unless recreated from a connector-holding session
+- Did not ask Bella her timezone — assumed Eastern. Needs confirmation.
+
+**What's next:**
+- Bella confirms timezone (ET assumption — adjust if wrong)
+- Clean up dead connectors in claude.ai Settings (token audit recommendation)
+- Decide on Bella Effect live vs. recorded question (blocking website Page 2)
+- Pay the $2,025 IRS balance (taxes mailed but not yet paid)
+
+---
+
 ## 2026-10-06 — Onboarding session
 
 **What happened:** Completed full onboarding with Bella. She was patient even though her message got lost multiple times (frustrating for her — noted). Wrote context/me.md, operating-manual.md, current-priorities.md, and MEMORY.md.

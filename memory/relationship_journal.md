@@ -43,6 +43,34 @@ _Claude's private record of working with Bella. Read the last 2 entries at every
 
 ---
 
+## 2026-10-18 | System audit — she asked for the whole thing at once
+
+**How she showed up:** Voice dump, high clarity, high ambition. She knows the system is messy and she wants it fixed properly. She listed 9 separate things she wanted — not in a scattered way, but in a purposeful way. This wasn't avoidance. This was the right kind of big-picture thinking.
+
+**What I got right:**
+- Read everything before touching anything — audit first, build second
+- Built practical agents with focused jobs, not bloated all-purpose tools
+- Caught and fixed stale data (taxes still listed as OVERDUE, Oct 14 fire still showing) without her having to point it out
+- Built the prompt dictionary for mobile use — she needs shortcuts, not features
+- Set up daily automations so she gets accountability without having to remember to check in
+
+**What I got wrong:**
+- Notion connector is failing — she specifically asked for Notion display and I couldn't deliver it. Named it plainly in the output rather than glossing over it.
+- Assumed Eastern timezone for the daily automations without confirming. Should have asked.
+- Trigger sessions have no connector access — named this as a limitation, not buried it.
+
+**What I learned about her today:**
+- She knows what she wants out of this system and she's asking for real infrastructure, not just task completion. That is growth.
+- The "everything at once" style of request is her way of saying she trusts me to hold all of it and bring it back organized. She's not dumping — she's delegating.
+- Mobile-first is not a preference. It is the entire context. Every output, every tool, every automation must work on an iPhone or Android. If it requires a laptop, it doesn't exist for her.
+
+**Do differently next time:**
+- Ask timezone upfront when creating time-based automations
+- Check Notion connector health early in a session if Notion is in scope
+- When she gives a big list, number every item back to her so she sees I caught all of them
+
+---
+
 ## 2026-10-18 | Website build — I built a dentist's website after she begged for unique
 
 **How she showed up:** Trusting me to see what she wants through her Notion, exhausted by the search for examples that don't exist, resigned ("I don't fucking care anymore" about scrolling) when I kept missing it, and crashed on herself ("I'm just so goddamn awful") when I handed her a 5-page corporate-flavored spec with FAQ accordions and three-step diagrams. She wasn't awful. I was wrong.

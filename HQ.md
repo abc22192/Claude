@@ -1,16 +1,18 @@
 # Bella Blast HQ
 _Our working brain. Claude updates this at every session end. Check it anytime at github.com/abc22192/Claude._
 
-**Last updated:** 2026-10-14
+**Last updated:** 2026-10-18
 
 ---
 
 ## 🔥 FIRES — deal with these first
 
-| # | Task | Status | Deadline |
+_No active fires right now._
+
+| # | Task | Status | Resolved |
 |---|------|--------|----------|
-| 1 | **2024 Taxes** — just needs print + submit. IRS threatened to file on her behalf. UPS Store / e-file are both options. NO PRINTER REQUIRED. | OVERDUE | NOW |
-| 2 | **Website migration** — bellablast.store → bellablast.com. Domain safe — .com now points to Beacons. Need to confirm Beacons page content is correct and decide the permanent home. | IN PROGRESS | Oct 14 (today) |
+| ~~1~~ | ~~2024 Taxes~~ | MAILED IN | Oct 18, 2026. Owes $2,025 — NOT YET PAID |
+| ~~2~~ | ~~Website migration~~ | DOMAIN SAFE | bellablast.com points to Beacons. Permanent home TBD |
 
 ---
 
@@ -104,7 +106,33 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 | System | Status |
 |--------|--------|
 | GitHub auto-save | WORKING — hooks commit memory/ context/ decisions/ on every write |
-| Git branch | FIXED — main, pushed to origin |
+| Git branch | working branch: `claude/system-audit-custom-agents-bk1ucg` |
 | Session-start hook | ACTIVE — reads MEMORY.md, session_log.md, relationship_journal.md at every session start |
 | Quality check | LOCKED IN — mandatory step in CLAUDE.md before any task declared done |
 | Relationship journal | ACTIVE — `memory/relationship_journal.md`, written every session end |
+| **Custom agents** | LIVE (Oct 18) — `/memory-auditor` `/github-auditor` `/website-organizer` `/session-cleaner` `/claude-code-tutor` |
+| **Prompt dictionary** | LIVE (Oct 18) — `docs/prompt-dictionary.md` |
+| **Daily morning brief** | ACTIVE — fires 9:47 AM ET every day, push notification to phone |
+| **Daily evening wrap** | ACTIVE — fires 8:51 PM ET every day, push notification to phone |
+
+## 🔌 TOKEN AUDIT — Oct 18, 2026
+
+**The problem:** 40+ plugin connectors are failing every session (proxy tunnel errors). They load into your context window even though they do nothing — wasting tokens.
+
+**Specific wastes found:**
+- `plugin:brand-voice:box/figma/gong/granola` — all failing (proxy 403)
+- `plugin:canva:canva` — failing
+- `plugin:data:amplitude/atlassian/bigquery/definite/hex` — all failing
+- `plugin:hostinger:*` (5 Hostinger plugins) — executable not found
+- `plugin:marketing:ahrefs/similarweb/supermetrics` — all failing
+- `plugin:operations:asana/notion/slack` — all failing
+- 20+ more failing plugins
+
+**Duplicate connectors (double-loading):**
+- Google Drive is connected TWICE (`Google_Drive` + `plugin:small-business:google-drive`)
+- Gmail is connected TWICE
+- Notion is connected but `plugin:operations:notion` fails separately
+
+**What to do:** Go to `claude.ai` → Settings → Connectors → disconnect plugins you're not actively using. The Hostinger, Box, Figma, Gong, Granola, ahrefs, Amplitude, Asana, and Slack ones are all failing — clean those out. Keep: Notion, Google Drive, Google Calendar, Gmail (pick ONE of each duplicate), Riverside, VidIQ, Substy, Beacons.
+
+**Estimated savings:** Removing 30+ dead connectors reduces the system prompt by ~15-20%, which means more tokens available for actual work each session.

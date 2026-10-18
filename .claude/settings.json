@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "[ ! -f context/.onboarded ] && echo 'FIRST RUN: no profile yet. Per CLAUDE.md, begin onboarding now (run the onboard skill) before anything else.' || echo 'SESSION START: Before your first response — (1) read memory/MEMORY.md, (2) read the last entry of memory/session_log.md, (3) read the last 2 entries of memory/relationship_journal.md. Then open with a 2-3 sentence recap: what is in progress, what is on fire, any critical follow-ups. Do not skip this.'"
+            "command": "[ ! -f context/.onboarded ] && echo 'FIRST RUN: no profile yet. Per CLAUDE.md, begin onboarding now (run the onboard skill) before anything else.' || echo 'SESSION START: Before your first response — (1) read memory/MEMORY.md, (2) read the last entry of memory/session_log.md, (3) read the last 2 entries of memory/relationship_journal.md. Then open with a 2-3 sentence recap: what is in progress, what is on fire, any critical follow-ups. Optionally run /session-cleaner to catch any stale tasks. Do not skip this.'"
           }
         ]
       }
