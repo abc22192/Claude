@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bella Blast — Theater</title>
+<meta name="description" content="A dark-theater-style website preview for Bella Blast. Rooms, not pages. No scroll. Click a door to enter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Dark-only on purpose: this brand IS the dark room. */
+:root {
+  --onyx: #0B0B0C;
+  --soft-black: #15151A;
+  --rose: #B76E79;
+  --rose-light: #D7A1A0;
+  --champagne: #E7C9BE;
+  --ivory: #F5F0EC;
+  --smoke: #8A8A92;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--onyx);
+  color: var(--ivory);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 300;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* grain texture for luxury feel */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(231,201,190,0.015) 1px, transparent 0);
+  background-size: 3px 3px;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: overlay;
+}
+
+/* ambient vignette */
+.vignette {
+  position: fixed; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(183,110,121,0.07) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* top + bottom hairlines */
+.hairline {
+  position: fixed; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rose) 50%, transparent);
+  opacity: 0.35; z-index: 5;
+}
+.hairline.top    { top: 24px; }
+.hairline.bottom { bottom: 24px; }
+
+/* every stage is a full viewport */
+.stage {
+  position: fixed; inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.02);
+  transition: opacity 900ms ease, transform 900ms ease;
+  z-index: 3;
+}
+.stage.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+/* ---- LOBBY ---- */
+.lobby-frame {
+  width: min(300px, 58vw);
+  aspect-ratio: 1 / 1.25;
+  background: linear-gradient(135deg, #15151A 0%, #1a0f12 50%, #0B0B0C 100%);
+  border: 1px solid rgba(231,201,190,0.18);
+  margin-bottom: 2.25rem;
+  position: relative;
+  overflow: hidden;
+  animation: breathe 7s ease-in-out infinite;
+}
+.lobby-frame::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(183,110,121,0.3) 0%, transparent 60%);
+}
+.lobby-frame-label {
+  position: absolute;
+  bottom: 1rem; left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  color: var(--smoke);
+}
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 60px rgba(183,110,121,0.08); }
+  50%      { box-shadow: 0 0 100px rgba(183,110,121,0.18); }
+}
+
+.name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(1.75rem, 5.5vw, 3.25rem);
+  letter-spacing: 0.4em;
+  color: var(--ivory);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  color: var(--champagne);
+  margin-bottom: 2.75rem;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.doors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.75rem, 2.5vw, 2.25rem);
+  max-width: 820px;
+}
+
+.door {
+  background: none;
+  border: none;
+  color: var(--ivory);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.72rem, 1.3vw, 0.85rem);
+  letter-spacing: 0.28em;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  position: relative;
+  transition: color 400ms ease;
+  text-transform: uppercase;
+}
+.door::after {
+  content: "";
+  position: absolute;
+  bottom: -5px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 1px;
+  background: linear-gradient(90deg, var(--rose), var(--champagne), var(--rose));
+  transition: width 500ms ease;
+}
+.door:hover, .door:focus-visible { color: var(--rose-light); outline: none; }
+.door:hover::after, .door:focus-visible::after { width: 100%; }
+
+/* ---- ROOMS ---- */
+.room {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 1120px;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .room {
+    grid-template-columns: 1fr;
+    max-width: 92vw;
+    gap: 1.75rem;
+  }
+}
+
+.room-image {
+  aspect-ratio: 3 / 4;
+  background: var(--soft-black);
+  border: 1px solid rgba(231,201,190,0.12);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.room-image::after {
+  content: "";
+  position: absolute; inset: 0;
+}
+.room-image::before {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 1rem; left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  color: var(--smoke);
+  z-index: 2;
+}
+
+.room-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.room-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: var(--rose);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.room-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.room-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--champagne);
+  margin-bottom: 2.5rem;
+  max-width: 460px;
+}
+
+.cta {
+  display: inline-block;
+  padding: 0.9rem 2.1rem;
+  border: 1px solid var(--rose);
+  background: transparent;
+  color: var(--ivory);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.73rem;
+  letter-spacing: 0.3em;
+  cursor: pointer;
+  transition: all 500ms ease;
+  align-self: flex-start;
+  width: fit-content;
+  text-transform: uppercase;
+}
+.cta:hover, .cta:focus-visible {
+  background: linear-gradient(135deg, var(--rose), var(--champagne), var(--rose));
+  color: var(--onyx);
+  letter-spacing: 0.4em;
+  outline: none;
+}
+
+/* image glow treatments */
+.image-effect::after  { background: radial-gradient(ellipse at 35% 45%, rgba(183,110,121,0.55), transparent 60%); }
+.image-customs::after { background: radial-gradient(ellipse at 65% 40%, rgba(231,201,190,0.22), transparent 65%); }
+.image-worn::after    { background: radial-gradient(ellipse at 50% 60%, rgba(183,110,121,0.38), transparent 55%); }
+.image-vaults::after  { background: linear-gradient(90deg, transparent 42%, rgba(231,201,190,0.42) 50%, transparent 58%); }
+.image-faq::after     { background: radial-gradient(ellipse at 50% 50%, rgba(138,138,146,0.22), transparent 60%); }
+
+/* back to lobby */
+.back {
+  position: fixed;
+  top: 2.5rem; left: 2rem;
+  background: none;
+  border: none;
+  color: var(--smoke);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0.5rem;
+  transition: color 400ms ease;
+  text-transform: uppercase;
+}
+.back:hover, .back:focus-visible { color: var(--rose-light); outline: none; }
+
+.whisper {
+  position: fixed;
+  bottom: 2.75rem; left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--smoke);
+  z-index: 5;
+  text-transform: uppercase;
+  text-align: center;
+  max-width: 90vw;
+}
+
+@media (max-width: 760px) {
+  .back { top: 1.5rem; left: 1rem; font-size: 0.65rem; }
+  .whisper { bottom: 1.75rem; font-size: 0.55rem; }
+  .stage { padding: 3.5rem 1.5rem 3rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="vignette"></div>
+<div class="hairline top"></div>
+<div class="hairline bottom"></div>
+
+<!-- LOBBY -->
+<section class="stage active" id="lobby" aria-label="Lobby">
+  <div class="lobby-frame" aria-hidden="true">
+    <div class="lobby-frame-label">THE INVITATION</div>
+  </div>
+  <h1 class="name">B E L L A &nbsp; B L A S T</h1>
+  <p class="subtitle">Fetish, built on purpose. Not performed.</p>
+  <nav class="doors" aria-label="Rooms">
+    <button class="door" data-go="effect">The Bella Effect</button>
+    <button class="door" data-go="customs">Customs</button>
+    <button class="door" data-go="worn">Worn &amp; Used</button>
+    <button class="door" data-go="vaults">Vaults</button>
+    <button class="door" data-go="faq">FAQ</button>
+  </nav>
+</section>
+
+<!-- THE BELLA EFFECT -->
+<section class="stage" id="effect" aria-label="The Bella Effect room">
+  <button class="back" data-go="lobby">← back to the lobby</button>
+  <div class="room">
+    <div class="room-image image-effect" data-label="HERO PHOTO" aria-hidden="true"></div>
+    <div class="room-content">
+      <div class="room-eyebrow">THE SIGNATURE</div>
+      <h2 class="room-title">The Bella Effect</h2>
+      <p class="room-body">
+        Not a clip pulled off a shelf. A session built around you — the scene in your head, the pace, the words, the tone. You tell me what it is. I come back with scope and a quote. We refine it in DM until it fits. You get a file nobody else sees.
+      </p>
+      <button class="cta">Request yours</button>
+    </div>
+  </div>
+  <div class="whisper">Replies within 24 hours.</div>
+</section>
+
+<!-- CUSTOMS -->
+<section class="stage" id="customs" aria-label="Customs room">
+  <button class="back" data-go="lobby">← back to the lobby</button>
+  <div class="room">
+    <div class="room-image image-customs" data-label="SCRIPT, PEN, BLACK FABRIC" aria-hidden="true"></div>
+    <div class="room-content">
+      <div class="room-eyebrow">BUILT TO BRIEF</div>
+      <h2 class="room-title">Customs</h2>
+      <p class="room-body">
+        Audio or video. Short, standard, or layered. Tell me the scene, the tone, and anything that is a hard no. I come back with what the file looks like and what it costs. You lock the scope before anything is paid.
+      </p>
+      <button class="cta">Tell me the scene</button>
+    </div>
+  </div>
+  <div class="whisper">One revision window included.</div>
+</section>
+
+<!-- WORN & USED -->
+<section class="stage" id="worn" aria-label="Worn and Used room">
+  <button class="back" data-go="lobby">← back to the lobby</button>
+  <div class="room">
+    <div class="room-image image-worn" data-label="FLAT-LAY ON BLACK FABRIC" aria-hidden="true"></div>
+    <div class="room-content">
+      <div class="room-eyebrow">OFF MY BODY</div>
+      <h2 class="room-title">Worn &amp; Used</h2>
+      <p class="room-body">
+        Socks, panties, inhalers, masks, foot dust. Days on my body. Sealed the second I take it off, vacuum packed, discreet, tracked. Every order is filmed being made. No exceptions.
+      </p>
+      <button class="cta">Build yours</button>
+    </div>
+  </div>
+  <div class="whisper">Diamond Seller · 5.0 · 72 reviews · ID verified.</div>
+</section>
+
+<!-- VAULTS -->
+<section class="stage" id="vaults" aria-label="Vaults room">
+  <button class="back" data-go="lobby">← back to the lobby</button>
+  <div class="room">
+    <div class="room-image image-vaults" data-label="A DOOR LEFT AJAR" aria-hidden="true"></div>
+    <div class="room-content">
+      <div class="room-eyebrow">MEMBERS ONLY</div>
+      <h2 class="room-title">The Vaults</h2>
+      <p class="room-body">
+        Three private Telegram channels. VISL for scat. VIFL for fart. All My Curves for the body. Rotating content, up close, never on my public pages. If a scene hits, you grab it before it leaves.
+      </p>
+      <button class="cta">Pick a door</button>
+    </div>
+  </div>
+  <div class="whisper">Each vault is its own channel.</div>
+</section>
+
+<!-- FAQ -->
+<section class="stage" id="faq" aria-label="FAQ room">
+  <button class="back" data-go="lobby">← back to the lobby</button>
+  <div class="room">
+    <div class="room-image image-faq" data-label="TYPOGRAPHY ONLY" aria-hidden="true"></div>
+    <div class="room-content">
+      <div class="room-eyebrow">BEFORE YOU ASK</div>
+      <h2 class="room-title">The House Rules</h2>
+      <p class="room-body">
+        How to buy. How I ship. What I will and will not do. Deposits, discretion, delivery times, who gets in. The questions I answer most, kept in one place so your first message does not have to be them.
+      </p>
+      <button class="cta">Read them</button>
+    </div>
+  </div>
+  <div class="whisper">18+ · Consent only · DMCA protected.</div>
+</section>
+
+<script>
+  const stages = document.querySelectorAll('.stage');
+  function go(id) {
+    stages.forEach(s => s.classList.toggle('active', s.id === id));
+    const active = document.getElementById(id);
+    if (active) active.focus?.();
+    window.scrollTo(0, 0);
+  }
+  document.querySelectorAll('[data-go]').forEach(btn => {
+    btn.addEventListener('click', () => go(btn.dataset.go));
+  });
+  // keyboard: Escape → back to lobby
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') go('lobby');
+  });
+</script>
+
+</body>
+</html>
