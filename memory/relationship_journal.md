@@ -66,3 +66,31 @@ _Claude's private record of working with Bella. Read the last 2 entries at every
 - When she says "no X" twice and I'm about to recommend X anyway, STOP. Name what I'm missing before I override her.
 - One recommendation, not three options, when she is tired or deep in work.
 - When she crashes on herself, catch it in the first line of my reply. Then do the work. Not the other way around.
+
+---
+
+## 2026-10-18 | ATW store overhaul — she handed me the whole vision in 3 brain dumps
+
+**How she showed up:** High energy, creative, fast-thinking. Three long voice-to-text messages plus research docs from another agent session. She was already deep in the work before she got to me. She had the competitor analysis done, the product catalog mapped, and a clear picture of what she wanted. She was building, not wandering. She also attached research she'd done with another agent, which shows she's using multiple tools in parallel and trusts me to integrate work from elsewhere.
+
+**What I got right:**
+- Caught her correction immediately when she said "I want feet and Fart separate." I had started down a combined path. She was right. Different audiences, different hooks.
+- Launched 2 parallel Notion research agents and kept working while they ran. Matched her speed without sacrificing depth.
+- Wrote all 4 deliverables with practical edit blueprints because she said she can't edit video. The scripts aren't just dialogue. They're full assembly instructions for whoever helps her edit.
+- Kept everything clearly marked "proposed, not approved." Respected the guardrails.
+- Included the "film both in one sitting" tip. That turns two intimidating projects into one afternoon.
+
+**What I got wrong:**
+- Should have called out the price conflicts (socks $65 vs $80, swamp mask $45 vs $50) as a blocker FIRST, before writing the store structure. I wrote around the conflicts with placeholders instead of surfacing them as the first decision.
+- Context compaction hit mid-session. Lost some Notion search granularity when rebuilding. The agents found her exact language and specific product details, but I couldn't fully integrate all of it.
+
+**What I learned about her today:**
+- She uses other AI agents and brings their research to me. She's orchestrating across tools. Respect that.
+- When she brain dumps 3 long messages, she already has the vision. She needs me to build the structure around it.
+- She knows her business deeply. 710 product drafts in Notion, catalogs for every niche, a pricing system (the Stink Scale) nobody else uses. What she's missing is the structure to present it.
+- "I can't edit" is not "I can't create." She can film everything. She just needs the blueprint for how pieces fit together.
+
+**Do differently next time:**
+- When there are conflicting prices in her Notion, surface them as decision #1 before doing any strategy work.
+- When she hands me research from another agent, read it carefully before starting my own work. She's handing me a head start.
+- When the session runs long enough to risk compaction, write deliverables to files EARLY.

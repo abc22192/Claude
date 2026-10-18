@@ -1,7 +1,7 @@
 # Bella Blast HQ
 _Our working brain. Claude updates this at every session end. Check it anytime at github.com/abc22192/Claude._
 
-**Last updated:** 2026-10-14
+**Last updated:** 2026-10-18
 
 ---
 
@@ -9,8 +9,8 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 
 | # | Task | Status | Deadline |
 |---|------|--------|----------|
-| 1 | **2024 Taxes** — just needs print + submit. IRS threatened to file on her behalf. UPS Store / e-file are both options. NO PRINTER REQUIRED. | OVERDUE | NOW |
-| 2 | **Website migration** — bellablast.store → bellablast.com. Domain safe — .com now points to Beacons. Need to confirm Beacons page content is correct and decide the permanent home. | IN PROGRESS | Oct 14 (today) |
+| 1 | **2024 Taxes** — MAILED IN (filed 10/18). Owes $2,025 — NOT YET PAID. | PAYMENT DUE | ASAP |
+| 2 | **Website migration** — bellablast.com now points to Beacons. Domain safe. Still need to confirm Beacons page content and decide permanent home. | IN PROGRESS | Pressure off |
 
 ---
 
@@ -28,6 +28,7 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 | Bella Blast menu HTML rebuild | IN PROGRESS | v1 exists, needs full rebuild |
 | Substy platform | PLAN PHASE | $9 wallet, OF connected, Telegram connected |
 | Prompt Directory App | RESEARCH DONE | Architecture built, awaiting go-ahead to build |
+| **ATW store overhaul** | SCRIPTS + STRATEGY WRITTEN | 4 deliverables ready for Bella review. Price conflicts to settle first. |
 
 ---
 
@@ -55,6 +56,17 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 - v1 artifact: https://claude.ai/artifact/5Mr9CjbkwPiQDBiUgef1iS
 - Full brief in `projects/bella-blast/brief.md`
 - DO NOT rebuild without answering 5 planning questions (in brief)
+
+### ATW Store Overhaul
+- **4 deliverables written (all proposed, awaiting Bella review):**
+  1. Fart proof video script — 6 scenes, 4-6 min, jar fails → funnel struggle → fabric/inhalers
+  2. Feet proof video script — 6 scenes, 4-6 min, birthday party → ex-boyfriend → socks/masks
+  3. ATW bio restructure — 10-section funnel modeled on RosieBlossom
+  4. ATW store structure — 5 lettered lot series + 8 standalone listings + bundle ladder
+- **Competitor studied:** RosieBlossom (410 listings, lettered lots, bio funnel)
+- **Price conflicts to settle:** socks $65 vs $80, swamp mask $45 vs $50
+- **Priority order:** Settle prices → Create Socks 1 + Foot Masks 1 → Film proof videos → Rewrite bio
+- **Broken links found:** bellablast.store dead, Linktree contact buttons empty, old clip store 404
 
 ### Bella Effect Intake
 - Artifact: https://claude.ai/artifact/WcWzVNZ88awUHWNNxab1Lh
@@ -84,6 +96,14 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 
 ## 📝 RECENT SESSION LOG
 
+### 2026-10-18 — ATW Store Overhaul
+- Wrote 4 deliverables: fart proof video script, feet proof video script, ATW bio restructure (10-section funnel), ATW store structure (lettered lots + bundles)
+- Studied RosieBlossom's full ATW catalog (66 listings, bio funnel, templates)
+- Searched Notion for smell stories + product catalog via parallel agents
+- Found multiple broken links across her platforms (bellablast.store dead, Linktree empty, old clip store 404)
+- Key insight: her struggle footage IS the selling point. Separate videos for fart and feet audiences.
+- **Decisions pending from Bella:** socks $65 vs $80, swamp mask $45 vs $50, standard wear times, November deal
+
 ### 2026-10-14 — YouTube Strategy + Infrastructure
 - Ran 6 parallel agents: Hype research, brand voice, VidIQ channel audit, Notion episode inventory, Hype script, synthesis
 - Surfaced the viral formula (relationship framing = 41% of all views) and the podcast block (8 ready topics, zero recorded)
@@ -91,11 +111,6 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 - Added mandatory quality check to CLAUDE.md
 - Built this HQ file
 - **What I got wrong:** Did not flag taxes and website deadline at session open. Always fires first, always.
-
-### 2026-10-13 — Substy, website pressure, taxes reframe
-- Website domain confirmed safe — bellablast.com pointing to Beacons
-- Substy platform exploration — connected OF + Telegram
-- Taxes: called out printer excuse as false blocker. UPS Store / e-file are the fix.
 
 ---
 
