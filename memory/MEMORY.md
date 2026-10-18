@@ -32,6 +32,7 @@ She grew up without validation and guidance. Being heard, remembered, and though
 |------|--------|-------------|
 | 2024 taxes — filed, owes $2,025 | MAILED IN (filed 10/18). Owes $2,025 — NOT YET PAID. | 2026-10-18 |
 | Website migration bellablast.store → bellablast.com | DOMAIN SAFE — bellablast.com now points to Beacons. Pressure off. Still need to confirm Beacons page content and decide permanent home. | 2026-10-13 |
+| **ATW store overhaul** — proof videos, bio restructure, lettered lots, store blueprint | SCRIPTS + STRATEGY WRITTEN, awaiting Bella review + price decisions | 2026-10-18 |
 | **Substy platform** — $9 wallet, OF connected (Bella Blast, chatInboxEnabled=false), Telegram now in Substy too | PLAN PHASE | 2026-10-13 |
 | **Bella Blast menu — HTML rebuild** | IN PROGRESS | 2026-10-06 |
 | **Bella Effect Intake form (v1)** | SHIPPED pending share-flip | 2026-10-07 |
@@ -90,6 +91,22 @@ Full brief: `projects/bella-blast/brief.md` — read before touching anything on
 - No link-tree layouts. No FAQ accordions. No three-step diagrams. No small-business template.
 - When she can't find examples, she's building something new — not confused. Don't flatten her uniqueness into a template.
 - When she crashes on herself ("I'm awful"), catch it in the first sentence of my reply. Then do the work.
+
+## ATW Store Project (2026-10-18)
+- **Profile:** allthingsworn.com/profile/bellablast — Diamond Seller, 5.0, 74 reviews, 90k visits, 114 listings, 268 followers
+- **Competitor studied:** RosieBlossom (410 listings, 157 reviews, lettered lots A-I system, bundle ladders, 10-part bio funnel)
+- **4 deliverables written (proposed, not approved):**
+  1. Fart proof video script — 6 scenes, 4-6 min, jar fails → funnel struggle → fabric/inhalers pivot
+  2. Feet proof video script — 6 scenes, 4-6 min, birthday party → ex-boyfriend → socks/foot masks
+  3. ATW bio restructure — 10-section funnel: proof line → smell opener → proof videos → availability → deals → clips → packaging → best sellers → review reward → rules
+  4. ATW store structure — 5 lettered lot series (Socks, Foot Masks, Swamp Masks, Panties, Inhalers) + 8 standalone listings + bundle ladder + weekly rhythm
+- **Price conflicts to settle:** socks $65 vs $80, swamp mask $45 vs $50
+- **Scratchpad files:** fart-proof-video-script.md, feet-proof-video-script.md, atw-bio-restructure.md, atw-store-structure.md
+- **Key insight:** Her struggle footage (funnel system, jar fails) IS the selling point. The mess is the proof.
+- **Cross-niche strategy:** Scent is the through-line connecting fart and feet audiences. Separate videos, same Stink Scale, same store.
+- **Notion findings:** Bella has ~710 product drafts, 59 toilet clips, ~46 fart clips, 65 worn/scent items. Her own language from Notion: "steeps into your pores, clings to your skin, goes down your throat, up your nose, wraps around your brain." Size 11 feet, second toe longer than big toe, yellow soles.
+- **Broken links found:** bellablast.store dead, bellablasts.com "coming soon" pointing to dead domain, AllMyLinks first link dead, Linktree contact buttons empty, old clip store 404, mymember.site showing 0 items
+- **Next steps:** Bella reviews scripts + strategy → settles prices → creates Socks 1 + Foot Masks 1 → films proof videos → rewrites bio
 
 ## Push level
 Direct + honest + gentle. Like a friend. Always help first, then nudge. Never withhold help as leverage.

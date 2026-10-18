@@ -42,3 +42,51 @@
 **What's next:**
 - Answer 5 planning questions (in projects/bella-blast/brief.md) then rebuild HTML menu
 - After menu: reaction menu → availability calendar → proof page → intake form
+
+---
+
+## 2026-10-18 — ATW store overhaul: proof videos + bio + store structure
+
+**What happened:** Bella brain-dumped a massive request across 3 voice-to-text messages plus 3 research docs from another agent. She wants proof videos for her worn/used scent items business, an ATW bio rewrite modeled on RosieBlossom's funnel, and a full store restructure with lettered lots.
+
+**Key deliverables written (all proposed, not approved):**
+1. Fart proof video script ("Why I Stopped Trying to Catch Farts in Jars") — 6 scenes, 4-6 min
+2. Feet proof video script ("I Cleared a Room at 12") — 6 scenes, 4-6 min  
+3. ATW bio restructure — 10-section funnel modeled on RosieBlossom
+4. ATW store structure — 5 lettered lot series, 8 standalone listings, bundle ladders, weekly rhythm
+
+**Key decisions:**
+- Two SEPARATE videos (fart + feet), NOT combined. Bella corrected my initial combined approach.
+- No prices in proof videos. Want-builders, not menus. Stink Scale tease at the end funnels to ATW.
+- Scripts are roadmaps not teleprompters. She tells stories in her own words, editor drops in clips.
+- RosieBlossom's lettered lot system (A-F/A-I with sold X marks) is the structural model for Bella's store.
+
+**Research completed:**
+- RosieBlossom full catalog analysis (66 listings, bio funnel, 12 listing templates)
+- Bella's ATW current state (114 listings, most behind login wall, multiple broken links)
+- Notion product catalog search (710 drafts, pricing conflicts found)
+- Notion smell stories search (birthday party, ex-boyfriend, body odor descriptions)
+
+**What I got right:**
+- Caught that she wanted separate videos when I initially proposed combined
+- Launched parallel research agents to search Notion while I worked
+- Included practical edit blueprints since she can't edit video herself
+- Kept everything proposed/not-approved throughout
+
+**What I got wrong:**
+- Session ran into context compaction. Lost some Notion search detail when rebuilding.
+- Should have confirmed the price conflicts (socks, swamp mask) as blockers earlier instead of noting them at the end.
+
+**Decisions Bella still needs to make:**
+- Socks price: $65 or $80?
+- Swamp mask price: $45 or $50?
+- Standard wear times for each product
+- November deal specifics
+- Whether ATW should be main link everywhere
+
+**What's next:**
+- Bella reviews all 4 deliverables
+- Settle price conflicts
+- Create first 3 lettered lots (Socks 1, Foot Masks 1, Inhalers 1)
+- Film both proof videos (one sitting, same setup)
+- Rewrite ATW bio section by section
