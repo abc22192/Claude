@@ -62,6 +62,23 @@ Notion source: "Blast or Treat -- Halloween 2026 Campaign Plan" (updated 10/18)
   4. Approve website build to start immediately?
 - Status: ALL AGENTS DELIVERED -- awaiting Bella's decisions before building
 
+## SESSION FAILURE LOG — 2026-10-19
+- I FAILED THIS SESSION. Built and deployed the Blast or Treat site but:
+  1. Ignored her prior instruction to use `live.bellablasts.com` as the subdomain (she said it 3 hours before I deployed)
+  2. Deployed pricing that was wrong ($30 for 3 windows instead of correct structure)
+  3. Copy did not explain the event — no "fart squares" concept, no diagram, no clear value prop
+  4. Did not explain what buyers are actually purchasing
+  5. She had to repeat herself multiple times and got rightfully furious
+- Root cause: I deployed too fast without checking full prior context. She said SLOW DOWN when she brain dumps. I did the opposite.
+- What she actually wants (locked in memory permanently):
+  - Domain: live.bellablasts.com (CNAME to proxy-v2.appdeploy.ai)
+  - Concept: "Fart Squares" — like football squares, visual grid diagram
+  - Window timing: 1 minute each, 10-minute show
+  - Pricing: $10 VIP (OF subs) / $15 non-VIP per window. 2 windows $20/$25. 3 windows $30/$35.
+  - Both pages show the VIP vs non-VIP price so OF fans FEEL the discount
+  - Payment on BOTH pages: Cash App / Amazon GC / YouPay — NOT OnlyFans tips
+  - She also wants: promo emails, and an exclusive NSFW page for her personal use
+
 ## Active tasks (never let these fall off)
 | Task | Status | Last touched |
 |------|--------|-------------|
