@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bella Blast</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0a0005;
+      --crimson: #8B0000;
+      --gold:    #C9A84C;
+      --gold-hi: #FFD700;
+      --pink:    #FF1493;
+      --pink-s:  #FF69B4;
+      --cream:   #F5E6D3;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    /* ── App shell ─────────────────────────────── */
+    #app {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--black);
+      font-family: 'Oswald', 'Arial Narrow', Arial, sans-serif;
+      color: var(--cream);
+    }
+
+    /* ── Panels ─────────────────────────────────── */
+    .panel {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
+    .panel.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ── Bulb strips ─────────────────────────────── */
+    .strip {
+      width: 100%;
+      height: 48px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #0a0005;
+    }
+    .strip.top { border-bottom: 1px solid rgba(201,168,76,0.25); }
+    .strip.bot { border-top:    1px solid rgba(201,168,76,0.25); }
+    .bulb {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--gold-hi);
+      box-shadow: 0 0 6px 3px rgba(255,215,0,0.7);
+      margin: 0 5px;
+      flex-shrink: 0;
+      animation: blink 2.4s infinite;
+    }
+    .bulb:nth-child(2n)  { animation-delay: .3s;  }
+    .bulb:nth-child(3n)  { animation-delay: .6s;  }
+    .bulb:nth-child(4n)  { animation-delay: .9s;  }
+    .bulb:nth-child(5n)  { animation-delay: 1.2s; }
+    .bulb:nth-child(7n)  { animation-delay: 1.5s; }
+    .bulb:nth-child(11n) { animation-delay: 1.8s; }
+    @keyframes blink {
+      0%,78%,100% { opacity:1; }
+      80%          { opacity:.1; }
+      84%          { opacity:1; }
+      88%          { opacity:.5; }
+      92%          { opacity:1; }
+    }
+
+    /* ════════════════════════════════════════════
+       PANEL 1 — ENTRANCE
+    ════════════════════════════════════════════ */
+    #entrance { background: #120008; }
+
+    .stage-mid {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Stage bg — swap for real photo */
+    .stage-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 50% 55%, rgba(100,10,10,0.6) 0%, transparent 65%),
+        linear-gradient(180deg, #0a0000 0%, #1a0408 50%, #0a0000 100%);
+      /* TO USE HER PHOTO:
+         background-image: url('images/bella-entrance.jpg');
+         background-size: cover;
+         background-position: center 20%; */
+    }
+    .stage-vign {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(10,0,5,0.65) 100%);
+    }
+
+    /* Curtains */
+    .curtain-l,
+    .curtain-r {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 50%;
+      transition: transform 1.8s cubic-bezier(0.4, 0, 0.15, 1);
+      z-index: 5;
+    }
+    .curtain-l {
+      left: 0;
+      background: linear-gradient(to right,
+        #1e0000 0%, #6B0000 20%, #A01818 50%, #8B0000 75%, #3D0000 100%);
+      border-right: 2px solid rgba(201,168,76,0.55);
+      box-shadow: inset -20px 0 50px rgba(0,0,0,0.55), 10px 0 40px rgba(0,0,0,0.7);
+    }
+    .curtain-l::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(90deg,
+        transparent 0, rgba(0,0,0,0.08) 3px,
+        transparent 6px, rgba(255,255,255,0.025) 9px, transparent 13px);
+    }
+    .curtain-r {
+      right: 0;
+      background: linear-gradient(to left,
+        #1e0000 0%, #6B0000 20%, #A01818 50%, #8B0000 75%, #3D0000 100%);
+      border-left: 2px solid rgba(201,168,76,0.55);
+      box-shadow: inset 20px 0 50px rgba(0,0,0,0.55), -10px 0 40px rgba(0,0,0,0.7);
+    }
+    .curtain-r::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(90deg,
+        transparent 0, rgba(0,0,0,0.08) 3px,
+        transparent 6px, rgba(255,255,255,0.025) 9px, transparent 13px);
+    }
+    .open .curtain-l { transform: translateX(-100%); }
+    .open .curtain-r { transform: translateX(100%); }
+
+    /* Title — always on top */
+    .e-title {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -55%);
+      z-index: 20;
+      text-align: center;
+      width: 90%;
+      pointer-events: none;
+    }
+    .e-now {
+      font-size: clamp(0.6rem, 1.2vw, 0.8rem);
+      letter-spacing: 0.5em;
+      color: rgba(201,168,76,0.6);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .e-title h1 {
+      font-size: clamp(3.5rem, 11vw, 8rem);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      line-height: 0.92;
+      color: var(--gold-hi);
+      text-shadow:
+        0 0 12px rgba(255,215,0,1),
+        0 0 28px rgba(255,215,0,0.7),
+        0 0 60px rgba(255,215,0,0.4),
+        0 0 100px rgba(255,215,0,0.2);
+    }
+    .e-line {
+      font-family: 'Playfair Display', 'Georgia', serif;
+      font-style: italic;
+      font-size: clamp(0.8rem, 1.6vw, 1.1rem);
+      color: rgba(245,230,211,0.55);
+      margin-top: 0.9rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* CTA */
+    .e-cta {
+      position: absolute;
+      bottom: 13%; left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .e-cta.show { opacity: 1; }
+    .e-btn {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: inherit;
+      font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+      letter-spacing: 0.4em;
+      padding: 0.85rem 2.6rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s;
+    }
+    .e-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--gold);
+      transform: translateY(101%);
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+    .e-btn:hover::before { transform: translateY(0); }
+    .e-btn:hover { color: #0a0005; }
+
+    /* ════════════════════════════════════════════
+       PANEL 2 — LOBBY
+    ════════════════════════════════════════════ */
+    #lobby { background: #0a0005; }
+
+    .l-nav {
+      flex-shrink: 0;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+    .l-logo {
+      font-size: 1rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+      text-transform: uppercase;
+    }
+    .l-logo:hover { color: var(--gold-hi); }
+
+    .l-main {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem 2rem;
+      gap: 1.25rem;
+    }
+
+    .l-head {
+      text-align: center;
+    }
+    .l-head h2 {
+      font-family: 'Playfair Display', 'Georgia', serif;
+      font-size: clamp(1.4rem, 3.5vw, 2.3rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+    .l-head h2 em { font-style: italic; color: var(--pink); }
+    .l-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: rgba(245,230,211,0.3);
+      text-transform: uppercase;
+      margin-top: 0.35rem;
+    }
+
+    /* Rooms grid */
+    .rooms {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem;
+      width: 100%;
+      max-width: 800px;
+    }
+    .room {
+      height: clamp(120px, 17vh, 175px);
+      border: 1px solid rgba(201,168,76,0.13);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0.85rem 0.9rem;
+      transition: border-color 0.3s, transform 0.25s, box-shadow 0.3s;
+    }
+    .room:nth-child(1) { background: linear-gradient(150deg,#3D0000,#0a0000); }
+    .room:nth-child(2) { background: linear-gradient(150deg,#180030,#060408); }
+    .room:nth-child(3) { background: linear-gradient(150deg,#1A0C00,#060408); }
+    .room:nth-child(4) { background: linear-gradient(150deg,#001A1A,#060408); }
+    .room:nth-child(5) { background: linear-gradient(150deg,#001020,#060408); }
+    .room:nth-child(6) { background: linear-gradient(150deg,#0A0015,#060408); }
+    .room::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(6,4,8,0.88) 100%);
+    }
+    .room:hover {
+      border-color: var(--pink);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 22px rgba(255,20,147,0.2);
+    }
+    .room:hover .r-dot { opacity: 1; }
+    .r-dot {
+      position: absolute;
+      top: 0.8rem; right: 0.8rem;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--pink);
+      box-shadow: 0 0 7px 3px rgba(255,20,147,0.5);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .r-num {
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      opacity: 0.55;
+      position: relative;
+    }
+    .r-name {
+      font-family: 'Playfair Display', 'Georgia', serif;
+      font-size: clamp(0.82rem, 1.35vw, 1rem);
+      color: var(--cream);
+      line-height: 1.15;
+      position: relative;
+      margin-top: 0.2rem;
+    }
+    .r-tag {
+      font-size: 0.58rem;
+      letter-spacing: 0.14em;
+      color: var(--pink-s);
+      text-transform: uppercase;
+      position: relative;
+      margin-top: 0.2rem;
+      opacity: 0.65;
+    }
+
+    /* Ticket stub */
+    .ticket {
+      display: flex;
+      align-items: stretch;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+    .ticket:hover { opacity: 1; }
+    .t-body {
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 0.45rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .t-vip {
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .t-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .t-perf {
+      border: 1px dashed rgba(201,168,76,0.3);
+      border-left: none;
+      width: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .t-perf span {
+      font-size: 0.45rem;
+      color: rgba(201,168,76,0.35);
+      writing-mode: vertical-rl;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ════════════════════════════════════════════
+       PANEL 3 — BELLA BLASTER
+    ════════════════════════════════════════════ */
+    #blaster {
+      background: #040008;
+      align-items: center;
+      justify-content: center;
+      gap: 1.75rem;
+    }
+    .b-wrap {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .b-eye {
+      font-size: 0.7rem;
+      letter-spacing: 0.5em;
+      color: rgba(255,105,180,0.45);
+      text-transform: uppercase;
+    }
+    .b-name {
+      font-size: clamp(3rem, 12vw, 7rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 0.92;
+      color: var(--pink);
+      text-shadow:
+        0 0 10px rgba(255,20,147,1),
+        0 0 22px rgba(255,20,147,0.85),
+        0 0 45px rgba(255,20,147,0.55),
+        0 0 80px rgba(255,20,147,0.3);
+      animation: glow 3s ease-in-out infinite;
+    }
+    @keyframes glow {
+      0%,100% { text-shadow: 0 0 10px rgba(255,20,147,1),0 0 22px rgba(255,20,147,.85),0 0 45px rgba(255,20,147,.55),0 0 80px rgba(255,20,147,.3); }
+      50%      { text-shadow: 0 0 7px rgba(255,20,147,.8),0 0 15px rgba(255,20,147,.5),0 0 30px rgba(255,20,147,.3); }
+    }
+    .b-mem {
+      font-size: 0.7rem;
+      letter-spacing: 0.45em;
+      color: rgba(255,20,147,0.4);
+      text-transform: uppercase;
+    }
+    .b-copy {
+      font-family: 'Playfair Display', 'Georgia', serif;
+      font-style: italic;
+      font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+      color: rgba(245,230,211,0.55);
+      line-height: 1.75;
+      max-width: 360px;
+    }
+    .b-actions {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.65rem;
+    }
+    .b-btn {
+      background: transparent;
+      border: 1px solid rgba(255,20,147,0.45);
+      color: rgba(255,20,147,0.7);
+      font-family: inherit;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      padding: 0.7rem 2rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .b-btn:hover { border-color: var(--pink); color: var(--pink); box-shadow: 0 0 18px rgba(255,20,147,0.2); }
+    .b-back {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      color: rgba(201,168,76,0.3);
+      cursor: pointer;
+      text-transform: uppercase;
+      background: none; border: none;
+      font-family: inherit;
+      transition: color 0.3s;
+    }
+    .b-back:hover { color: rgba(201,168,76,0.65); }
+
+    /* Mobile */
+    @media (max-width: 580px) {
+      .rooms { grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
+      .l-main { padding: 1rem; gap: 1rem; }
+      .l-nav  { padding: 0 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ═══ ENTRANCE ═══ -->
+  <section id="entrance" class="panel active">
+    <div class="strip top" id="s-et"></div>
+
+    <div class="stage-mid" id="curtain-wrap">
+      <div class="stage-bg"></div>
+      <div class="stage-vign"></div>
+      <div class="curtain-l"></div>
+      <div class="curtain-r"></div>
+
+      <div class="e-title">
+        <div class="e-now">Now Showing</div>
+        <h1>BELLA<br>BLAST</h1>
+        <div class="e-line">The real one. In all her imperfections.</div>
+      </div>
+
+      <div class="e-cta" id="e-cta">
+        <button class="e-btn" onclick="go('lobby')">ENTER THE THEATER</button>
+      </div>
+    </div>
+
+    <div class="strip bot" id="s-eb"></div>
+  </section>
+
+  <!-- ═══ LOBBY ═══ -->
+  <section id="lobby" class="panel">
+    <div class="strip top" id="s-lt"></div>
+
+    <nav class="l-nav">
+      <button class="l-logo" onclick="go('entrance')">BELLA BLAST</button>
+    </nav>
+
+    <main class="l-main">
+      <div class="l-head">
+        <h2>You came for a reason.<br><em>Pick your room.</em></h2>
+        <div class="l-sub">Showings available now</div>
+      </div>
+
+      <div class="rooms">
+        <div class="room" onclick="room('bella-effect')">
+          <div class="r-dot"></div>
+          <div class="r-num">ROOM 01</div>
+          <div class="r-name">The Bella Effect</div>
+          <div class="r-tag">The Full Experience</div>
+        </div>
+        <div class="room" onclick="room('customs')">
+          <div class="r-dot"></div>
+          <div class="r-num">ROOM 02</div>
+          <div class="r-name">Customs</div>
+          <div class="r-tag">Built for You</div>
+        </div>
+        <div class="room" onclick="room('shipped')">
+          <div class="r-dot"></div>
+          <div class="r-num">ROOM 03</div>
+          <div class="r-name">Shipped Items</div>
+          <div class="r-tag">Real. Physical. Yours.</div>
+        </div>
+        <div class="room" onclick="room('closer')">
+          <div class="r-dot"></div>
+          <div class="r-num">ROOM 04</div>
+          <div class="r-name">Get Closer</div>
+          <div class="r-tag">Memberships</div>
+        </div>
+        <div class="room" onclick="room('clips')">
+          <div class="r-dot"></div>
+          <div class="r-num">ROOM 05</div>
+          <div class="r-name">Clip Store</div>
+          <div class="r-tag">The Catalogue</div>
+        </div>
+        <div class="room" onclick="room('info')">
+          <div class="r-dot"></div>
+          <div class="r-num">ROOM 06</div>
+          <div class="r-name">Info + Rules</div>
+          <div class="r-tag">Before You Book</div>
+        </div>
+      </div>
+
+      <div class="ticket" onclick="go('blaster')">
+        <div class="t-body">
+          <span class="t-vip">VIP</span>
+          <span class="t-text">Bella Blaster &nbsp;·&nbsp; Members Only</span>
+          <span class="t-vip">VIP</span>
+        </div>
+        <div class="t-perf"><span>Admit One</span></div>
+      </div>
+    </main>
+
+    <div class="strip bot" id="s-lb"></div>
+  </section>
+
+  <!-- ═══ BELLA BLASTER ═══ -->
+  <section id="blaster" class="panel">
+    <div class="strip top" id="s-bt"></div>
+
+    <div class="b-wrap">
+      <div class="b-eye">You found it</div>
+      <div class="b-name">BELLA<br>BLASTER</div>
+      <div class="b-mem">Members Only</div>
+      <p class="b-copy">This is where the real ones go.<br>You know what you want. Let's talk.</p>
+      <div class="b-actions">
+        <button class="b-btn" onclick="room('blaster-access')">Get Access</button>
+        <button class="b-back" onclick="go('lobby')">← Back to the lobby</button>
+      </div>
+    </div>
+
+    <div class="strip bot" id="s-bb"></div>
+  </section>
+
+</div>
+<script>
+  // Fill bulb strips
+  function fill(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const n = Math.floor(window.innerWidth / 22);
+    const f = document.createDocumentFragment();
+    for (let i = 0; i < n; i++) {
+      const b = document.createElement('div');
+      b.className = 'bulb';
+      f.appendChild(b);
+    }
+    el.appendChild(f);
+  }
+  ['s-et','s-eb','s-lt','s-lb','s-bt','s-bb'].forEach(fill);
+
+  // Curtains open
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      document.getElementById('curtain-wrap').classList.add('open');
+      setTimeout(function() {
+        document.getElementById('e-cta').classList.add('show');
+      }, 1800);
+    }, 400);
+  });
+
+  // Panel nav
+  function go(id) {
+    document.querySelectorAll('.panel').forEach(function(p) {
+      p.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+  }
+
+  // Room nav (wire to real URLs when subpages are built)
+  function room(page) {
+    // window.location.href = '/' + page;
+  }
+
+  // Keyboard
+  document.addEventListener('keydown', function(e) {
+    if ((e.key === 'Enter' || e.key === ' ') &&
+        document.getElementById('entrance').classList.contains('active')) {
+      go('lobby');
+    }
+    if (e.key === 'Escape' &&
+        document.getElementById('blaster').classList.contains('active')) {
+      go('lobby');
+    }
+  });
+</script>
+</body>
+</html>
