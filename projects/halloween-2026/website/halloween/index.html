@@ -12,13 +12,65 @@
   <div class="event-header">
     <div class="title">BLAST OR TREAT</div>
     <div class="subtitle">Halloween Live Event 2026</div>
-    <div class="tagline">Choose your window. Claim your square.</div>
+    <div class="tagline">Pick your window. If Bella blasts — you win.</div>
+  </div>
+
+  <div class="how-it-works">
+    <div class="hiw-title">HOW IT WORKS</div>
+    <div class="hiw-timeline">
+      <div class="hiw-row">
+        <div class="hiw-block hiw-win">A</div>
+        <div class="hiw-block">B</div>
+        <div class="hiw-block">C</div>
+        <div class="hiw-block hiw-win">D</div>
+        <div class="hiw-block">E</div>
+        <div class="hiw-block">F</div>
+        <div class="hiw-block hiw-win">G</div>
+        <div class="hiw-block">H</div>
+        <div class="hiw-block">I</div>
+        <div class="hiw-block">J</div>
+      </div>
+      <div class="hiw-label">10 windows &bull; 3 minutes each &bull; 30-minute show</div>
+    </div>
+    <div class="hiw-steps">
+      <div class="hiw-step">
+        <span class="hiw-num">1</span>
+        <span>Pick a 3-minute window (your square)</span>
+      </div>
+      <div class="hiw-step">
+        <span class="hiw-num">2</span>
+        <span>If Bella blasts during your time&nbsp;&mdash; you spin the <strong>big wheel</strong></span>
+      </div>
+      <div class="hiw-step hiw-step-guaranteed">
+        <span class="hiw-num">3</span>
+        <span>Every buyer guaranteed a <strong>small wheel spin</strong> no matter what</span>
+      </div>
+    </div>
   </div>
 
   <div class="board" id="board"></div>
 
+  <div class="unlisted-note">Private squares available by DM</div>
+
   <div class="info">
-    <div class="price">$15 per square <span class="vip-note">&bull; VIP: $10</span></div>
+    <div class="pricing-grid">
+      <div class="pricing-cell">
+        <div class="pricing-qty">1 square</div>
+        <div class="pricing-val">$10 <span class="pricing-vip">VIP</span></div>
+        <div class="pricing-val-alt">$15 standard</div>
+      </div>
+      <div class="pricing-cell pricing-cell-best">
+        <div class="pricing-badge">BEST VALUE</div>
+        <div class="pricing-qty">2 squares</div>
+        <div class="pricing-val">$20</div>
+        <div class="pricing-val-alt">save $10</div>
+      </div>
+      <div class="pricing-cell">
+        <div class="pricing-qty">3 squares</div>
+        <div class="pricing-val">$30</div>
+        <div class="pricing-val-alt">save $15</div>
+      </div>
+    </div>
     <div class="cta">TAP A WINDOW TO RESERVE</div>
     <div class="event-date" id="eventDate"></div>
     <div class="recording-note">Miss the live? Replays available after the show.</div>
@@ -31,7 +83,7 @@
 
     <div id="drawerReserve">
       <h2>Window <span id="drawerLetter"></span></h2>
-      <div class="spots-left"><span id="drawerSpots"></span> spots left</div>
+      <div class="spots-left"><span id="drawerSpots"></span> spots left in this window</div>
 
       <label for="nameInput">Your display name</label>
       <input type="text" id="nameInput" placeholder="How Bella knows you" maxlength="30" autocomplete="off">
@@ -46,7 +98,7 @@
       <div class="code-display">
         <div class="code" id="codeDisplay"></div>
         <div class="instructions">
-          Screenshot this code. Send your $15 tip ($10 for VIP) on OnlyFans with the code in the tip note. Bella will confirm your square within 3 hours.
+          Screenshot this code. Send your tip on OnlyFans ($10 VIP / $15 standard) with the code in the tip note. Bella will confirm your square within 3 hours.
         </div>
       </div>
       <button class="btn" onclick="closeDrawer()">Got It</button>
