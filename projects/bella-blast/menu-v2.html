@@ -1,343 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Bella Blast</title>
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* Dark-first. Warm, intimate, premium. */
-/* Layout: single-column scroll, stacked cards, interactive selection */
-
+/* ===== TOKENS ===== */
 :root {
-  --bg:       #131110;
-  --bg-card:  #1d1a18;
-  --fg:       #f0e8e3;
-  --fg-muted: #9e9088;
-  --fg-dim:   #5e5450;
-  --border:   rgba(255,255,255,0.07);
-  --accent:   #c4924a;
-  --r:        #c47045;
-  --o:        #6fa860;
-  --g:        #a84a5a;
+  --bg:         #0d0b09;
+  --bg-card:    #161210;
+  --bg-card-2:  #1d1916;
+  --fg:         #f0e8d8;
+  --fg-muted:   #a89278;
+  --fg-dim:     #5a4e42;
+  --gold:       #c9a84c;
+  --gold-lt:    #ecdfa0;
+  --gold-dim:   #6e5820;
+  --rose:       #b8829a;
+  --rose-lt:    #d9b4c8;
+  --rose-dim:   #6a3852;
+  --border:     rgba(201,168,76,0.10);
+  --border-s:   rgba(201,168,76,0.22);
   color-scheme: dark;
 }
-
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --bg:       #f5ece6;
-    --bg-card:  #ece2da;
-    --fg:       #1a1210;
-    --fg-muted: #6a5e58;
-    --fg-dim:   #a09088;
-    --border:   rgba(0,0,0,0.09);
-    --accent:   #a87030;
-    --r:        #b06030;
-    --o:        #3a7828;
-    --g:        #8a3040;
+    --bg:       #f5ede4;
+    --bg-card:  #ece3da;
+    --bg-card-2:#e2d8ce;
+    --fg:       #1a1410;
+    --fg-muted: #6a5848;
+    --fg-dim:   #a09080;
+    --gold:     #9a7828;
+    --gold-lt:  #c09040;
+    --gold-dim: #7a6020;
+    --rose:     #8a5068;
+    --rose-lt:  #b07090;
+    --rose-dim: #6a3850;
+    --border:   rgba(154,120,40,0.12);
+    --border-s: rgba(154,120,40,0.28);
     color-scheme: light;
   }
 }
-:root[data-theme="light"] {
-  --bg:       #f5ece6;
-  --bg-card:  #ece2da;
-  --fg:       #1a1210;
-  --fg-muted: #6a5e58;
-  --fg-dim:   #a09088;
-  --border:   rgba(0,0,0,0.09);
-  --accent:   #a87030;
-  --r:        #b06030;
-  --o:        #3a7828;
-  --g:        #8a3040;
-  color-scheme: light;
+:root[data-theme="dark"] {
+  --bg:         #0d0b09;
+  --bg-card:    #161210;
+  --bg-card-2:  #1d1916;
+  --fg:         #f0e8d8;
+  --fg-muted:   #a89278;
+  --fg-dim:     #5a4e42;
+  --gold:       #c9a84c;
+  --gold-lt:    #ecdfa0;
+  --gold-dim:   #6e5820;
+  --rose:       #b8829a;
+  --rose-lt:    #d9b4c8;
+  --rose-dim:   #6a3852;
+  --border:     rgba(201,168,76,0.10);
+  --border-s:   rgba(201,168,76,0.22);
+  color-scheme: dark;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; }
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
   color: var(--fg);
   font-family: 'Inter', system-ui, sans-serif;
   font-weight: 300;
-  line-height: 1.65;
-  padding-inline: 20px;
-  padding-block: 48px 100px;
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.page { max-width: 720px; margin: 0 auto; }
+/* ===== MARQUEE LIGHTS ===== */
+.lights {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
 
-/* HERO */
+.bulb {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--gold);
+  box-shadow: 0 0 6px 2px rgba(232,212,120,0.55);
+  animation: blinkbulb 2.8s ease-in-out infinite;
+}
+.bulb:nth-child(2n)   { animation-delay: -1.4s; background: var(--rose); box-shadow: 0 0 6px 2px rgba(216,160,186,0.55); }
+.bulb:nth-child(3n)   { animation-delay: -0.7s; }
+.bulb:nth-child(5n)   { animation-delay: -2.1s; background: var(--rose); box-shadow: 0 0 6px 2px rgba(216,160,186,0.55); }
+.bulb:nth-child(7n)   { animation-delay: -0.35s; }
+.bulb:nth-child(11n)  { animation-delay: -1.75s; }
+
+@keyframes blinkbulb {
+  0%, 90%, 100% { opacity: 1; }
+  45%           { opacity: 0.12; box-shadow: none; }
+}
+
+/* ===== LAYOUT ===== */
+.page {
+  max-width: 740px;
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-bottom: 140px;
+}
+
+/* ===== HERO ===== */
 .hero {
   text-align: center;
-  padding-block-end: 52px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 56px;
+  padding: 44px 16px 52px;
 }
 
 .eyebrow {
+  font-family: 'Cinzel', serif;
   font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
+  font-weight: 400;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 20px;
+  color: var(--gold-dim);
+  margin-bottom: 22px;
 }
 
-.hero h1 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.8rem, 9vw, 4.4rem);
-  font-weight: 700;
-  line-height: 1.06;
-  color: var(--fg);
-  text-wrap: balance;
-  margin-bottom: 24px;
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.6rem, 9.5vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  background: linear-gradient(125deg, var(--gold-lt) 0%, var(--gold) 30%, var(--rose-lt) 55%, var(--gold) 75%, var(--gold-lt) 100%);
+  background-size: 280% 280%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 6s ease infinite;
+  margin-bottom: 14px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-tagline {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 30px;
 }
 
 .hero-body {
   font-size: 1rem;
   color: var(--fg-muted);
-  max-width: 460px;
+  max-width: 480px;
   margin: 0 auto 22px;
-  line-height: 1.8;
-  text-wrap: balance;
+  line-height: 1.85;
 }
 
 .hero-quote {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Playfair Display', serif;
   font-style: italic;
-  font-size: 0.98rem;
-  color: var(--fg-dim);
+  font-size: 1.05rem;
+  color: var(--gold);
 }
 
-/* TASTER */
-.taster-wrap { margin-bottom: 60px; }
+/* ===== DIVIDER ===== */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+  margin: 0 0 52px;
+}
 
-.sec-label {
+/* ===== SECTION LABEL ===== */
+.section-label {
+  font-family: 'Cinzel', serif;
   font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
+  font-weight: 400;
+  letter-spacing: 0.30em;
   text-transform: uppercase;
   color: var(--fg-dim);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
+
+/* ===== TASTER CARD ===== */
+.taster-wrap { margin-bottom: 56px; }
 
 .taster-card {
   background: var(--bg-card);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-s);
   border-radius: 14px;
-  padding: 26px 28px;
+  padding: 28px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.taster-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--rose-dim), var(--rose), var(--rose-dim));
 }
 
 .taster-card h3 {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Cinzel', serif;
   font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--fg);
-  margin-bottom: 7px;
+  font-weight: 700;
+  color: var(--rose-lt);
+  margin-bottom: 8px;
 }
 
 .taster-card p {
   font-size: 0.88rem;
   color: var(--fg-muted);
-  max-width: 380px;
-  line-height: 1.7;
+  max-width: 360px;
+  line-height: 1.78;
 }
 
-.price-block { flex-shrink: 0; text-align: right; }
+.price-col { flex-shrink: 0; text-align: right; }
 
-.price-main {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 2.1rem;
+.price-big {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
   font-weight: 700;
-  color: var(--accent);
-}
-
-.price-sub {
-  display: block;
-  font-size: 0.72rem;
-  color: var(--fg-dim);
-  margin-top: 2px;
-}
-
-/* MENU SECTION */
-.menu-hd { margin-bottom: 30px; }
-
-.menu-hd h2 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.4rem, 4.5vw, 1.9rem);
-  font-weight: 600;
-  color: var(--fg);
-  margin-bottom: 9px;
-}
-
-.menu-hd p {
-  font-size: 0.88rem;
-  color: var(--fg-muted);
-  line-height: 1.7;
-}
-
-.tiers { display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
-
-/* TIER CARDS */
-.tier {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--ta, var(--accent));
-  border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.tier.r  { --ta: var(--r); }
-.tier.o  { --ta: var(--o); }
-.tier.g  { --ta: var(--g); }
-
-.tier.selected {
-  border-color: var(--ta);
-  box-shadow: 0 0 0 1px var(--ta), 0 8px 32px rgba(0,0,0,0.3);
-}
-
-.tier-top {
-  padding: 22px 24px 18px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.tier-top h3 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.45rem;
-  font-weight: 700;
-  color: var(--ta);
+  color: var(--rose-lt);
+  line-height: 1;
   margin-bottom: 4px;
 }
 
-.food-tag {
-  font-size: 0.78rem;
-  color: var(--fg-muted);
-  font-weight: 400;
+.price-note {
+  font-size: 0.72rem;
+  color: var(--fg-dim);
+  letter-spacing: 0.04em;
 }
 
-.tier-price-col { text-align: right; flex-shrink: 0; }
+/* ===== MENU HEADER ===== */
+.menu-intro { margin-bottom: 30px; }
 
-.dollar-tier {
-  font-size: 1.2rem;
+.menu-intro h2 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.menu-intro p {
+  font-size: 0.9rem;
+  color: var(--fg-muted);
+  line-height: 1.8;
+  max-width: 520px;
+}
+
+/* ===== TIER CARDS ===== */
+.tiers { display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px; }
+
+.tier-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tier-card:hover { transform: translateY(-2px); }
+
+.tier-card.selected {
+  border-color: var(--tc, var(--gold));
+  box-shadow: 0 0 0 1px var(--tc, var(--gold)), 0 16px 48px rgba(0,0,0,0.45);
+}
+
+/* Per-tier accent color */
+.t-r { --tc: var(--gold);  --tl: var(--gold-lt);  --td: var(--gold-dim); }
+.t-o { --tc: var(--rose);  --tl: var(--rose-lt);  --td: var(--rose-dim); }
+.t-g { --tc: #a87060;      --tl: #d4a090;         --td: #5a3020; }
+
+/* Poster header */
+.tier-poster {
+  padding: 22px 26px 18px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.tier-poster::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--tc) 0%, transparent 55%);
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.tier-genre {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--td);
+  margin-bottom: 8px;
+}
+
+.tier-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.55rem, 5vw, 2.1rem);
+  font-weight: 700;
+  color: var(--tl);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.tier-food {
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  font-style: italic;
+}
+
+.tier-price {
+  position: absolute;
+  top: 20px; right: 24px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--ta);
-  letter-spacing: 0.06em;
+  color: var(--tc);
+  letter-spacing: 0.05em;
 }
 
-.dollar-dim { color: var(--fg-dim); }
+/* Card body */
+.tier-body { padding: 20px 26px 24px; }
 
-.tier-body { padding: 18px 24px 22px; }
-
-.tier-desc {
-  font-size: 0.91rem;
+.tier-copy {
+  font-size: 0.9rem;
   color: var(--fg-muted);
-  line-height: 1.78;
-  margin-bottom: 20px;
+  line-height: 1.82;
+  margin-bottom: 22px;
 }
 
-/* METERS */
-.meters {
+/* Reaction bars */
+.reaction-bars {
   display: grid;
-  grid-template-columns: repeat(3, 1fr) auto;
-  gap: 10px 20px;
-  align-items: start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px 16px;
+  margin-bottom: 18px;
 }
 
-@media (max-width: 460px) {
-  .meters { grid-template-columns: repeat(3, 1fr); }
-  .char-col { grid-column: 1 / -1; padding-top: 4px; }
-}
+.rbar { display: flex; flex-direction: column; gap: 7px; }
 
-.meter { display: flex; flex-direction: column; gap: 6px; }
-
-.m-lbl {
+.rbar-label {
   font-size: 8px;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--fg-dim);
 }
 
-.dots { display: flex; gap: 3px; }
-
-.d {
-  width: 9px; height: 9px;
-  border-radius: 50%;
+.rbar-track {
+  height: 3px;
   background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
 }
 
-.d.on { background: var(--ta); border-color: var(--ta); }
+.rbar-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--td), var(--tc));
+  border-radius: 2px;
+  transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light mode bars */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .rbar-track { background: rgba(0,0,0,0.08); }
+}
+:root[data-theme="light"] .rbar-track { background: rgba(0,0,0,0.08); }
+
+/* Toilet add-on toggle */
+.addon {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 16px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s, border-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  margin-bottom: 0;
+}
+
+.addon:hover { background: rgba(255,255,255,0.045); }
+.addon.on { border-color: var(--tc); background: rgba(255,255,255,0.045); }
 
 @media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) .d { background: rgba(0,0,0,0.07); border-color: rgba(0,0,0,0.12); }
+  :root:not([data-theme="dark"]) .addon { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); }
+  :root:not([data-theme="dark"]) .addon:hover { background: rgba(0,0,0,0.05); }
 }
-:root[data-theme="light"] .d { background: rgba(0,0,0,0.07); border-color: rgba(0,0,0,0.12); }
+:root[data-theme="light"] .addon { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); }
 
-.char-col { display: flex; align-items: flex-end; }
-
-.char-txt {
-  font-size: 0.76rem;
-  font-style: italic;
-  color: var(--fg-dim);
-  white-space: nowrap;
+.addon-box {
+  width: 20px; height: 20px;
+  min-width: 20px;
+  border: 1.5px solid var(--fg-dim);
+  border-radius: 5px;
+  margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.15s, background 0.15s;
 }
 
-/* SELECTED CHECK MARK */
-.tier-check {
+.addon.on .addon-box {
+  border-color: var(--tc);
+  background: var(--tc);
+}
+
+.check-icon {
   display: none;
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--ta);
-  margin-top: 14px;
-  letter-spacing: 0.02em;
+  font-size: 11px;
+  font-weight: 900;
+  color: #0d0b09;
+  line-height: 1;
 }
 
-.tier.selected .tier-check { display: block; }
+.addon.on .check-icon { display: block; }
 
-/* DISCLAIMER */
+.addon-content {}
+
+.addon-name {
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: 2px;
+}
+
+.addon-desc {
+  font-size: 0.78rem;
+  color: var(--fg-dim);
+  line-height: 1.55;
+}
+
+/* Selected state */
+.tier-picked {
+  display: none;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tc);
+  margin-top: 14px;
+}
+
+.tier-card.selected .tier-picked { display: block; }
+
+/* ===== DISCLAIMER ===== */
 .disclaimer {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 14px 18px;
-  margin-bottom: 48px;
+  padding: 16px 20px;
+  margin-bottom: 52px;
 }
 
 .disclaimer p {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: var(--fg-dim);
-  line-height: 1.65;
+  line-height: 1.72;
 }
 
 .disclaimer strong { color: var(--fg-muted); font-weight: 500; }
 
-/* CONTACT */
+/* ===== CONTACT ===== */
 .contact {
   text-align: center;
-  padding-top: 28px;
+  padding-top: 32px;
   border-top: 1px solid var(--border);
 }
 
 .contact h2 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--fg);
-  margin-bottom: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 12px;
 }
 
-.contact p { font-size: 0.88rem; color: var(--fg-muted); margin-bottom: 6px; }
+.contact p {
+  font-size: 0.9rem;
+  color: var(--fg-muted);
+  margin-bottom: 6px;
+  line-height: 1.8;
+}
+
+.contact-handle {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--rose-lt);
+  margin: 8px 0;
+}
 
 .contact-note {
   font-size: 0.75rem;
@@ -345,205 +525,219 @@ body {
   margin-top: 14px;
 }
 
-/* STICKY SELECTION BAR */
+/* ===== STICKY PICK BAR ===== */
 .pick-bar {
   position: fixed;
   bottom: 0; left: 0; right: 0;
-  background: var(--bg-card);
-  border-top: 1px solid var(--border);
+  background: rgba(13,11,9,0.93);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--border-s);
   padding: 14px 24px;
   padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 10;
   flex-wrap: wrap;
+  transform: translateY(100%);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 100;
 }
 
-.pick-bar.show { transform: translateY(0); }
+.pick-bar.visible { transform: translateY(0); }
 
-.pick-bar-label {
-  font-size: 0.85rem;
-  color: var(--fg-muted);
+.bar-info {}
+
+.bar-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  margin-bottom: 2px;
 }
 
-.pick-bar-name {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-weight: 600;
+.bar-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--fg);
 }
 
-.pick-btn {
-  background: var(--picked-color, var(--accent));
-  color: #fff;
+.book-btn {
+  background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 100%);
+  color: #1a1000;
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 500;
+  padding: 11px 22px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   cursor: pointer;
   white-space: nowrap;
-  transition: opacity 0.15s;
+  transition: opacity 0.15s, transform 0.1s;
 }
 
-.pick-btn:hover { opacity: 0.88; }
+.book-btn:hover { opacity: 0.88; }
+.book-btn:active { transform: scale(0.97); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .taster-card { flex-direction: column; align-items: flex-start; }
+  .price-col { text-align: left; }
+  .tier-price { font-size: 0.95rem; top: 18px; right: 18px; }
+  .tier-poster, .tier-body { padding-inline: 18px; }
+  .taster-card { padding: 22px 20px; }
+}
 </style>
+</head>
+<body>
+
+<!-- MARQUEE LIGHTS -->
+<div class="lights" id="lights"></div>
 
 <div class="page">
 
   <!-- HERO -->
   <header class="hero">
-    <div class="eyebrow">One day. One Bella. Nothing held back.</div>
-    <h1>The Bella Blast</h1>
-    <p class="hero-body">You pick the food. I order it, eat it on video, and send you real-time clips all day long. You're not just getting content. You're living the day with me from wherever you are. Belly out, body doing exactly what it does. You'll beg me to stop. I'll keep going.</p>
-    <p class="hero-quote">"This is the real Bella."</p>
+    <div class="eyebrow">One Day &nbsp;&middot;&nbsp; One Bella &nbsp;&middot;&nbsp; Nothing Held Back</div>
+    <h1 class="hero-title">The Bella Blast</h1>
+    <div class="hero-tagline">A Real Day &nbsp;&middot;&nbsp; A Real Body &nbsp;&middot;&nbsp; Your Pick</div>
+    <p class="hero-body">You pick the food. I order it on Uber Eats and send you a screenshot of the full total so you see exactly what it costs. Then I eat it on video and send you real-time clips all day long. Belly out. Body doing exactly what it does. You'll beg me to stop. I'm not stopping.</p>
+    <p class="hero-quote">&ldquo;This is the real Bella.&rdquo;</p>
   </header>
+
+  <div class="divider"></div>
 
   <!-- TASTER -->
   <section class="taster-wrap">
-    <div class="sec-label">Not sure yet? Start here.</div>
+    <div class="section-label">Not sure yet? Start here.</div>
     <div class="taster-card">
       <div>
         <h3>The Taster</h3>
-        <p>A few hours of real content and direct replies from me. You see exactly what you're getting before you commit to the full day. No food required. Just the real thing.</p>
+        <p>A few hours. Real clips. Real replies from me. You see exactly what you're getting before you commit to a full day. This is proof. No food required.</p>
       </div>
-      <div class="price-block">
-        <div class="price-main">$25</div>
-        <span class="price-sub">No food required</span>
+      <div class="price-col">
+        <div class="price-big">$25</div>
+        <div class="price-note">No food required</div>
       </div>
     </div>
   </section>
 
   <!-- CHOOSE YOUR BLAST -->
   <section>
-    <div class="menu-hd">
+    <div class="menu-intro">
       <h2>Choose Your Blast</h2>
-      <p>You pick the tier. I order the food, send you a screenshot of the full Uber Eats total so you see exactly what it costs, and we lock in your date. One person per day. Hard limit.</p>
+      <p>Each tier is a different kind of day. Same real Bella. Different food, different character, different experience. Pick the one that matches what you're looking for. One person per day &mdash; that's the hard limit.</p>
     </div>
 
     <div class="tiers">
 
-      <!-- RAPID FIRE -->
-      <div class="tier r" data-name="Rapid Fire" data-color="var(--r)" onclick="selectTier(this)">
-        <div class="tier-top">
-          <div>
-            <h3>Rapid Fire</h3>
-            <div class="food-tag">McDonald's — burgers, your order</div>
-          </div>
-          <div class="tier-price-col">
-            <div class="dollar-tier">$<span class="dollar-dim">$$</span></div>
-          </div>
+      <!-- TIER I: RAPID FIRE -->
+      <div class="tier-card t-r" onclick="selectTier(this)" data-name="Rapid Fire" data-food="McDonald's">
+        <div class="tier-poster">
+          <div class="tier-genre">Tier I &nbsp;&middot;&nbsp; High Volume</div>
+          <div class="tier-title">Rapid Fire</div>
+          <div class="tier-food">McDonald&rsquo;s &mdash; you pick the order</div>
+          <div class="tier-price">$<span style="opacity:0.32">$$</span></div>
         </div>
         <div class="tier-body">
-          <p class="tier-desc">McDonald's hits fast and it keeps going. This is the high-volume pick. Short, bubbly, back-to-back clips all day long — your notifications won't stop. The smell is real, it's there, but it won't clear a room. If digestion sounds are your thing and you want content hitting your feed constantly from morning to night, this is the one you want. You won't ever be waiting long between deliveries.</p>
-          <div class="meters">
-            <div class="meter">
-              <div class="m-lbl">Volume</div>
-              <div class="dots">
-                <div class="d on"></div><div class="d on"></div><div class="d on"></div><div class="d on"></div><div class="d on"></div>
-              </div>
+          <p class="tier-copy">McDonald&rsquo;s hits fast and it keeps going. Short, bubbly, back-to-back clips all day long &mdash; your phone won&rsquo;t stop going off. The smell is real but it won&rsquo;t clear a room. If you want content flooding your feed from morning to night and you&rsquo;re not waiting around between deliveries, this is the one.</p>
+          <div class="reaction-bars">
+            <div class="rbar">
+              <div class="rbar-label">Volume</div>
+              <div class="rbar-track"><div class="rbar-fill" style="width:100%"></div></div>
             </div>
-            <div class="meter">
-              <div class="m-lbl">Smell</div>
-              <div class="dots">
-                <div class="d on"></div><div class="d on"></div><div class="d"></div><div class="d"></div><div class="d"></div>
-              </div>
+            <div class="rbar">
+              <div class="rbar-label">Smell</div>
+              <div class="rbar-track"><div class="rbar-fill" style="width:38%"></div></div>
             </div>
-            <div class="meter">
-              <div class="m-lbl">Bloat</div>
-              <div class="dots">
-                <div class="d on"></div><div class="d on"></div><div class="d"></div><div class="d"></div><div class="d"></div>
-              </div>
-            </div>
-            <div class="char-col">
-              <span class="char-txt">Short and bubbly. All day.</span>
+            <div class="rbar">
+              <div class="rbar-label">Bloat</div>
+              <div class="rbar-track"><div class="rbar-fill" style="width:32%"></div></div>
             </div>
           </div>
-          <div class="tier-check">You picked this one. Good choice.</div>
+          <div class="addon" onclick="toggleAddon(event,this)">
+            <div class="addon-box"><span class="check-icon">&#10003;</span></div>
+            <div class="addon-content">
+              <div class="addon-name">Add Toilet Content</div>
+              <div class="addon-desc">Real. Full sequence. Message for add-on pricing.</div>
+            </div>
+          </div>
+          <div class="tier-picked">Selected &mdash; good choice</div>
         </div>
       </div>
 
-      <!-- THE OVERFLOW -->
-      <div class="tier o" data-name="The Overflow" data-color="var(--o)" onclick="selectTier(this)">
-        <div class="tier-top">
-          <div>
-            <h3>The Overflow</h3>
-            <div class="food-tag">Taco Bell — full order, tacos, Baja Blast</div>
-          </div>
-          <div class="tier-price-col">
-            <div class="dollar-tier">$$<span class="dollar-dim">$</span></div>
-          </div>
+      <!-- TIER II: THE OVERFLOW -->
+      <div class="tier-card t-o" onclick="selectTier(this)" data-name="The Overflow" data-food="Taco Bell">
+        <div class="tier-poster">
+          <div class="tier-genre">Tier II &nbsp;&middot;&nbsp; Maximum Variety</div>
+          <div class="tier-title">The Overflow</div>
+          <div class="tier-food">Taco Bell &mdash; full order, tacos, Baja Blast</div>
+          <div class="tier-price">$$<span style="opacity:0.32">$</span></div>
         </div>
         <div class="tier-body">
-          <p class="tier-desc">I order the full Taco Bell lineup and I wash all of it down with a Baja Blast. And I eat until I'm stuffed. The beans start working fast. The soda layers something on top of that. What that means for you is farts and burps all day, and you won't always know which is coming next. The smell builds as the hours go on. If you want the most eventful day — the most variety, the most surprises, all the sounds — this is it. Nothing about this day is predictable.</p>
-          <div class="meters">
-            <div class="meter">
-              <div class="m-lbl">Volume</div>
-              <div class="dots">
-                <div class="d on"></div><div class="d on"></div><div class="d on"></div><div class="d on"></div><div class="d"></div>
-              </div>
+          <p class="tier-copy">I order the full Taco Bell lineup and wash all of it down with a Baja Blast. Beans working fast, soda layering on top. That means farts and burps all day, and you won&rsquo;t always know which is coming next. The smell builds as the hours go on. If you want the most eventful day &mdash; the most variety, the most surprises &mdash; this is it. Nothing about this day is predictable.</p>
+          <div class="reaction-bars">
+            <div class="rbar">
+              <div class="rbar-label">Volume</div>
+              <div class="rbar-track"><div class="rbar-fill" style="width:80%"></div></div>
             </div>
-            <div class="meter">
-              <div class="m-lbl">Smell</div>
-              <div class="dots">
-                <div class="d on"></div><div class="d on"></div><div class="d on"></div><div class="d"></div><div class="d"></div>
-              </div>
+            <div class="rbar">
+              <div class="rbar-label">Smell</div>
+              <div class="rbar-track"><div class="rbar-fill" style="width:65%"></div></div>
             </div>
-            <div class="meter">
-              <div class="m-lbl">Bloat</div>
-              <div class="dots">
-                <div class="d on"></div><div class="d on"></div><div class="d on"></div><div class="d on"></div><div class="d"></div>
-              </div>
-            </div>
-            <div class="char-col">
-              <span class="char-txt">Farts and burps. All day.</span>
+            <div class="rbar">
+              <div class="rbar-label">Bloat</div>
+              <div class="rbar-track"><div class="rbar-fill" style="width:78%"></div></div>
             </div>
           </div>
-          <div class="tier-check">You picked this one. It's going to be a long day.</div>
+          <div class="addon" onclick="toggleAddon(event,this)">
+            <div class="addon-box"><span class="check-icon">&#10003;</span></div>
+            <div class="addon-content">
+              <div class="addon-name">Add Toilet Content</div>
+              <div class="addon-desc">Real. Full sequence. Message for add-on pricing.</div>
+            </div>
+          </div>
+          <div class="tier-picked">Selected &mdash; it&rsquo;s going to be a long day</div>
         </div>
       </div>
 
-      <!-- THE GROWLER -->
-      <div class="tier g" data-name="The Growler" data-color="var(--g)" onclick="selectTier(this)">
-        <div class="tier-top">
-          <div>
-            <h3>The Growler</h3>
-            <div class="food-tag">Carrabba's — Alfredo, extra broccoli, dessert</div>
-          </div>
-          <div class="tier-price-col">
-            <div class="dollar-tier">$$$</div>
-          </div>
+      <!-- TIER III: THE GROWLER -->
+      <div class="tier-card t-g" onclick="selectTier(this)" data-name="The Growler" data-food="Carrabba's">
+        <div class="tier-poster">
+          <div class="tier-genre">Tier III &nbsp;&middot;&nbsp; Max Intensity</div>
+          <div class="tier-title">The Growler</div>
+          <div class="tier-food">Carrabba&rsquo;s &mdash; Alfredo, extra broccoli, dessert</div>
+          <div class="tier-price">$$$</div>
         </div>
         <div class="tier-body">
-          <p class="tier-desc">My favorite order. Alfredo with extra broccoli and I always get dessert. I order the whole thing and I eat every bite. Milk-based is a completely different experience. You won't get the nonstop volume of the McDonald's day. What you get instead is deeper, louder, and they genuinely stink in a way the other tiers don't. By evening I'm full. I'm bloated. And you're going to feel all of that in every single clip I send. Fans who try The Growler come back for it. There's a reason it's the top tier.</p>
-          <div class="meters">
-            <div class="meter">
-              <div class="m-lbl">Volume</div>
-              <div class="dots">
-                <div class="d on"></div><div class="d on"></div><div class="d on"></div><div class="d"></div><div class="d"></div>
-              </div>
+          <p class="tier-copy">My favorite order. Alfredo with extra broccoli and I always get dessert. I eat every single bite. Milk-based is a completely different experience. You won&rsquo;t get the nonstop volume of the McDonald&rsquo;s day. What you get instead is deeper, louder, and they genuinely stink in a way the other tiers don&rsquo;t. By evening I&rsquo;m full and I&rsquo;m bloated and you&rsquo;re going to feel all of that in every single clip I send. Fans who try The Growler come back for it. There&rsquo;s a reason it&rsquo;s the top tier.</p>
+          <div class="reaction-bars">
+            <div class="rbar">
+              <div class="rbar-label">Volume</div>
+              <div class="rbar-track"><div class="rbar-fill" style="width:60%"></div></div>
             </div>
-            <div class="meter">
-              <div class="m-lbl">Smell</div>
-              <div class="dots">
-                <div class="d on"></div><div class="d on"></div><div class="d on"></div><div class="d on"></div><div class="d on"></div>
-              </div>
+            <div class="rbar">
+              <div class="rbar-label">Smell</div>
+              <div class="rbar-track"><div class="rbar-fill" style="width:100%"></div></div>
             </div>
-            <div class="meter">
-              <div class="m-lbl">Bloat</div>
-              <div class="dots">
-                <div class="d on"></div><div class="d on"></div><div class="d on"></div><div class="d on"></div><div class="d on"></div>
-              </div>
-            </div>
-            <div class="char-col">
-              <span class="char-txt">Deep growlers. Max bloat.</span>
+            <div class="rbar">
+              <div class="rbar-label">Bloat</div>
+              <div class="rbar-track"><div class="rbar-fill" style="width:100%"></div></div>
             </div>
           </div>
-          <div class="tier-check">The top tier. You know what you came for.</div>
+          <div class="addon" onclick="toggleAddon(event,this)">
+            <div class="addon-box"><span class="check-icon">&#10003;</span></div>
+            <div class="addon-content">
+              <div class="addon-name">Add Toilet Content</div>
+              <div class="addon-desc">Real. Full sequence. Message for add-on pricing.</div>
+            </div>
+          </div>
+          <div class="tier-picked">The top tier. You know what you came for.</div>
         </div>
       </div>
 
@@ -552,72 +746,95 @@ body {
 
   <!-- DISCLAIMER -->
   <div class="disclaimer">
-    <p><strong>Heads up:</strong> Every body is different. Reactions vary day to day. This is based on what these foods typically do to my body — but no two Blast Days are exactly alike. That's kind of the point.</p>
+    <p><strong>Real talk:</strong> Every body is different. Reactions vary day to day. This is based on what these foods typically do to my body &mdash; but no two Blast Days are exactly alike. That&rsquo;s kind of the point.</p>
   </div>
 
   <!-- CONTACT -->
   <section class="contact">
-    <h2>Ready to book your day?</h2>
+    <h2>Ready to Book?</h2>
     <p>Message me to check availability and lock in your date.</p>
-    <p>I'll send you a screenshot of the Uber Eats total so you see the full cost before we confirm anything.</p>
-    <p class="contact-note">Extended packages available — 3-day and 1-week options. Message me for pricing.</p>
+    <p>I&rsquo;ll send you a screenshot of the Uber Eats total before we confirm anything.</p>
+    <p class="contact-handle">[your handle here]</p>
+    <p class="contact-note">3-day and 1-week packages available. Message me for pricing.</p>
   </section>
 
 </div>
 
-<!-- STICKY PICK BAR -->
+<!-- PICK BAR -->
 <div class="pick-bar" id="pickBar">
-  <div>
-    <div class="pick-bar-label">You picked</div>
-    <div class="pick-bar-name" id="pickedName">—</div>
+  <div class="bar-info">
+    <div class="bar-eyebrow">Now Showing</div>
+    <div class="bar-name" id="barName">&mdash;</div>
   </div>
-  <button class="pick-btn" id="pickBtn" onclick="copyPickMessage()">Copy to message Bella</button>
+  <button class="book-btn" id="bookBtn" onclick="copyBooking()">Copy Booking Message</button>
 </div>
 
 <script>
+  // Build marquee lights
+  (function() {
+    const c = document.getElementById('lights');
+    for (let i = 0; i < 30; i++) {
+      const b = document.createElement('div');
+      b.className = 'bulb';
+      c.appendChild(b);
+    }
+  })();
+
   const bar = document.getElementById('pickBar');
-  const pickedName = document.getElementById('pickedName');
-  const pickBtn = document.getElementById('pickBtn');
-  let currentPick = null;
+  const barName = document.getElementById('barName');
+  const bookBtn = document.getElementById('bookBtn');
+  let picked = null;
 
   function selectTier(el) {
-    if (currentPick === el) {
+    if (picked === el) {
       el.classList.remove('selected');
-      bar.classList.remove('show');
-      currentPick = null;
+      bar.classList.remove('visible');
+      picked = null;
       return;
     }
-    document.querySelectorAll('.tier').forEach(t => t.classList.remove('selected'));
+    document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
-    currentPick = el;
-    const name = el.dataset.name;
-    pickedName.textContent = name;
-    bar.classList.add('show');
+    picked = el;
+    barName.textContent = el.dataset.name;
+    bar.classList.add('visible');
   }
 
-  function copyPickMessage() {
-    if (!currentPick) return;
-    const name = currentPick.dataset.name;
-    const msg = `Hey! I want to book a Bella Blast — I'm going with ${name}. Can you check your availability?`;
-    try {
-      navigator.clipboard.writeText(msg).then(() => {
-        pickBtn.textContent = 'Copied!';
-        setTimeout(() => { pickBtn.textContent = 'Copy to message Bella'; }, 2200);
-      }).catch(() => showFallback(msg));
-    } catch {
-      showFallback(msg);
+  function toggleAddon(e, el) {
+    e.stopPropagation();
+    el.classList.toggle('on');
+  }
+
+  function copyBooking() {
+    if (!picked) return;
+    const name = picked.dataset.name;
+    const food = picked.dataset.food;
+    const hasAddon = picked.querySelector('.addon.on') !== null;
+    let msg = 'Hey! I want to book a Bella Blast — I\'m going with ' + name + ' (' + food + ').';
+    if (hasAddon) {
+      msg += ' I also want to add the toilet content. Can you check your availability and the add-on pricing?';
+    } else {
+      msg += ' Can you check your availability?';
     }
+    try {
+      navigator.clipboard.writeText(msg).then(function() {
+        bookBtn.textContent = 'Copied!';
+        setTimeout(function() { bookBtn.textContent = 'Copy Booking Message'; }, 2400);
+      }).catch(function() { fallback(msg); });
+    } catch(e) { fallback(msg); }
   }
 
-  function showFallback(msg) {
+  function fallback(msg) {
     const ta = document.createElement('textarea');
     ta.value = msg;
-    ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+    ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none;top:0;left:0';
     document.body.appendChild(ta);
     ta.select();
-    try { document.execCommand('copy'); } catch {}
+    try { document.execCommand('copy'); } catch(e) {}
     document.body.removeChild(ta);
-    pickBtn.textContent = 'Copied!';
-    setTimeout(() => { pickBtn.textContent = 'Copy to message Bella'; }, 2200);
+    bookBtn.textContent = 'Copied!';
+    setTimeout(function() { bookBtn.textContent = 'Copy Booking Message'; }, 2400);
   }
 </script>
+
+</body>
+</html>
