@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blast or Treat - OnlyFans</title>
+    <meta name="description" content="Bella Blast Halloween 2026. Blast or Treat live events on OnlyFans." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Tenor+Sans&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+        --black: #0a0a0a;
+        --rose: #C8A08C;
+        --rose-glow: rgba(200, 160, 140, 0.25);
+        --smoke: #1a1a1a;
+        --ivory: #f5f0ec;
+        --orange: #E8701A;
+        --orange-glow: rgba(232, 112, 26, 0.3);
+        --purple: #6B2D8B;
+        --purple-glow: rgba(107, 45, 139, 0.2);
+      }
+
+      body {
+        background: var(--black);
+        color: var(--ivory);
+        font-family: 'Tenor Sans', sans-serif;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .fog {
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(ellipse at 30% 70%, var(--purple-glow) 0%, transparent 50%),
+          radial-gradient(ellipse at 70% 30%, var(--orange-glow) 0%, transparent 50%),
+          radial-gradient(ellipse at 50% 50%, var(--rose-glow) 0%, transparent 60%);
+        pointer-events: none;
+        animation: fogDrift 12s ease-in-out infinite alternate;
+      }
+
+      @keyframes fogDrift {
+        0% { opacity: 0.6; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1.05); }
+      }
+
+      .candles {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 120px;
+        background: linear-gradient(to top, rgba(232,112,26,0.06), transparent);
+        pointer-events: none;
+      }
+
+      .container {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        max-width: 420px;
+        width: 100%;
+      }
+
+      .eyebrow {
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--rose);
+        margin-bottom: 1rem;
+        opacity: 0.7;
+      }
+
+      h1 {
+        font-family: 'Cinzel', serif;
+        font-weight: 900;
+        font-size: clamp(2.4rem, 9vw, 3.5rem);
+        line-height: 1.05;
+        color: var(--ivory);
+        margin-bottom: 0.4rem;
+        text-shadow: 0 0 50px var(--orange-glow);
+      }
+
+      h1 .treat {
+        color: var(--orange);
+      }
+
+      .subtitle {
+        font-size: 0.85rem;
+        color: var(--rose);
+        margin-bottom: 2rem;
+        letter-spacing: 0.05em;
+        opacity: 0.9;
+      }
+
+      .event-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(200,160,140,0.12);
+        border-radius: 16px;
+        padding: 1.5rem 1.25rem;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(12px);
+      }
+
+      .event-card .dates-row {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .event-card .date-item {
+        text-align: center;
+      }
+
+      .event-card .date-num {
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        font-size: 1.6rem;
+        color: var(--orange);
+        line-height: 1;
+      }
+
+      .event-card .date-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(245,240,236,0.5);
+        margin-top: 0.25rem;
+      }
+
+      .divider {
+        width: 40px;
+        height: 1px;
+        background: rgba(200,160,140,0.2);
+        margin: 0.75rem auto;
+      }
+
+      .event-card .desc {
+        font-size: 0.8rem;
+        color: rgba(245,240,236,0.6);
+        line-height: 1.5;
+      }
+
+      .cta-btn {
+        display: block;
+        text-decoration: none;
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 1.15rem 2rem;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--orange) 0%, #c45a10 100%);
+        color: var(--black);
+        box-shadow:
+          0 4px 28px var(--orange-glow),
+          0 0 80px rgba(232,112,26,0.08);
+        transition: all 0.3s ease;
+        margin-bottom: 1rem;
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          0 8px 36px rgba(232,112,26,0.45),
+          0 0 100px rgba(232,112,26,0.12);
+      }
+
+      .cta-btn:active {
+        transform: translateY(0);
+      }
+
+      .back-link {
+        display: inline-block;
+        font-size: 0.75rem;
+        color: rgba(200,160,140,0.4);
+        text-decoration: none;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+
+      .back-link:hover {
+        color: var(--rose);
+      }
+
+      .spider {
+        position: fixed;
+        top: -2px;
+        left: 15%;
+        width: 1px;
+        height: 60px;
+        background: linear-gradient(to bottom, rgba(200,160,140,0.12), transparent);
+        pointer-events: none;
+      }
+
+      .spider::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: rgba(200,160,140,0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fog"></div>
+    <div class="candles"></div>
+    <div class="spider"></div>
+
+    <div class="container">
+      <p class="eyebrow">Bella Blast Presents</p>
+      <h1>Blast or <span class="treat">Treat</span></h1>
+      <p class="subtitle">Halloween 2026. Live on OnlyFans.</p>
+
+      <div class="event-card">
+        <div class="dates-row">
+          <div class="date-item">
+            <div class="date-num">19</div>
+            <div class="date-label">Oct</div>
+          </div>
+          <div class="date-item">
+            <div class="date-num">25</div>
+            <div class="date-label">Oct</div>
+          </div>
+          <div class="date-item">
+            <div class="date-num">31</div>
+            <div class="date-label">Oct</div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <p class="desc">Three nights of live Halloween content.<br />Games, stories, and the main event.</p>
+      </div>
+
+      <a href="https://onlyfans.com/bella-blast" target="_blank" rel="noopener" class="cta-btn">
+        Join on OnlyFans
+      </a>
+
+      <a href="../all/" class="back-link">View all platforms</a>
+    </div>
+  </body>
+</html>

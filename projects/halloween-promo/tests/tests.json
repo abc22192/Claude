@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Main landing page loads with event info",
+    "url": "/",
+    "method": "GET",
+    "assertions": [
+      { "type": "status", "expected": 200 },
+      { "type": "body_contains", "expected": "Blast or Treat" },
+      { "type": "body_contains", "expected": "Halloween 2026" }
+    ]
+  },
+  {
+    "name": "OF-only page loads with OnlyFans link",
+    "url": "/of/",
+    "method": "GET",
+    "assertions": [
+      { "type": "status", "expected": 200 },
+      { "type": "body_contains", "expected": "onlyfans.com/bella-blast" },
+      { "type": "body_contains", "expected": "Join on OnlyFans" }
+    ]
+  },
+  {
+    "name": "All-links page loads with all platform links",
+    "url": "/all/",
+    "method": "GET",
+    "assertions": [
+      { "type": "status", "expected": 200 },
+      { "type": "body_contains", "expected": "onlyfans.com/bella-blast" },
+      { "type": "body_contains", "expected": "onlyfans.com/bellablastfeet" },
+      { "type": "body_contains", "expected": "mymembers.io/blast" }
+    ]
+  }
+]

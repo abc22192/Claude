@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blast or Treat - All Platforms</title>
+    <meta name="description" content="Bella Blast Halloween 2026. Join the Blast or Treat experience on OnlyFans or Telegram." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Tenor+Sans&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+        --black: #0a0a0a;
+        --rose: #C8A08C;
+        --rose-glow: rgba(200, 160, 140, 0.25);
+        --smoke: #1a1a1a;
+        --ivory: #f5f0ec;
+        --orange: #E8701A;
+        --orange-glow: rgba(232, 112, 26, 0.3);
+        --purple: #6B2D8B;
+        --purple-glow: rgba(107, 45, 139, 0.2);
+        --teal: #1DA1F2;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--ivory);
+        font-family: 'Tenor Sans', sans-serif;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .fog {
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(ellipse at 25% 75%, var(--purple-glow) 0%, transparent 50%),
+          radial-gradient(ellipse at 75% 25%, var(--orange-glow) 0%, transparent 50%),
+          radial-gradient(ellipse at 50% 50%, var(--rose-glow) 0%, transparent 60%);
+        pointer-events: none;
+        animation: fogDrift 12s ease-in-out infinite alternate;
+      }
+
+      @keyframes fogDrift {
+        0% { opacity: 0.6; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1.05); }
+      }
+
+      .candles {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        background: linear-gradient(to top, rgba(232,112,26,0.05), transparent);
+        pointer-events: none;
+      }
+
+      .container {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        max-width: 420px;
+        width: 100%;
+      }
+
+      .eyebrow {
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--rose);
+        margin-bottom: 1rem;
+        opacity: 0.7;
+      }
+
+      h1 {
+        font-family: 'Cinzel', serif;
+        font-weight: 900;
+        font-size: clamp(2.2rem, 8.5vw, 3.2rem);
+        line-height: 1.05;
+        color: var(--ivory);
+        margin-bottom: 0.4rem;
+        text-shadow: 0 0 50px var(--orange-glow);
+      }
+
+      h1 .treat {
+        color: var(--orange);
+      }
+
+      .subtitle {
+        font-size: 0.85rem;
+        color: var(--rose);
+        margin-bottom: 1.75rem;
+        letter-spacing: 0.05em;
+        opacity: 0.9;
+      }
+
+      .section-label {
+        font-family: 'Cinzel', serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(200,160,140,0.4);
+        margin-bottom: 0.65rem;
+      }
+
+      .links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .link-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        text-decoration: none;
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 1rem 1.5rem;
+        border-radius: 14px;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .link-btn .icon {
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+
+      .link-btn.of-main {
+        background: linear-gradient(135deg, var(--orange) 0%, #c45a10 100%);
+        color: var(--black);
+        box-shadow: 0 4px 24px var(--orange-glow), 0 0 60px rgba(232,112,26,0.08);
+      }
+
+      .link-btn.of-main:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(232,112,26,0.4), 0 0 80px rgba(232,112,26,0.12);
+      }
+
+      .link-btn.of-feet {
+        background: rgba(232,112,26,0.08);
+        border: 1px solid rgba(232,112,26,0.35);
+        color: var(--orange);
+      }
+
+      .link-btn.of-feet:hover {
+        background: rgba(232,112,26,0.14);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(232,112,26,0.2);
+      }
+
+      .link-btn.telegram {
+        background: rgba(200,160,140,0.06);
+        border: 1px solid rgba(200,160,140,0.25);
+        color: var(--rose);
+        box-shadow: 0 4px 20px var(--rose-glow);
+      }
+
+      .link-btn.telegram:hover {
+        background: rgba(200,160,140,0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 28px rgba(200,160,140,0.3);
+      }
+
+      .link-btn:active {
+        transform: translateY(0);
+      }
+
+      .dates-strip {
+        display: flex;
+        justify-content: center;
+        gap: 1.75rem;
+        margin-bottom: 1.75rem;
+        padding: 0.75rem 0;
+        border-top: 1px solid rgba(200,160,140,0.08);
+        border-bottom: 1px solid rgba(200,160,140,0.08);
+      }
+
+      .date-chip {
+        text-align: center;
+      }
+
+      .date-chip .num {
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: var(--orange);
+        line-height: 1;
+      }
+
+      .date-chip .label {
+        font-size: 0.55rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(245,240,236,0.4);
+        margin-top: 0.15rem;
+      }
+
+      .spider {
+        position: fixed;
+        top: -2px;
+        right: 10%;
+        width: 1px;
+        height: 70px;
+        background: linear-gradient(to bottom, rgba(200,160,140,0.12), transparent);
+        pointer-events: none;
+      }
+
+      .spider::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: rgba(200,160,140,0.1);
+      }
+
+      .spider2 {
+        position: fixed;
+        top: -2px;
+        left: 8%;
+        width: 1px;
+        height: 45px;
+        background: linear-gradient(to bottom, rgba(232,112,26,0.1), transparent);
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fog"></div>
+    <div class="candles"></div>
+    <div class="spider"></div>
+    <div class="spider2"></div>
+
+    <div class="container">
+      <p class="eyebrow">Bella Blast Presents</p>
+      <h1>Blast or <span class="treat">Treat</span></h1>
+      <p class="subtitle">Halloween 2026. Three nights. Choose your door.</p>
+
+      <div class="dates-strip">
+        <div class="date-chip">
+          <div class="num">19</div>
+          <div class="label">Meet &amp; Greet</div>
+        </div>
+        <div class="date-chip">
+          <div class="num">25</div>
+          <div class="label">Stories Live</div>
+        </div>
+        <div class="date-chip">
+          <div class="num">31</div>
+          <div class="label">Blast or Treat</div>
+        </div>
+      </div>
+
+      <p class="section-label">OnlyFans</p>
+      <div class="links">
+        <a href="https://onlyfans.com/bella-blast" target="_blank" rel="noopener" class="link-btn of-main">
+          <span class="icon">&#127875;</span> Bella Blast
+        </a>
+        <a href="https://onlyfans.com/bellablastfeet" target="_blank" rel="noopener" class="link-btn of-feet">
+          <span class="icon">&#129462;</span> Bella Blast Feet
+        </a>
+      </div>
+
+      <p class="section-label">Telegram</p>
+      <div class="links">
+        <a href="https://mymembers.io/blast" target="_blank" rel="noopener" class="link-btn telegram">
+          <span class="icon">&#128172;</span> Telegram Vaults
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

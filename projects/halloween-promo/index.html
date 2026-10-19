@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blast or Treat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Tenor+Sans&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+        --black: #0a0a0a;
+        --rose: #C8A08C;
+        --rose-glow: rgba(200, 160, 140, 0.25);
+        --smoke: #1a1a1a;
+        --ivory: #f5f0ec;
+        --orange: #E8701A;
+        --orange-glow: rgba(232, 112, 26, 0.3);
+        --purple: #6B2D8B;
+        --purple-glow: rgba(107, 45, 139, 0.2);
+      }
+
+      body {
+        background: var(--black);
+        color: var(--ivory);
+        font-family: 'Tenor Sans', sans-serif;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .fog {
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(ellipse at 20% 80%, var(--purple-glow) 0%, transparent 50%),
+          radial-gradient(ellipse at 80% 20%, var(--orange-glow) 0%, transparent 50%),
+          radial-gradient(ellipse at 50% 50%, var(--rose-glow) 0%, transparent 60%);
+        pointer-events: none;
+        animation: fogDrift 12s ease-in-out infinite alternate;
+      }
+
+      @keyframes fogDrift {
+        0% { opacity: 0.6; transform: scale(1); }
+        100% { opacity: 1; transform: scale(1.05); }
+      }
+
+      .container {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 2rem 1rem;
+        max-width: 420px;
+        width: 100%;
+      }
+
+      .eyebrow {
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--rose);
+        margin-bottom: 0.75rem;
+        opacity: 0.8;
+      }
+
+      h1 {
+        font-family: 'Cinzel', serif;
+        font-weight: 900;
+        font-size: clamp(2.2rem, 8vw, 3.2rem);
+        line-height: 1.1;
+        color: var(--ivory);
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 40px var(--orange-glow);
+      }
+
+      h1 .treat {
+        color: var(--orange);
+      }
+
+      .tagline {
+        font-family: 'Tenor Sans', sans-serif;
+        font-size: 0.95rem;
+        color: var(--rose);
+        margin-bottom: 2.5rem;
+        letter-spacing: 0.05em;
+      }
+
+      .dates {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .date-pill {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(200,160,140,0.15);
+        border-radius: 12px;
+        padding: 0.65rem 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        backdrop-filter: blur(8px);
+      }
+
+      .date-pill .day {
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--orange);
+      }
+
+      .date-pill .event {
+        font-size: 0.8rem;
+        color: var(--ivory);
+        opacity: 0.85;
+      }
+
+      .links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+
+      .link-btn {
+        display: block;
+        text-decoration: none;
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 1rem 1.5rem;
+        border-radius: 14px;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .link-btn.primary {
+        background: linear-gradient(135deg, var(--orange) 0%, #c45a10 100%);
+        color: var(--black);
+        box-shadow: 0 4px 24px var(--orange-glow), 0 0 60px rgba(232,112,26,0.1);
+      }
+
+      .link-btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 32px rgba(232,112,26,0.4), 0 0 80px rgba(232,112,26,0.15);
+      }
+
+      .link-btn.secondary {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid var(--rose);
+        color: var(--rose);
+        box-shadow: 0 4px 20px var(--rose-glow);
+      }
+
+      .link-btn.secondary:hover {
+        background: rgba(200,160,140,0.08);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 28px rgba(200,160,140,0.3);
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 1.5rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(200,160,140,0.3);
+      }
+
+      .spider {
+        position: fixed;
+        top: -2px;
+        right: 12%;
+        width: 1px;
+        height: 80px;
+        background: linear-gradient(to bottom, rgba(200,160,140,0.15), transparent);
+        pointer-events: none;
+      }
+
+      .spider::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(200,160,140,0.12);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fog"></div>
+    <div class="spider"></div>
+
+    <div class="container">
+      <p class="eyebrow">Bella Blast Presents</p>
+      <h1>Blast or <span class="treat">Treat</span></h1>
+      <p class="tagline">Halloween 2026. Three nights. One experience.</p>
+
+      <div class="dates">
+        <div class="date-pill">
+          <span class="day">Oct 19</span>
+          <span class="event">Meet &amp; Greet</span>
+        </div>
+        <div class="date-pill">
+          <span class="day">Oct 25</span>
+          <span class="event">Fart Stories Live</span>
+        </div>
+        <div class="date-pill">
+          <span class="day">Oct 31</span>
+          <span class="event">Blast or Treat</span>
+        </div>
+      </div>
+
+      <div class="links">
+        <a href="./of/" class="link-btn primary">Enter via OnlyFans</a>
+        <a href="./all/" class="link-btn secondary">See All Ways In</a>
+      </div>
+    </div>
+
+    <div class="footer">Bella Blast</div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
