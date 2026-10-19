@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Blast or Treat</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="page" id="mainPage">
+  <div class="event-header">
+    <div class="title">BLAST OR TREAT</div>
+    <div class="subtitle">Halloween Live Event 2026</div>
+    <div class="tagline">Choose your window. Claim your square.</div>
+  </div>
+
+  <div class="board" id="board"></div>
+
+  <div class="info">
+    <div class="price">$10 per square</div>
+    <div class="cta">TAP A WINDOW TO RESERVE</div>
+    <div class="event-date" id="eventDate"></div>
+    <div class="recording-note">Miss the live? Replays available after the show.</div>
+  </div>
+</div>
+
+<div class="drawer-overlay" id="drawerOverlay">
+  <div class="drawer" id="drawer">
+    <div class="drawer-handle"></div>
+
+    <div id="drawerReserve">
+      <h2>Window <span id="drawerLetter"></span></h2>
+      <div class="spots-left"><span id="drawerSpots"></span> spots left</div>
+
+      <label for="nameInput">Your display name</label>
+      <input type="text" id="nameInput" placeholder="How Bella knows you" maxlength="30" autocomplete="off">
+
+      <div class="payment-methods">
+        <div class="payment-option">
+          <span class="payment-icon">💵</span>
+          <div>
+            <strong>Cash App</strong>
+            <div class="payment-detail">$blastwithbella</div>
+          </div>
+        </div>
+        <div class="payment-option">
+          <span class="payment-icon">🎁</span>
+          <div>
+            <strong>Amazon Gift Card</strong>
+            <div class="payment-detail">Send to: bootyfulfarts@gmail.com</div>
+          </div>
+        </div>
+        <div class="payment-option">
+          <span class="payment-icon">💳</span>
+          <div>
+            <strong>YouPay</strong>
+            <div class="payment-detail">youpay.me/BellaBlast</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn" id="reserveBtn" onclick="submitReserve()">RESERVE MY SQUARE</button>
+      <button class="btn btn-dismiss" onclick="closeDrawer()">Cancel</button>
+      <div id="reserveMsg"></div>
+    </div>
+
+    <div id="drawerSuccess" style="display:none">
+      <h2>You're In</h2>
+      <div class="code-display">
+        <div class="code" id="codeDisplay"></div>
+        <div class="instructions">
+          Screenshot this code. Send $10 via any payment method above with the code in the note. Bella will confirm your square within 3 hours.
+        </div>
+      </div>
+      <button class="btn" onclick="closeDrawer()">Got It</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var API = '../api/board.php';
+var SIDE = 'open';
+var LETTERS = ['A','B','C','D','E','F'];
+var boardData = null;
+var selectedWindow = null;
+
+function renderBoard(data) {
+  boardData = data;
+  var board = document.getElementById('board');
+  board.innerHTML = '';
+  LETTERS.forEach(function(letter) {
+    var win = data.windows[letter];
+    var avail = win.available;
+    var cls = 'available';
+    if (avail === 0) cls = 'full';
+    else if (win.taken > 0) {
+      var hasPending = win.slots.some(function(s) { return s.status === 'pending'; });
+      cls = hasPending ? 'pending' : 'partial';
+    }
+    var cell = document.createElement('div');
+    cell.className = 'window-cell ' + cls;
+    cell.innerHTML =
+      '<div class="circle"><span class="letter">' + letter + '</span></div>' +
+      '<div class="remaining">' + (avail > 0 ? avail + ' left' : 'FULL') + '</div>';
+    if (avail > 0) cell.onclick = function() { openDrawer(letter, avail); };
+    board.appendChild(cell);
+  });
+  if (data.event_time && data.event_time !== 'TBD') {
+    document.getElementById('eventDate').textContent = data.event_time;
+  }
+}
+
+function fetchBoard() {
+  fetch(API).then(function(r) { return r.json(); }).then(renderBoard).catch(function(){});
+}
+
+function openDrawer(letter, spots) {
+  selectedWindow = letter;
+  document.getElementById('drawerLetter').textContent = letter;
+  document.getElementById('drawerSpots').textContent = spots;
+  document.getElementById('drawerReserve').style.display = '';
+  document.getElementById('drawerSuccess').style.display = 'none';
+  document.getElementById('nameInput').value = '';
+  document.getElementById('reserveMsg').innerHTML = '';
+  document.getElementById('reserveBtn').disabled = false;
+  document.getElementById('drawerOverlay').classList.add('open');
+}
+
+function closeDrawer() {
+  document.getElementById('drawerOverlay').classList.remove('open');
+  selectedWindow = null;
+  fetchBoard();
+}
+
+function submitReserve() {
+  var name = document.getElementById('nameInput').value.trim();
+  if (!name) {
+    document.getElementById('reserveMsg').innerHTML = '<div class="status-msg error">Enter your name</div>';
+    return;
+  }
+  var btn = document.getElementById('reserveBtn');
+  btn.disabled = true;
+  btn.textContent = 'RESERVING...';
+
+  fetch(API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'reserve', window: selectedWindow, alias: name, side: SIDE })
+  })
+  .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, data: d }; }); })
+  .then(function(res) {
+    if (res.ok && res.data.code) {
+      document.getElementById('codeDisplay').textContent = res.data.code;
+      document.getElementById('drawerReserve').style.display = 'none';
+      document.getElementById('drawerSuccess').style.display = '';
+    } else {
+      document.getElementById('reserveMsg').innerHTML =
+        '<div class="status-msg error">' + (res.data.error || 'Something went wrong') + '</div>';
+      btn.disabled = false;
+      btn.textContent = 'RESERVE MY SQUARE';
+    }
+  })
+  .catch(function() {
+    document.getElementById('reserveMsg').innerHTML =
+      '<div class="status-msg error">Connection error. Try again.</div>';
+    btn.disabled = false;
+    btn.textContent = 'RESERVE MY SQUARE';
+  });
+}
+
+document.getElementById('drawerOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeDrawer();
+});
+
+fetchBoard();
+setInterval(fetchBoard, 30000);
+</script>
+
+</body>
+</html>

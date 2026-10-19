@@ -1,0 +1,12 @@
+{
+  "windows": {
+    "A": { "capacity": 3, "slots": [] },
+    "B": { "capacity": 3, "slots": [] },
+    "C": { "capacity": 3, "slots": [] },
+    "D": { "capacity": 3, "slots": [] },
+    "E": { "capacity": 3, "slots": [] },
+    "F": { "capacity": 3, "slots": [] }
+  },
+  "event_time": "TBD",
+  "updated_at": null
+}
