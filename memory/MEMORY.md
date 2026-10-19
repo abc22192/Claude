@@ -107,6 +107,10 @@ Full brief: `projects/bella-blast/brief.md` — read before touching anything on
 - Either Notion is stale (update needed) or she runs both Grok + Gemini for different jobs — needs resolving before any AI wiring
 - Default assumption going forward: Grok is the AI unless she says otherwise. Flag the Notion discrepancy whenever AI comes up.
 
+## Product notes (corrections from Bella — permanent)
+- **Fart audios don't work as a product.** Custom audio = voice messages only. Never offer fart audio clips.
+- Dick ratings: not universal appeal. Don't default to including them in prize/offer lists.
+
 ## Hard NEVER rules (corrections from Bella — permanent)
 - **NEVER suggest AP processor, bill processor, or any payment processing workflow** — she has her own system, stop offering it entirely
 - **NEVER suggest rigid schedules** — ADHD, they won't happen
