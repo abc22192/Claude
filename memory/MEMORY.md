@@ -71,13 +71,16 @@ Notion source: "Blast or Treat -- Halloween 2026 Campaign Plan" (updated 10/18)
   5. She had to repeat herself multiple times and got rightfully furious
 - Root cause: I deployed too fast without checking full prior context. She said SLOW DOWN when she brain dumps. I did the opposite.
 - What she actually wants (locked in memory permanently):
-  - Domain: live.bellablasts.com (CNAME to proxy-v2.appdeploy.ai)
+  - Domain: live.bellablasts.com (CNAME to proxy-v2.appdeploy.ai) — needs DNS record added in Hostinger
   - Concept: "Fart Squares" — like football squares, visual grid diagram
   - Window timing: 1 minute each, 10-minute show
   - Pricing: $10 VIP (OF subs) / $15 non-VIP per window. 2 windows $20/$25. 3 windows $30/$35.
-  - Both pages show the VIP vs non-VIP price so OF fans FEEL the discount
-  - Payment on BOTH pages: Cash App / Amazon GC / YouPay — NOT OnlyFans tips
-  - She also wants: promo emails, and an exclusive NSFW page for her personal use
+  - TWO SEPARATE PAGES — FINAL SPEC:
+    - /halloween/ = OnlyFans page only. Payment = OnlyFans TIP ONLY. Post this link on OF. $10 VIP.
+    - /treat/ = Public page. Cash App ($blastwithbella) + Amazon GC (bootyfulfarts@gmail.com) + YouPay (youpay.me/BellaBlast). $15 standard.
+    - Both show VIP vs standard pricing so fans feel the $5 discount
+  - Admin panel needs editable backend links so Bella can update without Claude
+  - Still needed: promo emails, exclusive NSFW page for her personal use
 
 ## Active tasks (never let these fall off)
 | Task | Status | Last touched |
