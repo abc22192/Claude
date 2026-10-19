@@ -27,20 +27,43 @@ She grew up without validation and guidance. Being heard, remembered, and though
 - Build log (mandatory every step): `projects/prompt-directory/docs/build-log.md`
 - Status: Research complete, architecture designed, awaiting Bella's go to build
 
+## Bella's Master Link Directory (saved 2026-10-19)
+Full file: `projects/halloween-2026/links-master.md`
+- All links from hub.bellablasts.com audit (verified 2026-10-10)
+- Covers: Feet, Farts, BBW, PodGAS, Talk, Pay, Stay in Touch
+- Payment methods: YouPay, Cash App ($blastwithbella), Amazon gift cards (bootyfulfarts@gmail.com)
+- Orphaned Beacons products (8 items needing new home, Beacons dead Oct 14)
+- Key OF links: Free page (https://onlyfans.com/2311351142/bootyful.goddess), VIP fart page (https://onlyfans.com/bellablasts/c22)
+- Telegram main: https://t.me/BellaBlast
+- VIFL vault: https://mymembers.io/vifl ($8 first, then $15/mo)
+- VISL vault: https://mymembers.io/visl ($30/mo, promo $25 first 3mo)
+
+## Blast or Treat -- Halloween 2026 (8-Agent Campaign System)
+Full plan: `projects/halloween-2026/agent-plan.md`
+Notion source: "Blast or Treat -- Halloween 2026 Campaign Plan" (updated 10/18)
+- 8 custom agents: Voice Master, Website Architect, Content Scheduler, Live Director, Compliance Watchdog, Pricing Architect, Marketing Strategist, Gap Finder
+- Key dates: Oct 19 meet-and-greet, Oct 25 Fart Stories Live, Oct 31 BLAST OR TREAT, Nov 1 meet-and-greet
+- Dual-payment website: OF-side (OF payment only, linkable on OF) + Open-side (Cash App/YouPay/Amazon, linked everywhere else)
+- Square pricing locked: Free OF $15, VIP OF $10, Telegram $10
+- Prize wheel: custom, unreleased video, or free month
+- Status: PLAN PHASE -- Bella reviewing before any agent runs
+- Virginia gambling/sweepstakes question still open (counsel recommended)
+
 ## Active tasks (never let these fall off)
 | Task | Status | Last touched |
 |------|--------|-------------|
-| 2024 taxes — filed, owes $2,025 | MAILED IN (filed 10/18). Owes $2,025 — NOT YET PAID. | 2026-10-18 |
-| Website migration bellablast.store → bellablast.com | DOMAIN SAFE — bellablast.com now points to Beacons. Pressure off. Still need to confirm Beacons page content and decide permanent home. | 2026-10-13 |
-| **Substy platform** — $9 wallet, OF connected (Bella Blast, chatInboxEnabled=false), Telegram now in Substy too | PLAN PHASE | 2026-10-13 |
-| **Bella Blast menu — HTML rebuild** | IN PROGRESS | 2026-10-06 |
+| **BLAST OR TREAT -- Halloween 2026** | PLAN PHASE -- 8-agent system planned, awaiting Bella approval | 2026-10-19 |
+| 2024 taxes -- filed, owes $2,025 | MAILED IN (filed 10/18). Owes $2,025 -- NOT YET PAID. | 2026-10-18 |
+| Website migration bellablast.store -> bellablast.com | DOMAIN SAFE -- .com now points to Beacons. Still need permanent home decision. | 2026-10-13 |
+| **Substy platform** -- $9 wallet, OF connected (Bella Blast, chatInboxEnabled=false), Telegram now in Substy too | PLAN PHASE | 2026-10-13 |
+| **Bella Blast menu -- HTML rebuild** | IN PROGRESS | 2026-10-06 |
 | **Bella Effect Intake form (v1)** | SHIPPED pending share-flip | 2026-10-07 |
-| **Match Game rebuild** (replaces Embeddables build, killed 6/25 for cost) | Not started — queued after intake | 2026-10-07 |
+| **Match Game rebuild** (replaces Embeddables build, killed 6/25 for cost) | Not started -- queued after intake | 2026-10-07 |
 | Fan automation + funnel | Planning | 2026-10-06 |
-| Email system | Not started | — |
-| Telegram welcome sequences | Not started | — |
-| Podcast revival | Not started | — |
-| Consistent posting system | Not started | — |
+| Email system | Not started | -- |
+| Telegram welcome sequences | Not started | -- |
+| Podcast revival | Not started | -- |
+| Consistent posting system | Not started | -- |
 
 ## Bella Blast Project
 Full brief: `projects/bella-blast/brief.md` — read before touching anything on this project.
