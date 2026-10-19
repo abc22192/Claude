@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blast or Treat Admin</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    body { overflow-y: auto; }
+  </style>
+</head>
+<body>
+
+<div class="password-gate" id="gate">
+  <h1>ADMIN</h1>
+  <input type="password" id="pwInput" placeholder="Password" autocomplete="off">
+  <button class="btn" onclick="tryLogin()">Enter</button>
+  <div id="pwError"></div>
+</div>
+
+<div class="admin-page" id="adminPage" style="display:none">
+  <h1>BLAST OR TREAT</h1>
+  <div id="windowCards"></div>
+</div>
+
+<script>
+var API = '../api/board.php';
+var TOKEN = 'blast-or-treat-2026-admin';
+var PASSWORD = 'bellablast2026';
+var headers = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN };
+var polling = null;
+
+function tryLogin() {
+  if (document.getElementById('pwInput').value === PASSWORD) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('adminPage').style.display = '';
+    fetchBoard();
+    polling = setInterval(fetchBoard, 10000);
+  } else {
+    document.getElementById('pwError').innerHTML = '<div class="status-msg error">Wrong password</div>';
+  }
+}
+document.getElementById('pwInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') tryLogin();
+});
+
+function fetchBoard() {
+  fetch(API + '?full=1', { headers: headers })
+    .then(function(r) { return r.json(); })
+    .then(renderAdmin)
+    .catch(function(){});
+}
+
+function renderAdmin(data) {
+  var container = document.getElementById('windowCards');
+  container.innerHTML = '';
+  var letters = ['A','B','C','D','E','F'];
+
+  letters.forEach(function(letter) {
+    var win = data.windows[letter];
+    var card = document.createElement('div');
+    card.className = 'admin-window';
+
+    var headerHtml = '<div class="admin-window-header">' +
+      '<h2>Window ' + letter + '</h2>' +
+      '<span class="capacity">' + win.slots.length + ' / ' + win.capacity + '</span>' +
+      '</div>';
+
+    var slotsHtml = '';
+    win.slots.forEach(function(slot, idx) {
+      var statusCls = slot.is_fake ? 'fake' : slot.status;
+      var statusLabel = slot.is_fake ? 'FAKE' : slot.status.toUpperCase();
+      var meta = slot.code + ' &bull; ' + slot.platform;
+      if (slot.reserved_at) meta += ' &bull; ' + new Date(slot.reserved_at).toLocaleString();
+
+      var actions = '';
+      if (slot.is_fake) {
+        actions = '<button class="btn-sm btn-release" onclick="removeFake(\'' + letter + '\',\'' + esc(slot.alias) + '\')">Remove</button>';
+      } else if (slot.status === 'pending') {
+        actions =
+          '<button class="btn-sm btn-confirm" onclick="confirmSlot(\'' + letter + '\',\'' + esc(slot.code) + '\')">Confirm</button>' +
+          '<button class="btn-sm btn-release" onclick="releaseSlot(\'' + letter + '\',\'' + esc(slot.code) + '\')">Release</button>';
+      } else {
+        actions = '<button class="btn-sm btn-release" onclick="releaseSlot(\'' + letter + '\',\'' + esc(slot.code) + '\')">Release</button>';
+      }
+
+      slotsHtml += '<div class="admin-slot">' +
+        '<div class="slot-info">' +
+          '<div class="slot-alias">' + esc(slot.alias) + '</div>' +
+          '<div class="slot-meta">' + meta + '</div>' +
+        '</div>' +
+        '<span class="slot-status ' + statusCls + '">' + statusLabel + '</span>' +
+        '<div class="admin-actions">' + actions + '</div>' +
+        '</div>';
+    });
+
+    if (win.slots.length === 0) {
+      slotsHtml = '<div style="font-size:0.75rem;opacity:0.4;padding:8px 0;">No reservations yet</div>';
+    }
+
+    var addFakeHtml = '';
+    var quickSellHtml = '';
+    if (win.slots.length < win.capacity) {
+      addFakeHtml = '<button class="btn-add-fake" onclick="promptFake(\'' + letter + '\')">+ Add fake name</button>';
+      quickSellHtml =
+        '<div class="admin-quick-sell">' +
+          '<input type="text" id="qs-name-' + letter + '" placeholder="Quick sell name" maxlength="30">' +
+          '<select id="qs-plat-' + letter + '">' +
+            '<option value="of">OF</option>' +
+            '<option value="open">Open</option>' +
+            '<option value="telegram">TG</option>' +
+          '</select>' +
+          '<button class="btn-sm btn-confirm" onclick="quickSell(\'' + letter + '\')">Sell</button>' +
+        '</div>';
+    }
+
+    card.innerHTML = headerHtml + slotsHtml + addFakeHtml + quickSellHtml;
+    container.appendChild(card);
+  });
+}
+
+function esc(str) {
+  var d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML.replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+}
+
+function apiPost(body) {
+  return fetch(API, { method: 'POST', headers: headers, body: JSON.stringify(body) })
+    .then(function(r) { return r.json(); });
+}
+
+function confirmSlot(window, code) {
+  apiPost({ action: 'confirm', window: window, code: code }).then(fetchBoard);
+}
+
+function releaseSlot(window, code) {
+  if (!confirm('Release this slot?')) return;
+  apiPost({ action: 'release', window: window, code: code }).then(fetchBoard);
+}
+
+function removeFake(window, alias) {
+  apiPost({ action: 'remove_fake', window: window, alias: alias }).then(fetchBoard);
+}
+
+function promptFake(window) {
+  var alias = prompt('Fake display name:');
+  if (!alias || !alias.trim()) return;
+  apiPost({ action: 'add_fake', window: window, alias: alias.trim() }).then(fetchBoard);
+}
+
+function quickSell(window) {
+  var nameEl = document.getElementById('qs-name-' + window);
+  var platEl = document.getElementById('qs-plat-' + window);
+  var name = nameEl.value.trim();
+  if (!name) { nameEl.focus(); return; }
+  apiPost({ action: 'quick_sell', window: window, alias: name, platform: platEl.value })
+    .then(function(res) {
+      if (res.code) alert('Sold. Code: ' + res.code);
+      fetchBoard();
+    });
+}
+</script>
+
+</body>
+</html>

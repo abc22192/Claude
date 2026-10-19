@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Blast or Treat Wheel</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="wheel-page">
+  <div class="title" id="wheelTitle" style="font-size:1.3rem">SPIN THE WHEEL</div>
+
+  <div class="wheel-tabs">
+    <button class="wheel-tab active" id="tabSmall" onclick="switchWheel('small')">Every Buyer</button>
+    <button class="wheel-tab" id="tabBig" onclick="switchWheel('big')">Window Winner</button>
+  </div>
+
+  <div class="wheel-container">
+    <div class="wheel-pointer"></div>
+    <canvas id="wheelCanvas" width="300" height="300"></canvas>
+  </div>
+
+  <div class="wheel-result" id="resultDisplay"></div>
+
+  <button class="spin-btn" id="spinBtn" onclick="doSpin()">SPIN</button>
+</div>
+
+<div class="wheel-admin" id="adminPanel">
+  <h3>CONTROL PANEL</h3>
+  <label for="preSelect">Land on:</label>
+  <select id="preSelect"></select>
+  <button class="spin-btn" onclick="doSpin()" style="margin-top:12px">SPIN (CONTROLLED)</button>
+  <button class="btn btn-dismiss" onclick="toggleAdmin()" style="margin-top:6px;font-size:0.7rem">Close</button>
+</div>
+
+<script src="../assets/wheel.js"></script>
+<script>
+var smallSegments = [
+  { label: 'Free Clip', color: '#8B2252', textColor: '#fff' },
+  { label: 'Custom\nVoice Note', color: '#2E4057', textColor: '#fff' },
+  { label: 'Clip\nBundle', color: '#6B3A5D', textColor: '#fff' },
+  { label: 'Membership\nDiscount', color: '#3D5A3E', textColor: '#fff' },
+  { label: 'Free Clip', color: '#5C3A1E', textColor: '#fff' },
+  { label: 'Custom\nVoice Note', color: '#1E3A5C', textColor: '#fff' },
+  { label: 'Clip\nBundle', color: '#5C1E3A', textColor: '#fff' },
+  { label: 'Membership\nDiscount', color: '#3A5C1E', textColor: '#fff' }
+];
+
+var bigSegments = [
+  { label: '4D Custom\nVideo', color: '#C8A08C', textColor: '#000' },
+  { label: 'Custom Video\n(3 min)', color: '#8B2252', textColor: '#fff' },
+  { label: 'Bella Effect\nSession', color: '#2E4057', textColor: '#fff' },
+  { label: 'Custom Fart\nVideo', color: '#6B3A5D', textColor: '#fff' },
+  { label: '4D Custom\nVideo', color: '#3D5A3E', textColor: '#fff' },
+  { label: 'Custom Video\n(3 min)', color: '#5C3A1E', textColor: '#fff' },
+  { label: 'Bella Effect\nSession', color: '#1E3A5C', textColor: '#fff' },
+  { label: 'Custom Fart\nVideo', color: '#5C1E3A', textColor: '#fff' }
+];
+
+var canvas = document.getElementById('wheelCanvas');
+var currentType = 'small';
+var wheel = new ControlledWheel(canvas, smallSegments);
+var preSelectedIndex = null;
+var adminVisible = false;
+
+function resizeCanvas() {
+  var size = Math.min(window.innerWidth - 48, 300);
+  canvas.width = size;
+  canvas.height = size;
+  wheel.draw();
+}
+
+function switchWheel(type) {
+  if (wheel.spinning) return;
+  currentType = type;
+  document.getElementById('tabSmall').className = 'wheel-tab' + (type === 'small' ? ' active' : '');
+  document.getElementById('tabBig').className = 'wheel-tab' + (type === 'big' ? ' active' : '');
+  var segs = type === 'small' ? smallSegments : bigSegments;
+  wheel = new ControlledWheel(canvas, segs);
+  wheel.draw();
+  populateSelect(segs);
+  document.getElementById('resultDisplay').innerHTML = '';
+  preSelectedIndex = null;
+}
+
+function populateSelect(segs) {
+  var sel = document.getElementById('preSelect');
+  sel.innerHTML = '<option value="">Random</option>';
+  var seen = {};
+  segs.forEach(function(s, i) {
+    var name = s.label.replace('\n', ' ');
+    if (!seen[name]) {
+      seen[name] = true;
+      sel.innerHTML += '<option value="' + i + '">' + name + '</option>';
+    }
+  });
+}
+
+function doSpin() {
+  if (wheel.spinning) return;
+  document.getElementById('resultDisplay').innerHTML = '';
+
+  var selVal = document.getElementById('preSelect').value;
+  var idx;
+  if (selVal !== '') {
+    var targetLabel = wheel.segments[parseInt(selVal)].label;
+    var matches = [];
+    wheel.segments.forEach(function(s, i) { if (s.label === targetLabel) matches.push(i); });
+    idx = matches[Math.floor(Math.random() * matches.length)];
+  } else {
+    idx = Math.floor(Math.random() * wheel.segments.length);
+  }
+
+  wheel.onComplete = function(seg) {
+    var name = seg.label.replace('\n', ' ');
+    document.getElementById('resultDisplay').innerHTML =
+      '<div class="prize-name">' + name + '</div>';
+  };
+
+  document.getElementById('spinBtn').disabled = true;
+  wheel.spinTo(idx);
+  setTimeout(function() { document.getElementById('spinBtn').disabled = false; }, 6500);
+}
+
+function toggleAdmin() {
+  adminVisible = !adminVisible;
+  document.getElementById('adminPanel').classList.toggle('visible', adminVisible);
+}
+
+var clickCount = 0;
+var clickTimer = null;
+document.getElementById('wheelTitle').addEventListener('click', function() {
+  clickCount++;
+  clearTimeout(clickTimer);
+  clickTimer = setTimeout(function() { clickCount = 0; }, 600);
+  if (clickCount >= 3) { toggleAdmin(); clickCount = 0; }
+});
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.shiftKey && e.key === 'A') { toggleAdmin(); e.preventDefault(); }
+});
+
+populateSelect(smallSegments);
+resizeCanvas();
+wheel.draw();
+window.addEventListener('resize', resizeCanvas);
+</script>
+
+</body>
+</html>

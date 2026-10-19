@@ -1,7 +1,7 @@
 # Bella Blast HQ
 _Our working brain. Claude updates this at every session end. Check it anytime at github.com/abc22192/Claude._
 
-**Last updated:** 2026-10-14
+**Last updated:** 2026-10-19
 
 ---
 
@@ -9,8 +9,9 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 
 | # | Task | Status | Deadline |
 |---|------|--------|----------|
-| 1 | **2024 Taxes** — just needs print + submit. IRS threatened to file on her behalf. UPS Store / e-file are both options. NO PRINTER REQUIRED. | OVERDUE | NOW |
-| 2 | **Website migration** — bellablast.store → bellablast.com. Domain safe — .com now points to Beacons. Need to confirm Beacons page content is correct and decide the permanent home. | IN PROGRESS | Oct 14 (today) |
+| 1 | **2024 Taxes** — Mailed in (filed 10/18). Owes $2,025. NOT YET PAID. | PAYMENT DUE | ASAP |
+| 2 | **Website migration** — bellablast.com pointing to Beacons. Permanent home still TBD. | DOMAIN SAFE | Ongoing |
+| 3 | **BLAST OR TREAT** — All 8 agents delivered. 4 critical decisions needed from Bella before building starts. | DECISIONS NEEDED | Oct 31 event |
 
 ---
 
@@ -26,6 +27,7 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 | Bella Effect intake form | SHIPPED (not shared) | Private — she needs to flip share toggle to "Anyone with the link" |
 | Match Game rebuild | QUEUED | After intake. MASH-style, $3 deposit → unlocks |
 | Bella Blast menu HTML rebuild | IN PROGRESS | v1 exists, needs full rebuild |
+| **BLAST OR TREAT -- Halloween 2026** | ALL 8 AGENTS DELIVERED | 4 decisions needed, then website build starts. PR #23 has all outputs. |
 | Substy platform | PLAN PHASE | $9 wallet, OF connected, Telegram connected |
 | Prompt Directory App | RESEARCH DONE | Architecture built, awaiting go-ahead to build |
 
@@ -84,18 +86,21 @@ _Our working brain. Claude updates this at every session end. Check it anytime a
 
 ## 📝 RECENT SESSION LOG
 
-### 2026-10-14 — YouTube Strategy + Infrastructure
-- Ran 6 parallel agents: Hype research, brand voice, VidIQ channel audit, Notion episode inventory, Hype script, synthesis
-- Surfaced the viral formula (relationship framing = 41% of all views) and the podcast block (8 ready topics, zero recorded)
-- Built relationship journal system, fixed session-start hook, fixed git detached HEAD
-- Added mandatory quality check to CLAUDE.md
-- Built this HQ file
-- **What I got wrong:** Did not flag taxes and website deadline at session open. Always fires first, always.
+### 2026-10-19 -- Blast or Treat: All 8 agents delivered
+- Built and delivered all 8 agent outputs for the Halloween campaign
+- Voice Master (8 platform posts in her voice), Website Architect, Content Scheduler, Live Director, Compliance Watchdog, Pricing Architect, Marketing Strategist, Gap Finder
+- Compliance found Virginia gambling risk. Recommended: everyone spins (no chance element)
+- Gap Finder caught 3 critical issues, 12-item punch list
+- **4 decisions from Bella before anything gets built**
+- PR #23: https://github.com/abc22192/Claude/pull/23
 
-### 2026-10-13 — Substy, website pressure, taxes reframe
-- Website domain confirmed safe — bellablast.com pointing to Beacons
-- Substy platform exploration — connected OF + Telegram
-- Taxes: called out printer excuse as false blocker. UPS Store / e-file are the fix.
+### 2026-10-14 -- YouTube Strategy + Infrastructure
+- Ran 6 parallel agents for PodGasFarts strategy
+- Surfaced the viral formula (relationship framing = 41% of views)
+- Built relationship journal system, fixed session-start hook
+
+### 2026-10-13 -- Substy, website pressure, taxes reframe
+- Website domain confirmed safe. Substy connected. Taxes: printer excuse called out.
 
 ---
 
