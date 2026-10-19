@@ -40,19 +40,32 @@ Full file: `projects/halloween-2026/links-master.md`
 
 ## Blast or Treat -- Halloween 2026 (8-Agent Campaign System)
 Full plan: `projects/halloween-2026/agent-plan.md`
+All 8 agent outputs: `projects/halloween-2026/agent-output-*.md`
 Notion source: "Blast or Treat -- Halloween 2026 Campaign Plan" (updated 10/18)
-- 8 custom agents: Voice Master, Website Architect, Content Scheduler, Live Director, Compliance Watchdog, Pricing Architect, Marketing Strategist, Gap Finder
+- 8 custom agents ALL DELIVERED (2026-10-19):
+  1. Voice Master -- 8 platform posts written in her voice (Voice Skill v2, 4 modes)
+  2. Website Architect -- dual-payment site plan, 5-file build, mobile-first
+  3. Content Scheduler -- 4-phase ADHD-friendly timeline with bucket system
+  4. Live Director -- full show rundown, 5 costume concepts, tech checklist
+  5. Compliance Watchdog -- VA gambling analysis, platform TOS, Option A recommended (everyone spins)
+  6. Pricing Architect -- full pricing grid, revenue projections ($97-$620 net), bundle options
+  7. Marketing Strategist -- cross-platform funnel, "HALLOWEEN" keyword mechanic, promo timing
+  8. Gap Finder -- reviewed all 7, found 3 critical gaps, 12-item punch list
 - Key dates: Oct 19 meet-and-greet, Oct 25 Fart Stories Live, Oct 31 BLAST OR TREAT, Nov 1 meet-and-greet
-- Dual-payment website: OF-side (OF payment only, linkable on OF) + Open-side (Cash App/YouPay/Amazon, linked everywhere else)
+- Dual-payment website: OF-side (enter.bellablasts.com/halloween) + Open-side (enter.bellablasts.com/treat)
 - Square pricing locked: Free OF $15, VIP OF $10, Telegram $10
 - Prize wheel: custom, unreleased video, or free month
-- Status: PLAN PHASE -- Bella reviewing before any agent runs
-- Virginia gambling/sweepstakes question still open (counsel recommended)
+- **CRITICAL DECISIONS NEEDED FROM BELLA:**
+  1. Gambling fix: everyone spins (recommended, removes legal risk) or keep original chance-based?
+  2. Square cap per window (recommended: 3 per window, 18 total)?
+  3. Bundle structure: bonuses (recommended) or discounts?
+  4. Approve website build to start immediately?
+- Status: ALL AGENTS DELIVERED -- awaiting Bella's decisions before building
 
 ## Active tasks (never let these fall off)
 | Task | Status | Last touched |
 |------|--------|-------------|
-| **BLAST OR TREAT -- Halloween 2026** | PLAN PHASE -- 8-agent system planned, awaiting Bella approval | 2026-10-19 |
+| **BLAST OR TREAT -- Halloween 2026** | ALL 8 AGENTS DELIVERED -- awaiting Bella's 4 critical decisions | 2026-10-19 |
 | 2024 taxes -- filed, owes $2,025 | MAILED IN (filed 10/18). Owes $2,025 -- NOT YET PAID. | 2026-10-18 |
 | Website migration bellablast.store -> bellablast.com | DOMAIN SAFE -- .com now points to Beacons. Still need permanent home decision. | 2026-10-13 |
 | **Substy platform** -- $9 wallet, OF connected (Bella Blast, chatInboxEnabled=false), Telegram now in Substy too | PLAN PHASE | 2026-10-13 |
